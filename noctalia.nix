@@ -132,15 +132,6 @@
                 useCustomFont = false;
               }
               {
-                defaultSettings = {
-                  currentIconName = "world-download";
-                  hideOnZero = false;
-                  updateIntervalMinutes = 30;
-                  updateTerminalCommand = "foot -e";
-                };
-                id = "plugin:update-count";
-              }
-              {
                 compactMode = true;
                 diskPath = "/";
                 iconColor = "none";

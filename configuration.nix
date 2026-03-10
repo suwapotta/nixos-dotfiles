@@ -20,7 +20,6 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Network
-
   networking = {
     hostName = "NixOS";
     networkmanager.enable = true;
@@ -34,6 +33,20 @@
 
   # Set time zone
   time.timeZone = "Asia/Ho_Chi_Minh";
+
+  # Input methods
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5.waylandFrontend = true;
+
+    fcitx5.addons = with pkgs; [
+      qt6Packages.fcitx5-unikey
+      fcitx5-mozc
+      fcitx5-gtk
+      catppuccin-fcitx5
+    ];
+  };
 
   # Enable sound.
   services.pipewire = {
@@ -106,6 +119,10 @@
   # Use nerd fonts
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+
+    ubuntu-sans
+
+    roboto
 
     noto-fonts
     noto-fonts-cjk-sans

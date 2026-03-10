@@ -19,6 +19,7 @@ let
     "gtk-4.0" = "gtk-4.0";
     qt5ct = "qt5ct";
     qt6ct = "qt6ct";
+    fcitx5 = "fcitx5";
     "starship.toml" = "starship.toml";
   };
 in
