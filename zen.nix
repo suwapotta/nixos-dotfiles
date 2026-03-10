@@ -17,7 +17,6 @@ let
     # Check these out at about:config
     "extensions.autoDisableScopes" = 0;
     "extensions.pocket.enabled" = false;
-    # ...
   };
 
   extensions = [
@@ -27,8 +26,8 @@ let
     (extension "ublock-origin" "uBlock0@raymondhill.net")
     (extension "darkreader" "addon@darkreader.org")
   ];
-
 in
+
 {
   environment.systemPackages = [
     (pkgs.wrapFirefox
@@ -36,7 +35,7 @@ in
       {
         extraPrefs = lib.concatLines (
           lib.mapAttrsToList (
-            name: value: ''lockPref(${lib.strings.toJSON name}, ${lib.strings.toJSON value});''
+            name: value: "lockPref(${lib.strings.toJSON name}, ${lib.strings.toJSON value});"
           ) prefs
         );
 

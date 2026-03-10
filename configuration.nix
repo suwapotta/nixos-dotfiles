@@ -58,6 +58,9 @@
   environment.systemPackages = with pkgs; [
     gcc
     gnumake
+    cargo
+    rustc
+    tree-sitter
 
     wl-clipboard
     xwayland-satellite
