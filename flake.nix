@@ -23,10 +23,12 @@
 	  url = "github:youwen5/zen-browser-flake";
           inputs.nixpkgs.follows = "nixpkgs";
         };
+
+	lazyvim.url = "github:pfassina/lazyvim-nix";
     };
 
 
-    outputs = { self, nixpkgs, home-manager, ...}@inputs: {
+    outputs = { self, nixpkgs, home-manager, lazyvim, ...}@inputs: {
         nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
 
@@ -35,7 +37,6 @@
             modules = [
                 ./configuration.nix
 		./noctalia.nix
-		./browsers.nix
 		./zen.nix
                 home-manager.nixosModules.home-manager
                 {

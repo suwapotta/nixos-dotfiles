@@ -1,10 +1,14 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader
   boot.loader.systemd-boot.enable = true;
@@ -46,27 +50,27 @@
   programs.niri.enable = true;
   programs.nano.enable = false;
   programs.neovim = {
-      enable = true;
-      defaultEditor = true;
+    enable = true;
+    defaultEditor = true;
   };
 
   # List packages installed in system profile
   environment.systemPackages = with pkgs; [
-     wget
-     curl
+    wget
+    curl
 
-     wl-clipboard
-     xwayland-satellite
+    wl-clipboard
+    xwayland-satellite
 
-     git
-     lazygit
-     fastfetch
-     fish
-     kitty
-     starship
-     zoxide
-     eza
-     yazi
+    git
+    lazygit
+    fastfetch
+    fish
+    kitty
+    starship
+    zoxide
+    eza
+    yazi
   ];
 
   # Use nerd fonts
@@ -82,7 +86,7 @@
   #   enableSSHSupport = true;
   # };
 
-  # List enabled services 
+  # List enabled services
   services.openssh.enable = true;
   services.displayManager.ly.enable = true;
   services.power-profiles-daemon.enable = true;
@@ -94,9 +98,11 @@
   # networking.firewall.enable = false;
 
   # Enable flakes + home manager
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # DO NOT change the state version below
   system.stateVersion = "25.11";
 }
-

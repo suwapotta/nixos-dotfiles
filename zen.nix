@@ -25,7 +25,7 @@ let
     # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)
     # Then go to https://addons.mozilla.org/api/v5/addons/addon/!SHORT_ID!/ to get the guid
     (extension "ublock-origin" "uBlock0@raymondhill.net")
-    # ...
+    (extension "darkreader" "addon@darkreader.org")
   ];
 
 in
@@ -64,12 +64,6 @@ in
                 URLTemplate = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
                 IconURL = "https://wiki.nixos.org/favicon.ico";
                 Alias = "@nw";
-              }
-              {
-                Name = "noogle";
-                URLTemplate = "https://noogle.dev/q?term={searchTerms}";
-                IconURL = "https://noogle.dev/favicon.ico";
-                Alias = "@ng";
               }
             ];
           };
