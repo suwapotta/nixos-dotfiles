@@ -11,20 +11,26 @@
   ];
 
   # Use the systemd-boot EFI boot loader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "NixOS";
-
   # Network
-  networking.networkmanager.enable = true;
+
+  networking = {
+    hostName = "NixOS";
+    networkmanager.enable = true;
+  };
 
   # Bluetooth
-  # hardware.bluetooth.enable = true;
-  # hardware.bluetooth.powerOnBoot.enable = true;
+  # hardware.bluetooth = {
+  #   enable = true;
+  #   powerOnBoot.enable = true;
+  # };
 
   # Set time zone
   time.timeZone = "Asia/Ho_Chi_Minh";
@@ -47,11 +53,13 @@
   };
 
   # Specific program settings
-  programs.niri.enable = true;
-  programs.nano.enable = false;
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
+  programs = {
+    niri.enable = true;
+    nano.enable = false;
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+    };
   };
 
   # List packages installed in system profile
@@ -64,6 +72,16 @@
 
     wl-clipboard
     xwayland-satellite
+    bibata-cursors
+    imagemagick
+    trash-cli
+    nautilus
+    qt6Packages.qt6ct
+    qt6.qtwayland
+    adwaita-qt6
+    adwaita-icon-theme
+    cosmic-icons
+    adw-gtk3
 
     wget
     curl
@@ -79,12 +97,19 @@
     fd
     fzf
     ripgrep
+    tealdeer
+    bat
+    entr
     tmux
   ];
 
   # Use nerd fonts
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -99,6 +124,18 @@
   services.openssh.enable = true;
   services.displayManager.ly.enable = true;
   services.power-profiles-daemon.enable = true;
+  services.gvfs.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+    ];
+    config.niri.default = [
+      "gnome"
+      "gtk"
+    ];
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

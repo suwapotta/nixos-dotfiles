@@ -15,6 +15,10 @@ let
     fish = "fish";
     fastfetch = "fastfetch";
     yazi = "yazi";
+    "gtk-3.0" = "gtk-3.0";
+    "gtk-4.0" = "gtk-4.0";
+    qt5ct = "qt5ct";
+    qt6ct = "qt6ct";
     "starship.toml" = "starship.toml";
   };
 in
@@ -151,5 +155,16 @@ in
       bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
       bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
     '';
+  };
+
+  programs.tealdeer.settings = {
+    display = {
+      compact = false;
+      use_pager = true;
+    };
+
+    updates = {
+      auto_update = true;
+    };
   };
 }
