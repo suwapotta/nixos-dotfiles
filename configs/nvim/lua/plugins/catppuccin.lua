@@ -1,20 +1,24 @@
 return {
-  "catppuccin/nvim",
+	{
+		"catppuccin/nvim",
 
-  opts = {
-    transparent_background = true,
+		opts = {
+			transparent_background = true,
 
-    float = {
-      transparent = true,
-      solid = true,
-    },
+			custom_highlights = function(colors)
+				return {
+					NormalFloat = { bg = "none" },
+					FloatBorder = { bg = "none" },
+					FloatTitle = { bg = "none" },
+					Pmenu = { bg = "none" },
+					PmenuSel = { bg = colors.surface1, fg = "none" },
+				}
+			end,
+		},
 
-    -- Force completion menu background to be transparent
-    custom_highlights = function(colors)
-      return {
-        Pmenu = { bg = "none" },
-        PmenuSel = { bg = colors.surface0, fg = "none" },
-      }
-    end,
-  },
+		config = function(_, opts)
+			require("catppuccin").setup(opts)
+			vim.cmd.colorscheme("catppuccin")
+		end,
+	},
 }

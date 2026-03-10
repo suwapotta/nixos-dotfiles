@@ -56,12 +56,14 @@
 
   # List packages installed in system profile
   environment.systemPackages = with pkgs; [
-    wget
-    curl
+    gcc
+    gnumake
 
     wl-clipboard
     xwayland-satellite
 
+    wget
+    curl
     git
     lazygit
     fastfetch
@@ -71,6 +73,9 @@
     zoxide
     eza
     yazi
+    fd
+    fzf
+    ripgrep
   ];
 
   # Use nerd fonts

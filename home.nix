@@ -30,6 +30,30 @@ imports = [
 
 programs.lazyvim = {
   enable = true;
-  configFiles = ./nvim/lua;
+  configFiles = ./configs/nvim/lua;
+
+  extraPackages = with pkgs; [
+    # LSP servers
+      nil                           # Nix
+      pyright                       # Python
+      nodePackages.bash-language-server # Bash
+      clang-tools                   # C/C++ (clangd)
+      lua-language-server           # Lua
+      marksman                      # Markdown
+      taplo                         # TOML
+      texlab                        # LaTeX
+      svls                          # SystemVerilog
+      verible                       # SystemVerilog (linting/formatting)
+
+    # Formatters
+      nixfmt                        # Nix
+      ruff                          # Python (LSP/Formatter)
+      shfmt                         # Shell
+      shellcheck                    # Shell
+      stylua                        # Lua
+      nodePackages.prettier         # Web/Markdown
+      bibtex-tidy                   # LaTeX
+      statix                        # Nix linter
+];
 };
 }
