@@ -1,5 +1,5 @@
 { pkgs, inputs, ...}: {
-	enviroment.systemPackages = [
+	environment.systemPackages = [
 		inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 	];
 }

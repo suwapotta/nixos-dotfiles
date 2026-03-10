@@ -36,6 +36,7 @@
                 ./configuration.nix
 		./noctalia.nix
 		./browsers.nix
+		./zen.nix
                 home-manager.nixosModules.home-manager
                 {
                     home-manager = {
