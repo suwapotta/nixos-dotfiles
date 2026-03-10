@@ -81,6 +81,7 @@ in
       clang-tools # C/C++ (clangd)
       lua-language-server # Lua
       marksman # Markdown
+      markdownlint-cli2 # Markdown
       taplo # TOML
       texlab # LaTeX
       svls # SystemVerilog
@@ -112,7 +113,7 @@ in
       vim-tmux-navigator
       yank
       resurrect
-      continumm
+      continuum
     ];
 
     # Custom binds and styling
