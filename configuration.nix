@@ -76,6 +76,7 @@
     fd
     fzf
     ripgrep
+    tmux
   ];
 
   # Use nerd fonts
