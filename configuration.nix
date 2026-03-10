@@ -15,8 +15,12 @@
 
   networking.hostName = "NixOS";
 
-  # Configure network connections interactively with nmcli or nmtui.
+  # Network
   networking.networkmanager.enable = true;
+
+  # Bluetooth
+  # hardware.bluetooth.enable = true;
+  # hardware.bluetooth.powerOnBoot.enable = true;
 
   # Set time zone
   time.timeZone = "Asia/Ho_Chi_Minh";
@@ -81,6 +85,7 @@
   # List enabled services 
   services.openssh.enable = true;
   services.displayManager.ly.enable = true;
+  services.power-profiles-daemon.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
