@@ -18,7 +18,13 @@
           url = "github:noctalia-dev/noctalia-qs";
           inputs.nixpkgs.follows = "nixpkgs";
         };
+
+	zen-browser = {
+	  url = "github:youwen5/zen-browser-flake";
+          inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
+
 
     outputs = { self, nixpkgs, home-manager, ...}@inputs: {
         nixosConfigurations.NixOS = nixpkgs.lib.nixosSystem {
@@ -29,6 +35,7 @@
             modules = [
                 ./configuration.nix
 		./noctalia.nix
+		./browsers.nix
                 home-manager.nixosModules.home-manager
                 {
                     home-manager = {
