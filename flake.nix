@@ -23,11 +23,6 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    lazyvim = {
-      url = "github:pfassina/lazyvim-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -35,7 +30,6 @@
       self,
       nixpkgs,
       home-manager,
-      lazyvim,
       ...
     }@inputs:
     {
@@ -45,9 +39,8 @@
         specialArgs = { inherit inputs; };
 
         modules = [
-          ./configuration.nix
-          ./noctalia.nix
-          ./zen.nix
+          ./hosts/VM/configuration.nix
+          ./system/default.nix
 
           home-manager.nixosModules.home-manager
           {

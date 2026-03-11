@@ -87,9 +87,7 @@
   # Specific program settings
   programs = {
     nano.enable = false;
-
     niri.enable = true;
-
     nix-ld.enable = true;
   };
 
@@ -97,15 +95,12 @@
   environment.systemPackages = with pkgs; [
     gcc
     gnumake
-    cargo
-    rustc
-    tree-sitter
+    unzip
 
     wl-clipboard
     xwayland-satellite
     bibata-cursors
     imagemagick
-    trash-cli
     nautilus
     qt6Packages.qt6ct
     qt6.qtwayland
@@ -118,6 +113,7 @@
     curl
     git
     lazygit
+
     fastfetch
     fish
     kitty

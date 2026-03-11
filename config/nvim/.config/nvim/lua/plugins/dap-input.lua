@@ -6,15 +6,9 @@ return {
 
     dap.configurations.cpp = dap.configurations.cpp or {}
 
-    dap.adapters.lldb = {
-      type = "executable",
-      command = "lldb-vscode", 
-      name = "lldb"
-    },
-
     table.insert(dap.configurations.cpp, {
       name = "Launch with input file",
-      type = "lldb",
+      type = "codelldb",
       request = "launch",
       program = function()
         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")

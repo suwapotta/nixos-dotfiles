@@ -22,6 +22,7 @@ let
     cava = "cava";
     btop = "btop";
     zathura = "zathura";
+    nvim = "nvim";
   };
 in
 
@@ -40,6 +41,7 @@ in
 
   # Custom settings
   imports = [
-    ../system/default.nix
+    ./tmux.nix
+    ./tealdeer.nix
   ];
 }
