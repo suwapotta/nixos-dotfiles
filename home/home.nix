@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   ...
 }:
 
@@ -39,8 +38,8 @@ in
     recursive = true;
   }) configs;
 
+  # Custom settings
   imports = [
-    inputs.lazyvim.homeManagerModules.default
-    inputs.nixvim.homeModules.nixvim
+    ../system/default.nix
   ];
 }

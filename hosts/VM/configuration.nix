@@ -86,14 +86,9 @@
 
   # Specific program settings
   programs = {
-    niri.enable = true;
-
     nano.enable = false;
 
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-    };
+    niri.enable = true;
 
     nix-ld.enable = true;
   };

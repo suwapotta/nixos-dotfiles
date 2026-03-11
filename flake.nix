@@ -48,9 +48,6 @@
           ./configuration.nix
           ./noctalia.nix
           ./zen.nix
-          ./tmux.nix
-          ./lazyvim-nix.nix
-          ./tealdeer.nix
 
           home-manager.nixosModules.home-manager
           {
@@ -60,7 +57,7 @@
 
               extraSpecialArgs = { inherit inputs; };
 
-              users.suwapotta = import ./home.nix;
+              users.suwapotta = import ./home/home.nix;
               backupFileExtension = "backup";
             };
           }
