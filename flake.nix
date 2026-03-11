@@ -24,7 +24,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lazyvim.url = "github:pfassina/lazyvim-nix";
+    lazyvim = {
+      url = "github:pfassina/lazyvim-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -45,6 +48,10 @@
           ./configuration.nix
           ./noctalia.nix
           ./zen.nix
+          ./tmux.nix
+          ./lazyvim-nix.nix
+          ./tealdeer.nix
+
           home-manager.nixosModules.home-manager
           {
             home-manager = {

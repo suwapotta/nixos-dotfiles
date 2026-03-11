@@ -1,6 +1,4 @@
 {
-  config,
-  lib,
   pkgs,
   ...
 }:
@@ -48,31 +46,55 @@
     ];
   };
 
-  # Enable sound.
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
+  services = {
+    # Explicit VM settings
+    qemuGuest.enable = true;
+    spice-vdagentd.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager)
-  services.libinput.enable = true;
+    # ly - display manager of choice
+    displayManager.ly = {
+      enable = true;
+
+    };
+
+    # Enable sound
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
+
+    # Enable touchpad support
+    libinput.enable = true;
+
+    openssh.enable = true;
+
+    power-profiles-daemon.enable = true;
+    gvfs.enable = true;
+  };
 
   # Define a user account
   users.users.suwapotta = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    packages = with pkgs; [
+    extraGroups = [
+      "networkmanager"
+      "wheel"
     ];
+    # packages = with pkgs; [
+    #   # User's packages
+    # ];
   };
 
   # Specific program settings
   programs = {
     niri.enable = true;
+
     nano.enable = false;
+
     neovim = {
       enable = true;
       defaultEditor = true;
     };
+
     nix-ld.enable = true;
   };
 
@@ -115,13 +137,14 @@
     bat
     entr
     tmux
+    cava
+    btop
+    zathura
   ];
 
-  # Use nerd fonts
+  # Declare all font packages
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
-
-    ubuntu-sans
 
     roboto
 
@@ -130,19 +153,6 @@
     noto-fonts-color-emoji
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List enabled services
-  services.openssh.enable = true;
-  services.displayManager.ly.enable = true;
-  services.power-profiles-daemon.enable = true;
-  services.gvfs.enable = true;
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
@@ -155,13 +165,7 @@
     ];
   };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Enable flakes + home manager
+  # Enable flakes
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
