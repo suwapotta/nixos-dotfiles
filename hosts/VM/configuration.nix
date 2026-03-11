@@ -66,7 +66,13 @@
     # Enable touchpad support
     libinput.enable = true;
 
-    openssh.enable = true;
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "yes";
+        PasswordAuthentication = false;
+      };
+    };
 
     power-profiles-daemon.enable = true;
     gvfs.enable = true;

@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd({ "ModeChanged", "VimEnter", "BufEnter" }, {
     local filename = vim.fn.expand("%:t")
 
     if filename == "" then
-      vim.opt.titlestring = "nvim-" .. mode .. " [Scratch]"
+      vim.opt.titlestring = "nvim-" .. mode .. " "
       return
     end
 

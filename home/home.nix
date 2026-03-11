@@ -43,5 +43,6 @@ in
   imports = [
     ./tmux.nix
     ./tealdeer.nix
+    ./nvim.nix
   ];
 }

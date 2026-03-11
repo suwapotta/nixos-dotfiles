@@ -6,7 +6,8 @@
     defaultEditor = true;
 
     extraPackages = with pkgs; [
-      clang-tool
+      # arduino-cli
+      clang-tools
       lldb
       pyright
       ruff
@@ -20,16 +21,22 @@
       prettier
       nil
       nixfmt
+      statix
       lua-language-server
       stylua
       texlab
+      tectonic
       bibtex-tidy
       texlivePackages.latexindent
       arduino-language-server
       verible
       svls
 
+      (python314.withPackages (qs: with qs; [ pygments ]))
+      trash-cli
       tree-sitter
+      ghostscript
+      mermaid-cli
     ];
   };
 
