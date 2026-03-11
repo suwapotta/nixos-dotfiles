@@ -77,11 +77,13 @@ in
       # LSP servers
       nil # Nix
       pyright # Python
-      nodePackages.bash-language-server # Bash
+      bash-language-server # Bash
       clang-tools # C/C++ (clangd)
       lua-language-server # Lua
       marksman # Markdown
+      markdown-toc # Markdown
       markdownlint-cli2 # Markdown
+      mermaid-cli # Markdown
       taplo # TOML
       texlab # LaTeX
       svls # SystemVerilog
@@ -96,6 +98,10 @@ in
       nodePackages.prettier # Web/Markdown
       bibtex-tidy # LaTeX
       statix # Nix linter
+
+      # To fix the image rendering errors in Snacks.image:
+      ghostscript # Provides 'gs' for PDF rendering
+      tectonic # For LaTeX math
     ];
   };
 
