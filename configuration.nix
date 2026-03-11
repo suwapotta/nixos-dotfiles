@@ -73,6 +73,7 @@
       enable = true;
       defaultEditor = true;
     };
+    nix-ld.enable = true;
   };
 
   # List packages installed in system profile

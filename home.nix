@@ -70,12 +70,7 @@ in
       lang.nix.enable = true; # Nix
       lang.tex.enable = true; # LaTeX
       lang.toml.enable = true; # TOML
-
-      lang.python = {
-        enable = true;
-        installDependencies = true; # Installs ruff, pyright, etc. via Nix
-        installRuntimeDependencies = true; # Installs python3, pip, etc. via Nix
-      };
+      lang.python.enable = true; # Python
     };
 
     extraPackages = with pkgs; [

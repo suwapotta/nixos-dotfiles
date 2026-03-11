@@ -24,10 +24,6 @@ if status is-interactive # Commands to run in interactive sessions can go here
     alias tldrQuery 'tldr -l | fzf --preview "tldr {1} --color=always" --preview-window=right,70% | xargs tldr'
     alias lg lazygit
 
-    # fzf.fish plugin
-    fzf_configure_bindings --history= --directory=\ct --variables=\e\cv
-    set fzf_fd_opts --hidden --max-depth 5
-
     # Setup zoxide
     zoxide init fish | source
 end
