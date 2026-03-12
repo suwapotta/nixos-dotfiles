@@ -7,6 +7,30 @@
   programs.noctalia-shell = {
     enable = true;
 
+    plugins = {
+      sources = [
+        {
+          enabled = true;
+          name = "Official Noctalia Plugins";
+          url = "https://github.com/noctalia-dev/noctalia-plugins";
+        }
+      ];
+
+      states = {
+        todo = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
+
+        keybind-cheatsheet = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
+      };
+
+      version = 2;
+    };
+
     settings = {
       settingsVersion = 57;
 
@@ -390,7 +414,7 @@
         animationDisabled = false;
         animationSpeed = 1;
         autoStartAuth = false;
-        avatarImage = "/home/suwapotta/Pictures/PFPs/kokoro.png";
+        avatarImage = "/home/suwapotta/nixos-dotfiles/images/pfp/kokoro.png";
         boxRadiusRatio = 1;
         clockFormat = "hh\\nmm";
         clockStyle = "digital";
@@ -710,7 +734,7 @@
 
       ui = {
         boxBorderEnabled = false;
-        fontDefault = "Open Sans Medium";
+        fontDefault = "Inter Display Medium";
         fontDefaultScale = 1;
         fontFixed = "JetBrainsMono Nerd Font Mono";
         fontFixedScale = 1;

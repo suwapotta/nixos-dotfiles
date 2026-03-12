@@ -8,14 +8,11 @@ spawn-sh-at-startup "noctalia-shell"
 prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-// screenshot-path null
 
 environment {
     QT_QPA_PLATFORMTHEME "qt6ct"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     QT_QPA_PLATFORM "wayland;xcb"
-    GTK_IM_MODULE "fcitx"
-    QT_IM_MODULE "fcitx"
 }
 
 cursor {

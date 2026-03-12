@@ -16,13 +16,9 @@ test-vm:
 	git add .
 	sudo nixos-rebuild test --flake ./#vm
 
-# sandbox-laptop:
+# sandbox:
 # 	git add .
 # 	sudo nixos-rebuild build-vm --flake ./#laptop
-#
-# sandbox-vm:
-# 	git add .
-# 	sudo nixos-rebuild build-vm --flake ./#vm
 
 update:
 	nix flake update

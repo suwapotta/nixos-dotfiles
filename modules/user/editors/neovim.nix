@@ -7,6 +7,7 @@
 
     extraPackages = with pkgs; [
       # arduino-cli
+      # arduino-language-server
       clang-tools
       lldb
       pyright
@@ -20,6 +21,7 @@
       markdown-toc
       prettier
       nil
+      nixd
       nixfmt
       statix
       lua-language-server
@@ -28,7 +30,6 @@
       tectonic
       bibtex-tidy
       texlivePackages.latexindent
-      arduino-language-server
       verible
       svls
 

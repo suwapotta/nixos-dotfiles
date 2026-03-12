@@ -30,20 +30,6 @@
   # Set time zone
   time.timeZone = "Asia/Ho_Chi_Minh";
 
-  # Input methods
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-    fcitx5.waylandFrontend = true;
-
-    fcitx5.addons = with pkgs; [
-      qt6Packages.fcitx5-unikey
-      fcitx5-mozc
-      fcitx5-gtk
-      catppuccin-fcitx5
-    ];
-  };
-
   services = {
     # Explicit VM settings
     qemuGuest.enable = true;
@@ -90,7 +76,6 @@
 
   # Specific program settings
   programs = {
-    nano.enable = false;
     niri.enable = true;
     nix-ld.enable = true;
   };
@@ -106,12 +91,6 @@
     bibata-cursors
     imagemagick
     nautilus
-    qt6Packages.qt6ct
-    qt6.qtwayland
-    adwaita-qt6
-    adwaita-icon-theme
-    cosmic-icons
-    adw-gtk3
 
     wget
     curl
@@ -135,17 +114,6 @@
     cava
     btop
     zathura
-  ];
-
-  # Declare all font packages
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-
-    roboto
-
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-color-emoji
   ];
 
   xdg.portal = {

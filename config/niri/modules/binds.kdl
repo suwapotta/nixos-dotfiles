@@ -8,7 +8,7 @@ binds {
     // Applications
     Mod+Return hotkey-overlay-title="Open Terminal" { spawn "kitty"; }
     Mod+Shift+Return hotkey-overlay-title="Open floating Terminal" { spawn-sh "kitty --class=floating.kitty"; }
-    Mod+B hotkey-overlay-title="Open Zen Browser" { spawn "zen-browser"; }
+    Mod+B hotkey-overlay-title="Open Zen Browser" { spawn "zen"; }
     Mod+Z hotkey-overlay-title="Open Anki" { spawn "anki"; }
     Mod+Shift+E hotkey-overlay-title="Open files" { spawn "nautilus"; }
     Mod+E hotkey-overlay-title="Open yazi" { spawn-sh "kitty -e yazi"; }
@@ -164,6 +164,6 @@ binds {
     XF86AudioLowerVolume  allow-when-locked=true hotkey-overlay-title="Decrease volume" { spawn-sh "noctalia-shell ipc call volume decrease"; }
     XF86AudioMute         allow-when-locked=true hotkey-overlay-title="Mute volume" { spawn-sh "noctalia-shell ipc call volume muteOutput"; }
     XF86AudioMicMute      allow-when-locked=true hotkey-overlay-title="Mute microphone" { spawn-sh "noctalia-shell ipc call volume muteInput"; }
-    XF86MonBrightnessUp   allow-when-locked=true hotkey-overlay-title="Increase brightness" { spawn-sh "noctalia-shell ipc call brightness increase"; }
+    Mod+Shift+O   allow-when-locked=true hotkey-overlay-title="Increase brightness" { spawn-sh "noctalia-shell ipc call brightness increase"; }
     XF86MonBrightnessDown allow-when-locked=true hotkey-overlay-title="Decrease brightness" { spawn-sh "noctalia-shell ipc call brightness decrease"; }
 }

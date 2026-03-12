@@ -14,6 +14,7 @@ return {
       },
 
       svls = {},
+      nixd = {},
     },
   },
 }

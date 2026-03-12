@@ -3,6 +3,8 @@
 {
   imports = [
     ./boot.nix
-    # ./fonts.nix
+    ./nano.nix
+    ./fonts.nix
+    ./fcitx5.nix
   ];
 }

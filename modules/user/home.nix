@@ -13,12 +13,11 @@ let
     fish = "fish";
     fastfetch = "fastfetch";
     yazi = "yazi";
-    "starship.toml" = "starship.toml";
-    "gtk-3.0" = "gtk-3.0";
-    "gtk-4.0" = "gtk-4.0";
-    qt5ct = "qt5ct";
-    qt6ct = "qt6ct";
     nvim = "nvim";
+    btop = "btop";
+    cava = "cava";
+    zathura = "zathura";
+    "starship.toml" = "starship.toml";
   };
 
 in
@@ -36,7 +35,6 @@ in
     recursive = true;
   }) configs;
 
-  # NOTE: WIP...
   imports = [
     ./apps
     ./cli
