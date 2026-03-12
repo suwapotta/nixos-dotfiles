@@ -39,14 +39,14 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/vm/configuration.nix
-            ./system/default.nix
+            ./modules/core
             home-manager.nixosModules.home-manager
             {
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = { inherit inputs; };
-                users.suwapotta = import ./home/home.nix;
+                users.suwapotta = import ./modules/user/home.nix;
                 backupFileExtension = "bak";
               };
             }

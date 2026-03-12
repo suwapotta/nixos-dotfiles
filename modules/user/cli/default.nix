@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./noctalia.nix
-    ./zen.nix
+    ./tealdeer.nix
+    ./tmux.nix
   ];
 }

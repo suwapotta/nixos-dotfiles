@@ -18,12 +18,9 @@ let
     "gtk-4.0" = "gtk-4.0";
     qt5ct = "qt5ct";
     qt6ct = "qt6ct";
-    fcitx5 = "fcitx5";
-    cava = "cava";
-    btop = "btop";
-    zathura = "zathura";
     nvim = "nvim";
   };
+
 in
 
 {
@@ -39,10 +36,13 @@ in
     recursive = true;
   }) configs;
 
-  # Custom settings
+  # NOTE: WIP...
   imports = [
-    ./tmux.nix
-    ./tealdeer.nix
-    ./neovim.nix
+    ./apps
+    ./cli
+    ./desktop
+    ./editors
+    ./shell
+    ./terminals
   ];
 }

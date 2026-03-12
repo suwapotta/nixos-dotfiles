@@ -8,18 +8,16 @@
     ./hardware-configuration.nix
   ];
 
-  # Use the systemd-boot EFI boot loader
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  # Target the latest kernel
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ ];
+    extraModulePackages = [ ];
   };
-
-  # Use latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Network
   networking = {
-    hostName = "NixOS";
+    hostName = "NixOS-VM";
     networkmanager.enable = true;
   };
 
@@ -54,8 +52,6 @@
     # ly - display manager of choice
     displayManager.ly = {
       enable = true;
-
-      # TODO: Customization!
     };
 
     # Enable sound

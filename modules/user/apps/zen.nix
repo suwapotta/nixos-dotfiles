@@ -30,7 +30,7 @@ let
 in
 
 {
-  environment.systemPackages = [
+  home.packages = [
     (pkgs.wrapFirefox
       inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
       {
