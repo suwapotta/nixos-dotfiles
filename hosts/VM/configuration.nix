@@ -55,6 +55,7 @@
     displayManager.ly = {
       enable = true;
 
+      # TODO: Customization!
     };
 
     # Enable sound
@@ -75,6 +76,7 @@
     };
 
     power-profiles-daemon.enable = true;
+
     gvfs.enable = true;
   };
 
