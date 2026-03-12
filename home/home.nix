@@ -5,7 +5,7 @@
 
 let
   dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
-  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+  createSymlink = path: config.lib.file.mkOutOfStoreSymlink path;
   # Standard .config/ directories
   configs = {
     niri = "niri";
@@ -35,7 +35,7 @@ in
 
   # Interates to make-out-of-store symlink from existing dotfiles
   xdg.configFile = builtins.mapAttrs (name: subpath: {
-    source = create_symlink "${dotfiles}/${subpath}";
+    source = createSymlink "${dotfiles}/${subpath}";
     recursive = true;
   }) configs;
 
@@ -43,6 +43,6 @@ in
   imports = [
     ./tmux.nix
     ./tealdeer.nix
-    ./nvim.nix
+    ./neovim.nix
   ];
 }

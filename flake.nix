@@ -34,11 +34,11 @@
     }@inputs:
     {
       nixosConfigurations = {
-        NixOS = nixpkgs.lib.nixosSystem {
+        vm = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ./hosts/VM/configuration.nix
+            ./hosts/vm/configuration.nix
             ./system/default.nix
             home-manager.nixosModules.home-manager
             {
@@ -46,9 +46,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = { inherit inputs; };
-
                 users.suwapotta = import ./home/home.nix;
-
                 backupFileExtension = "bak";
               };
             }

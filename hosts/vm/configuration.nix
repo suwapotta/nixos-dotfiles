@@ -170,6 +170,6 @@
     "flakes"
   ];
 
-  # DO NOT change the state version below
+  # DO NOT change the state version below!
   system.stateVersion = "25.11";
 }
