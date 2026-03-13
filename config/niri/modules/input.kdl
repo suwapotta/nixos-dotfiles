@@ -56,4 +56,4 @@ input {
 }
 
 // fcitx5 (JP/VN)
-spawn-at-startup "fcitx5"
+spawn-sh-at-startup "systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP; fcitx5 -r"

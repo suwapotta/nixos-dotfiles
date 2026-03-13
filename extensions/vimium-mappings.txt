@@ -1,0 +1,16 @@
+# Insert your preferred key mappings here.
+unmap t
+map t Vomnibar.activateTabSelection
+
+unmap J
+map J nextTab
+
+unmap K
+map K previousTab
+
+unmap t
+unmap T
+unmap o
+unmap O
+unmap b
+unmap B

@@ -8,14 +8,14 @@
 
   home.packages = with pkgs; [
     kdePackages.qt6ct
-    pop-icon-theme
+    # adwaita-icon-theme
   ];
 
   xdg.configFile."qt6ct/qt6ct.conf".text = ''
     [Appearance]
     color_scheme_path=/home/suwapotta/.config/qt6ct/colors/noctalia.conf
     custom_palette=true
-    icon_theme=Pop
+    icon_theme=Adwaita
     standard_dialogs=default
     style=Fusion
 
