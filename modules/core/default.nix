@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./boot.nix
+    # ./boot.nix
     ./nano.nix
     ./fonts.nix
     ./fcitx5.nix
