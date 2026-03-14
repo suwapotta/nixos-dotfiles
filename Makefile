@@ -1,21 +1,21 @@
 all:
 
-laptop:
+git:
 	git add .
+
+laptop: git
 	sudo nixos-rebuild switch --flake ./#laptop
 
-test-laptop:
-	git add .
+test-laptop: git
 	sudo nixos-rebuild test --flake ./#laptop
 
-sandbox-laptop:
-	git add .
+sandbox-laptop: git
 	sudo nixos-rebuild build-vm --flake ./#laptop
 
 update:
 	nix flake update
 
-clean:
+force-clean:
 	sudo nix-collect-garbage -d
 
-.PHONY: all laptop test-laptop sandbox-laptop update clean
+.PHONY: all git laptop test-laptop sandbox-laptop update force-clean
