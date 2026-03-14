@@ -19,8 +19,8 @@
     style=Fusion
 
     [Fonts]
-    fixed="Work Sans,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
-    general="Work Sans,11,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
+    fixed="Work Sans,9,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
+    general="Work Sans,9,-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
 
     [Interface]
     activate_item_on_single_click=1

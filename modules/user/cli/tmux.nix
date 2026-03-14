@@ -7,6 +7,7 @@
     # Native configuration
     baseIndex = 1;
     keyMode = "vi";
+    terminal = "tmux-256color";
     shell = "${pkgs.fish}/bin/fish";
 
     # Native plugins
@@ -26,6 +27,9 @@
       bind-key k select-pane -U
       bind-key l select-pane -R
 
+      # Kitty integration
+      set-option -a terminal-features 'kitty:RGB'
+
       # Consistency pane border
       set-option -g pane-border-style "fg=#45475b,bg=default"
       set-option -g pane-active-border-style "fg=#45475b,bg=default"
@@ -38,8 +42,7 @@
       set -g pane-base-index 1
       set-window-option -g pane-base-index 1
       set-option -g renumber-windows on
-
-      ## Status bar configuration
+      # Status bar configuration
       set -g status off
       set -g status-style bg=default
       set -g status-right ""

@@ -16,7 +16,7 @@
 
     font = {
       name = "Adwaita Sans";
-      size = 11;
+      size = 10;
     };
 
     cursorTheme = {

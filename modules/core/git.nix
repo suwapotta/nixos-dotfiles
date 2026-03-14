@@ -1,5 +1,3 @@
-{ lib, ... }:
-
 {
   programs = {
     git = {
@@ -7,14 +5,10 @@
 
       config = {
         user.name = "suwapotta";
-        user.email = "nguyenducthientan@gmail.com";
+        user.email = "nguyenducthientan09@gmail.com";
+
         init.defaultBranch = "master";
       };
     };
-
-    lazygit.enable = true;
-    ssh.startAgent = true;
   };
-
-  services.gnome.gcr-ssh-agent.enable = lib.mkForce false;
 }

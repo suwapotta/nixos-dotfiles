@@ -1,8 +1,10 @@
 {
   imports = [
-    ./auto-login.nix
     ./boot-loader.nix
-    ./hyprid.nix
+    ./hybrid.nix
     ./keyd.nix
+    ./ly.nix
+    # ./auto-login.nix # Annoying warning...
+    ./packages.nix
   ];
 }

@@ -1,25 +1,25 @@
 {
   config,
+  lib,
   ...
 }:
 
 let
   dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
-  createSymlink = path: config.lib.file.mkOutOfStoreSymlink path;
-  # Standard .config/ directories
-  configs = {
-    niri = "niri";
-    kitty = "kitty";
-    fish = "fish";
-    fastfetch = "fastfetch";
-    yazi = "yazi";
-    nvim = "nvim";
-    btop = "btop";
-    cava = "cava";
-    zathura = "zathura";
-    "starship.toml" = "starship.toml";
-  };
 
+  # Standard .config/ directories
+  configs = [
+    "niri"
+    "kitty"
+    "fish"
+    "fastfetch"
+    "yazi"
+    "nvim"
+    "btop"
+    "cava"
+    "zathura"
+    "starship.toml"
+  ];
 in
 
 {
@@ -30,10 +30,10 @@ in
   };
 
   # Interates to make-out-of-store symlink from existing dotfiles
-  xdg.configFile = builtins.mapAttrs (name: subpath: {
-    source = createSymlink "${dotfiles}/${subpath}";
+  xdg.configFile = lib.genAttrs configs (name: {
+    source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${name}";
     recursive = true;
-  }) configs;
+  });
 
   imports = [
     ./apps

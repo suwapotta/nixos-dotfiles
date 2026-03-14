@@ -1,3 +1,8 @@
+# NOTE: Specs:
+# $ nix-shell -p pciutils --run "lspci | grep 'VGA\|3D'"
+#   00:02.0 VGA compatible controller: Intel Corporation TigerLake-H GT1 [UHD Graphics] (rev 01)
+#   01:00.0 3D controller: NVIDIA Corporation GA107M [GeForce RTX 3050 Ti Mobile] (rev a1)
+
 {
   pkgs,
   lib,
@@ -10,7 +15,6 @@
     builtins.elem (lib.getName pkg) [
       "nvidia-x11"
       "nvidia-settings"
-      "nvidia-persistenced"
     ];
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -29,6 +33,7 @@
     nvidia = {
       modesetting.enable = true;
       powerManagement.enable = true;
+      powerManagement.finegrained = true;
       open = false;
     };
 
@@ -53,6 +58,8 @@
           enable = lib.mkForce false;
           enableOffloadCmd = lib.mkForce false;
         };
+
+        powerManagement.finegrained = lib.mkForce false;
       };
     };
   };
