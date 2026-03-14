@@ -1,5 +1,3 @@
-{ _, ... }:
-
 # WIP...
 {
   programs.tealdeer.settings = {

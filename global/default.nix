@@ -1,9 +1,7 @@
-{ _, ... }:
-
 {
   imports = [
+    ./auto-login.nix
     ./boot-loader.nix
     ./hyprid.nix
-    ./login.nix
   ];
 }

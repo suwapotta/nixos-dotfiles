@@ -14,8 +14,7 @@ let
   });
 in
 {
-  # see https://git.sr.ht/~kennylevinsen/autologin
-  # TODO https://superuser.com/questions/1904422/how-to-auto-login-without-display-manager-for-nixos-wayland-niri/1904473#1904473
+  # https://git.sr.ht/~kennylevinsen/autologin
   environment.systemPackages = [ autologin_on_7 ];
 
   systemd.services.autologin = {
@@ -29,6 +28,7 @@ in
 
     serviceConfig = {
       ExecStart = "${autologin_on_7}/bin/autologin suwapotta ${pkgs.niri}/bin/niri-session";
+      StandardError = "journal";
       Type = "simple";
       IgnoreSIGPIPE = "no";
       SendSIGHUP = "yes";

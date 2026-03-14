@@ -1,21 +1,26 @@
-all:
+FLAKE_HOST = laptop
 
-git:
-	git add .
+all: laptop
 
 laptop: git
-	sudo nixos-rebuild switch --flake ./#laptop
+	sudo nixos-rebuild switch --flake $(CURDIR)#$(FLAKE_HOST)
 
 test-laptop: git
-	sudo nixos-rebuild test --flake ./#laptop
+	sudo nixos-rebuild test --flake $(CURDIR)#$(FLAKE_HOST)
 
 sandbox-laptop: git
-	sudo nixos-rebuild build-vm --flake ./#laptop
+	sudo nixos-rebuild build-vm --flake $(CURDIR)#$(FLAKE_HOST)
+
+clean:
+	sudo nix-collect-garbage --delete-older-than 7d
+
+nuke:
+	sudo nix-collect-garbage -d
 
 update:
 	nix flake update
 
-force-clean:
-	sudo nix-collect-garbage -d
+git:
+	git add .
 
-.PHONY: all git laptop test-laptop sandbox-laptop update force-clean
+.PHONY: all laptop test-laptop sandbox-laptop clean nuke update git

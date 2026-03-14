@@ -20,7 +20,6 @@
       markdownlint-cli2
       markdown-toc
       prettier
-      nil
       nixd
       nixfmt
       statix
