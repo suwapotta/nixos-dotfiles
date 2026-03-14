@@ -1,13 +1,17 @@
 { _, ... }:
 
 {
-  programs.git = {
-    enable = true;
+  programs = {
+    git = {
+      enable = true;
 
-    config = {
-      user.name = "suwapotta";
-      user.email = "nguyenducthientan@gmail.com";
-      init.defaultBranch = "master";
+      config = {
+        user.name = "suwapotta";
+        user.email = "nguyenducthientan@gmail.com";
+        init.defaultBranch = "master";
+      };
     };
+
+    lazygit.enable = true;
   };
 }

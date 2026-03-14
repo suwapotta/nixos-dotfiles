@@ -7,8 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./boot-loader.nix
-    ./hyprid.nix
+    ../../global
   ];
 
   # Target the latest zen kernel with msi-ec
@@ -60,10 +59,6 @@
   security.rtkit.enable = true;
 
   services = {
-    displayManager.ly = {
-      enable = true;
-    };
-
     # Enable sound
     pipewire = {
       enable = true;
@@ -111,7 +106,6 @@
 
     wget
     curl
-    lazygit
 
     fastfetch
     fish
