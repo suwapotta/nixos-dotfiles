@@ -1,3 +1,5 @@
+{ lib, ... }:
+
 {
   programs = {
     git = {
@@ -11,5 +13,8 @@
     };
 
     lazygit.enable = true;
+    ssh.startAgent = true;
   };
+
+  services.gnome.gcr-ssh-agent.enable = lib.mkForce false;
 }
