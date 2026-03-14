@@ -1,8 +1,7 @@
 // https://yalter.github.io/niri/Configuration:-Miscellaneous
 
 spawn-sh-at-startup "noctalia-shell"
-// spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-// spawn-sh-at-startup "mcontrolcenter"
+spawn-sh-at-startup "mcontrolcenter"
 
 // Remove border for gtk applications
 prefer-no-csd
