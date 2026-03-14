@@ -734,7 +734,7 @@
 
       ui = {
         boxBorderEnabled = false;
-        fontDefault = "Inter Display Medium";
+        fontDefault = "Work Sans Medium";
         fontDefaultScale = 1;
         fontFixed = "JetBrainsMono Nerd Font Mono";
         fontFixedScale = 1;

@@ -20,8 +20,8 @@ let
     "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
     "font.default.x-western" = "sans-serif";
-    "font.name.serif.x-western" = "Inter";
-    "font.name.sans-serif.x-western" = "Inter";
+    "font.name.serif.x-western" = "Work Sans";
+    "font.name.sans-serif.x-western" = "Work Sans";
     "font.name.monospace.x-western" = "JetBrainsMono Nerd Font";
 
     "browser.contentblocking.category" = "strict";

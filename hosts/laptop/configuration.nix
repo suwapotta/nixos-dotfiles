@@ -99,7 +99,6 @@
 
     wl-clipboard
     xwayland-satellite
-    bibata-cursors
     imagemagick
     nautilus
     adwaita-icon-theme

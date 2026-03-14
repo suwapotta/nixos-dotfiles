@@ -1,7 +1,8 @@
 {
   imports = [
-    ./noctalia.nix
     ./gtk.nix
     ./qt.nix
+    ./noctalia.nix
+    ./cursor.nix
   ];
 }

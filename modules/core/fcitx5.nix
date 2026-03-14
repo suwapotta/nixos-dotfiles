@@ -95,9 +95,9 @@
           classicui.globalSection = {
             "Vertical Candidate List" = "False";
             WheelForPaging = "True";
-            Font = "Sans 10";
-            MenuFont = "Sans 10";
-            TrayFont = "Sans Bold 10";
+            Font = "Work Sans 11";
+            MenuFont = "Work Sans 11";
+            TrayFont = "Work Sans Semibold 11";
             TrayOutlineColor = "#000000";
             TrayTextColor = "#ffffff";
             PreferTextIcon = "False";

@@ -18,6 +18,7 @@ nuke:
 	sudo nix-collect-garbage -d
 
 update:
+	nvim --headless "+Lazy! sync" +qa
 	nix flake update
 
 git:

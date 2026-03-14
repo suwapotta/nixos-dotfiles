@@ -5,10 +5,8 @@
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
 
-      inter
-      roboto
+      work-sans
 
-      noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-color-emoji
     ];
