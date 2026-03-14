@@ -111,15 +111,13 @@
             ForceWaylandDPI = 0;
             EnableFractionalScale = "True";
           };
-
-          xcb.globalSection."Allow Overriding System XKB Settings" = "False";
-          wayland.globalSection."Allow Overriding System XKB Settings" = "False";
         };
       };
     };
   };
 
   environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
     XMODIFIERS = "@im=fcitx";
     MOZ_ENABLE_WAYLAND = "1";
     GLFW_IM_MODULE = "ibus";

@@ -103,6 +103,7 @@
     imagemagick
     nautilus
     adwaita-icon-theme
+    mcontrolcenter
 
     wget
     curl
