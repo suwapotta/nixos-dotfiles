@@ -164,6 +164,6 @@ binds {
     XF86AudioLowerVolume  allow-when-locked=true hotkey-overlay-title="Decrease volume" { spawn-sh "noctalia-shell ipc call volume decrease"; }
     XF86AudioMute         allow-when-locked=true hotkey-overlay-title="Mute volume" { spawn-sh "noctalia-shell ipc call volume muteOutput"; }
     XF86AudioMicMute      allow-when-locked=true hotkey-overlay-title="Mute microphone" { spawn-sh "noctalia-shell ipc call volume muteInput"; }
-    Mod+Shift+O   allow-when-locked=true hotkey-overlay-title="Increase brightness" { spawn-sh "noctalia-shell ipc call brightness increase"; }
+    XF86MonBrightnessUp   allow-when-locked=true hotkey-overlay-title="Increase brightness" { spawn-sh "noctalia-shell ipc call brightness increase"; }
     XF86MonBrightnessDown allow-when-locked=true hotkey-overlay-title="Decrease brightness" { spawn-sh "noctalia-shell ipc call brightness decrease"; }
 }

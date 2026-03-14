@@ -8,7 +8,6 @@
 
   home.packages = with pkgs; [
     kdePackages.qt6ct
-    # adwaita-icon-theme
   ];
 
   xdg.configFile."qt6ct/qt6ct.conf".text = ''
