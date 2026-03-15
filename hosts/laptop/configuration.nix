@@ -74,6 +74,7 @@
     libinput.enable = true;
     power-profiles-daemon.enable = true;
     gvfs.enable = true;
+    upower.enable = true;
   };
 
   # Define a user account
