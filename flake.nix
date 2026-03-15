@@ -32,45 +32,32 @@
       home-manager,
       ...
     }@inputs:
+    let
+      mkHost =
+        hostName:
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/${hostName}/configuration.nix
+            ./modules/core
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit inputs; };
+                users.suwapotta = import ./modules/user/home.nix;
+                backupFileExtension = "bak";
+              };
+            }
+          ];
+        };
+    in
     {
       nixosConfigurations = {
-        vm = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/vm/configuration.nix
-            ./modules/core
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; };
-                users.suwapotta = import ./modules/user/home.nix;
-                backupFileExtension = "bak";
-              };
-            }
-          ];
-        };
-
-        laptop = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/laptop/configuration.nix
-            ./modules/core
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; };
-                users.suwapotta = import ./modules/user/home.nix;
-                backupFileExtension = "bak";
-              };
-            }
-          ];
-        };
+        vm = mkHost "vm";
+        laptop = mkHost "laptop";
       };
     };
 }

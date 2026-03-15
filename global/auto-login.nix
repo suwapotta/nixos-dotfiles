@@ -28,7 +28,6 @@ in
 
     serviceConfig = {
       ExecStart = "${autologin_on_7}/bin/autologin suwapotta ${pkgs.niri}/bin/niri-session";
-      StandardError = "journal";
       Type = "simple";
       IgnoreSIGPIPE = "no";
       SendSIGHUP = "yes";

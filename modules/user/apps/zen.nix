@@ -62,7 +62,7 @@ in
 
             Add = [
               {
-                Name = "nixpkgs packages";
+                Name = "NixOS packages";
                 URLTemplate = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}";
                 IconURL = "https://wiki.nixos.org/favicon.ico";
                 Alias = "@np";
@@ -89,7 +89,7 @@ in
                 Name = "Youtube";
                 URLTemplate = "https://www.youtube.com/results?search_query={searchTerms}";
                 IconURL = "https://www.youtube.com/favicon.ico";
-                Alias = "@yt";
+                Alias = "@ytb";
               }
             ];
           };

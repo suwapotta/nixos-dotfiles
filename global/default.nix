@@ -1,7 +1,7 @@
 {
   imports = [
     ./audio.nix
-    # ./auto-login.nix # Annoying warning...
+    ./auto-login.nix # Annoying warning and no log-out option
     ./bluetooth.nix
     ./boot-loader.nix
     ./btrfs.nix
@@ -10,7 +10,7 @@
     ./hybrid.nix
     ./kernel.nix
     ./keyd.nix
-    ./ly.nix
+    # ./ly.nix # Can't go into tty from menu
     ./network.nix
     ./packages.nix
     ./portals.nix

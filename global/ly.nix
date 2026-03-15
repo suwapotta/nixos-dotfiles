@@ -4,9 +4,11 @@
 
     settings = {
       bigClock = true;
-      asterik = "";
+      asterik = null;
+      clear_password = true;
+
       vi_mode = true;
-      default_vi_mode = "insert";
+      vi_default_mode = "insert";
 
       ly_log = null;
     };
