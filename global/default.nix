@@ -16,6 +16,7 @@
     ./portals.nix
     ./timezone.nix
     ./users.nix
+    ./variables.nix
     ./zram.nix
   ];
 }

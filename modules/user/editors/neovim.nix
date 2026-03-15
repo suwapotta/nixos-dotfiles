@@ -33,6 +33,7 @@
       svls
 
       (python314.withPackages (qs: with qs; [ pygments ]))
+      sqlite
       trash-cli
       tree-sitter
       ghostscript

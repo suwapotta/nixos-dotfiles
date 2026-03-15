@@ -28,6 +28,7 @@ return {
         "typst",
         "vue",
         "kdl",
+        "yaml",
         "markdown",
         "markdown_inline",
         "make",

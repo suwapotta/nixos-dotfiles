@@ -1,8 +1,8 @@
 {
   imports = [
-    ./nano.nix
-    ./fonts.nix
     ./fcitx5.nix
+    ./fonts.nix
     ./git.nix
+    ./nano.nix
   ];
 }
