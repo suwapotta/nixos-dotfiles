@@ -1,8 +1,9 @@
 {
-  description = "NixOS Flakes";
+  description = "NixOS Flakes with flake-parts.";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -30,34 +31,66 @@
     {
       nixpkgs,
       home-manager,
+      flake-parts,
       ...
     }@inputs:
-    let
-      mkHost =
-        hostName:
-        nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/${hostName}/configuration.nix
-            ./modules/core
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = { inherit inputs; };
-                users.suwapotta = import ./modules/user/home.nix;
-                backupFileExtension = "bak";
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      {
+        config,
+        withSystem,
+        moduleWithSystem,
+        ...
+      }@top:
+      {
+        imports = [
+          # Optional: use external flake logic, e.g.
+          # inputs.foo.flakeModules.default
+        ];
+        flake =
+          let
+            mkHost =
+              hostName:
+              nixpkgs.lib.nixosSystem {
+                system = "x86_64-linux";
+                specialArgs = { inherit inputs; };
+                modules = [
+                  ./hosts/${hostName}/configuration.nix
+                  ./modules/core
+                  home-manager.nixosModules.home-manager
+                  {
+                    home-manager = {
+                      useGlobalPkgs = true;
+                      useUserPackages = true;
+                      extraSpecialArgs = { inherit inputs; };
+                      users.suwapotta = import ./modules/user/home.nix;
+                      backupFileExtension = "bak";
+                    };
+                  }
+                ];
               };
-            }
-          ];
-        };
-    in
-    {
-      nixosConfigurations = {
-        vm = mkHost "vm";
-        laptop = mkHost "laptop";
-      };
-    };
+          in
+          {
+            nixosConfigurations = {
+              vm = mkHost "vm";
+              laptop = mkHost "laptop";
+            };
+          };
+        systems = [
+          # systems for which you want to build the `perSystem` attributes
+          "x86_64-linux"
+        ];
+
+        perSystem =
+          { config, pkgs, ... }:
+          {
+            # Recommended: move all package definitions here.
+            # e.g. (assuming you have a nixpkgs input)
+            # packages.foo = pkgs.callPackage ./foo/package.nix { };
+            # packages.bar = pkgs.callPackage ./bar/package.nix {
+            #   foo = config.packages.foo;
+            # };
+            # };
+          };
+      }
+    );
 }
