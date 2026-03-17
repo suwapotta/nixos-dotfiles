@@ -34,18 +34,21 @@
       flake-parts,
       ...
     }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } (
-      {
-        config,
-        withSystem,
-        moduleWithSystem,
-        ...
-      }@top:
+    flake-parts.lib.mkFlake { inherit inputs; }
+      # (
+      # {
+      #   config,
+      #   withSystem,
+      #   moduleWithSystem,
+      #   ...
+      # }@top:
+
       {
         imports = [
           # Optional: use external flake logic, e.g.
           # inputs.foo.flakeModules.default
         ];
+
         flake =
           let
             mkHost =
@@ -75,22 +78,23 @@
               laptop = mkHost "laptop";
             };
           };
+
         systems = [
-          # systems for which you want to build the `perSystem` attributes
+          # Systems for which you want to build the `perSystem` attributes:
           "x86_64-linux"
         ];
 
-        perSystem =
-          { config, pkgs, ... }:
-          {
-            # Recommended: move all package definitions here.
-            # e.g. (assuming you have a nixpkgs input)
-            # packages.foo = pkgs.callPackage ./foo/package.nix { };
-            # packages.bar = pkgs.callPackage ./bar/package.nix {
-            #   foo = config.packages.foo;
-            # };
-            # };
-          };
-      }
-    );
+        # perSystem =
+        # { config, pkgs, ... }:
+        # {
+        # Recommended: move all package definitions here.
+        # e.g. (assuming you have a nixpkgs input)
+        # packages.foo = pkgs.callPackage ./foo/package.nix { };
+        # packages.bar = pkgs.callPackage ./bar/package.nix {
+        #   foo = config.packages.foo;
+        # };
+        #     };
+        # }
+        # );
+      };
 }
