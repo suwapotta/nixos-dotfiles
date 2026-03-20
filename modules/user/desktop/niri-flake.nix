@@ -26,6 +26,7 @@
 
     package = pkgs.niri;
     # package = pkgs.niri-stable;
+    # package = pkgs.niri-stable;
 
     settings = {
       # https://yalter.github.io/niri/Configuration:-Miscellaneous
@@ -102,7 +103,7 @@
         };
         "Mod+B" = {
           hotkey-overlay.title = "Open Zen Browser";
-          action.spawn = "zen";
+          action.spawn = "zen-beta";
         };
         "Mod+Z" = {
           hotkey-overlay.title = "Open Anki";
@@ -442,6 +443,9 @@
           { proportion = 1.0 / 2.0; }
           { proportion = 2.0 / 3.0; }
         ];
+        default-column-width = {
+          proportion = 1.0 / 2.0;
+        };
 
         focus-ring.enable = false;
         border = {
@@ -508,7 +512,7 @@
         {
           matches = [
             {
-              app-id = "zen$";
+              app-id = "zen-beta$";
               title = "^Picture-in-Picture$";
             }
           ];
@@ -607,7 +611,6 @@
   };
 
   xdg.configFile."niri/config.kdl".enable = lib.mkForce false;
-
   home.activation.writeNiriConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p ${config.xdg.configHome}/niri
 

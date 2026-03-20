@@ -1,6 +1,7 @@
 {
   imports = [
-    ./zen.nix
+    ./zen-beta.nix
+    # ./zen.nix
     ./anki.nix
   ];
 }
