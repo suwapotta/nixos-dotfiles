@@ -7,9 +7,9 @@
     gnumake
     unzip
 
-    wl-clipboard
-    xwayland-satellite
-    imagemagick
+    # wl-clipboard
+    # xwayland-satellite
+    # imagemagick
     nautilus
     adwaita-icon-theme
     mcontrolcenter

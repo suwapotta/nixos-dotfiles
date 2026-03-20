@@ -3,7 +3,7 @@ FLAKE_HOST = laptop
 all: laptop
 
 laptop: git
-	sudo nixos-rebuild switch --flake $(CURDIR)#$(FLAKE_HOST)
+	nh os switch -H ${FLAKE_HOST}
 
 test-laptop: git
 	sudo nixos-rebuild test --flake $(CURDIR)#$(FLAKE_HOST)

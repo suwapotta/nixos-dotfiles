@@ -1,5 +1,5 @@
 {
-  description = "NixOS Flakes with flake-parts.";
+  description = "NixOS Flakes with flake-parts";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -10,15 +10,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.noctalia-qs.follows = "noctalia-qs";
     };
 
     noctalia-qs = {
       url = "github:noctalia-dev/noctalia-qs";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.noctalia-qs.follows = "noctalia-qs";
     };
 
     zen-browser = {
@@ -60,6 +65,9 @@
                   ./hosts/${hostName}/configuration.nix
                   ./modules/core
                   home-manager.nixosModules.home-manager
+                  {
+                    nixpkgs.overlays = [ inputs.niri-flake.overlays.niri ];
+                  }
                   {
                     home-manager = {
                       useGlobalPkgs = true;

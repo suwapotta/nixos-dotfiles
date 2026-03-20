@@ -6,12 +6,13 @@
     ./boot-loader.nix
     ./btrfs.nix
     ./experimental.nix
-    ./garbage-collect.nix
+    # ./garbage-collect.nix
     ./hybrid.nix
     ./kernel.nix
     ./keyd.nix
     # ./ly.nix # Can't go into tty from menu
     ./network.nix
+    ./nh.nix
     ./packages.nix
     ./portals.nix
     ./timezone.nix

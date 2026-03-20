@@ -14,12 +14,18 @@
     power-profiles-daemon.enable = true;
     gvfs.enable = true;
     upower.enable = true;
+
   };
 
-  # Linking binaries for neovim
+  # Activate polkit (niri-flake)
+  security.soteria.enable = true;
+
   programs = {
-    niri.enable = true;
+    # Linking binaries for neovim
     nix-ld.enable = true;
+
+    # Required for home-manager to start-up
+    dconf.enable = true;
   };
 
   # DO NOT change the state version below!

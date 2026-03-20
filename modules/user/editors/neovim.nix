@@ -33,6 +33,7 @@
       svls
 
       (python314.withPackages (qs: with qs; [ pygments ]))
+      imagemagick
       sqlite
       trash-cli
       tree-sitter

@@ -1,8 +1,9 @@
 {
   imports = [
-    ./gtk.nix
-    ./qt.nix
-    ./noctalia.nix
     ./cursor.nix
+    ./gtk.nix
+    ./niri-flake.nix
+    ./noctalia.nix
+    ./qt.nix
   ];
 }

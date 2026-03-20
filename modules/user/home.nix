@@ -9,7 +9,7 @@ let
 
   # Standard .config/ directories
   configs = [
-    "niri"
+    # "niri"
     "kitty"
     "fish"
     "fastfetch"
