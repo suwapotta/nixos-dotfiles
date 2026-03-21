@@ -1,0 +1,3 @@
+{
+  catppuccin.fzf.enable = true;
+}

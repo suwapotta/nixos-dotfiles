@@ -38,6 +38,11 @@
         home-manager.follows = "home-manager";
       };
     };
+
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -45,6 +50,7 @@
       nixpkgs,
       home-manager,
       flake-parts,
+      catppuccin,
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; }
@@ -73,6 +79,7 @@
                   ./hosts/${hostName}/configuration.nix
                   ./modules/core
                   home-manager.nixosModules.home-manager
+                  catppuccin.homeModules.catppuccin
                   {
                     nixpkgs.overlays = [ inputs.niri-flake.overlays.niri ];
                   }

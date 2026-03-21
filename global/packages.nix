@@ -18,19 +18,19 @@
     curl
 
     fastfetch
-    fish
+    # fish
     kitty
-    starship
-    zoxide
-    eza
+    # starship
+    # zoxide
+    # eza
     yazi
     fd
     fzf
     ripgrep
-    tealdeer
+    # tealdeer
     bat
     entr
-    tmux
+    # tmux
     cava
     btop
     zathura

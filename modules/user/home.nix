@@ -9,7 +9,7 @@ let
 
   # Standard .config/ directories
   configs = [
-    # "niri"
+    "niri"
     "kitty"
     "fish"
     "fastfetch"
@@ -18,7 +18,7 @@ let
     "btop"
     "cava"
     "zathura"
-    "starship.toml"
+    # "starship.toml"
   ];
 in
 
@@ -36,6 +36,7 @@ in
   });
 
   imports = [
+    ./catppuccin.nix
     ./apps
     ./cli
     ./desktop
