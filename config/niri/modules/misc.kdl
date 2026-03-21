@@ -1,9 +1,7 @@
 // https://yalter.github.io/niri/Configuration:-Miscellaneous
 
-spawn-sh-at-startup "qs -c noctalia-shell"
-spawn-sh-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-sh-at-startup "noctalia-shell"
 spawn-sh-at-startup "mcontrolcenter"
-spawn-sh-at-startup "~/.scripts/snapper-notify.sh"
 
 // Remove border for gtk applications
 prefer-no-csd
@@ -18,9 +16,6 @@ environment {
 }
 
 cursor {
-    xcursor-theme "Bibata-Modern-Classic"
-    xcursor-size 24
-
     hide-when-typing
     hide-after-inactive-ms 5000
 }

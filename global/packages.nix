@@ -18,11 +18,11 @@
     curl
 
     fastfetch
-    # fish
+    fish
     kitty
     # starship
     # zoxide
-    # eza
+    eza
     yazi
     fd
     fzf

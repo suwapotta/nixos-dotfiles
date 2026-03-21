@@ -171,7 +171,7 @@
             "YouTube Search" = {
               urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
               icon = "https://www.youtube.com/favicon.ico";
-              definedAliases = [ "@ytb" ];
+              definedAliases = [ "@youtube" ];
             };
           };
         };
@@ -186,6 +186,7 @@
           "font.name.monospace.x-western" = "JetBrainsMono Nerd Font";
           "browser.contentblocking.category" = "strict";
           "signon.rememberSignons" = false;
+          "zen.urlbar.behavior" = "float";
         };
 
         bookmarks = {

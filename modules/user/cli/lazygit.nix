@@ -22,4 +22,6 @@
       nerdFontsVersion = "3";
     };
   };
+
+  catppuccin.lazygit.enable = true;
 }

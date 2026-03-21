@@ -79,7 +79,6 @@
                   ./hosts/${hostName}/configuration.nix
                   ./modules/core
                   home-manager.nixosModules.home-manager
-                  catppuccin.homeModules.catppuccin
                   {
                     nixpkgs.overlays = [ inputs.niri-flake.overlays.niri ];
                   }
@@ -88,7 +87,12 @@
                       useGlobalPkgs = true;
                       useUserPackages = true;
                       extraSpecialArgs = { inherit inputs; };
-                      users.suwapotta = import ./modules/user/home.nix;
+                      users.suwapotta = {
+                        imports = [
+                          ./modules/user/home.nix
+                          catppuccin.homeModules.catppuccin
+                        ];
+                      };
                       backupFileExtension = "bak";
                     };
                   }

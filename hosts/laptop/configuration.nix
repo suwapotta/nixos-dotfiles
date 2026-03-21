@@ -28,6 +28,6 @@
     dconf.enable = true;
   };
 
-  # DO NOT change the state version below!
+  # WARN: DO NOT change the state version below!
   system.stateVersion = "25.11";
 }

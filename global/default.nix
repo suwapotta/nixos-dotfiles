@@ -6,10 +6,10 @@
     ./boot-loader.nix
     ./btrfs.nix
     ./experimental.nix
-    # ./garbage-collect.nix
+    # ./garbage-collect.nix # Replace by nh clean
     ./hybrid.nix
     ./kernel.nix
-    ./keyd.nix
+    # ./keyd.nix # In case niri doesn't play nice with xkb
     # ./ly.nix # Can't go into tty from menu
     ./network.nix
     ./nh.nix

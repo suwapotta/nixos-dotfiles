@@ -1,7 +1,6 @@
 {
   programs.starship = {
     enable = true;
-    transientPrompt.enable = true;
 
     settings = {
       # Pipes ╰─ ╭─
