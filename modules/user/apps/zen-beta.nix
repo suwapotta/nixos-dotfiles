@@ -179,9 +179,8 @@
               definedAliases = [ "@mynixos" ];
             };
 
-            "Wikipedia (en)".metaData.hidden = true;
-            "Wikipedia".metaData.hidden = true;
-            "Bing".metaData.hidden = true;
+            "wikipedia".metaData.hidden = true;
+            "bing".metaData.hidden = true;
           };
         };
 

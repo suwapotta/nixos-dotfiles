@@ -10,7 +10,6 @@ let
   # Standard .config/ directories
   configs = [
     "niri"
-    "fastfetch"
     "yazi"
     "nvim"
     "btop"
