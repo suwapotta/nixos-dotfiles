@@ -1,21 +1,29 @@
 { pkgs, ... }:
 
 {
-  programs.virt-manager.enable = true;
+  specialisation."VM-Host".configuration = {
+    system.nixos.tags = [ "VM-Host" ];
 
-  virtualisation = {
-    libvirtd = {
-      enable = true;
+    users.users.suwapotta.extraGroups = [
+      "libvirtd"
+      "kvm"
+    ];
 
-      qemu = {
-        package = pkgs.qemu_kvm;
-        runAsRoot = true;
-        # swtpm.enable = true; # Required for Windows 11 VMs
+    programs.virt-manager.enable = true;
+    virtualisation = {
+      libvirtd = {
+        enable = true;
+
+        qemu = {
+          package = pkgs.qemu_kvm;
+          runAsRoot = true;
+          # swtpm.enable = true; # Required for Windows 11 VMs
+        };
       };
+
+      # spiceUSBRedirection.enable = true;
     };
 
-    # spiceUSBRedirection.enable = true;
+    # services.spice-vdagentd.enable = true;
   };
-
-  # services.spice-vdagentd.enable = true;
 }

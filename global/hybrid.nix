@@ -49,7 +49,7 @@
   };
 
   specialisation = {
-    Gaming-Mode.configuration = {
+    "Gaming-Mode".configuration = {
       system.nixos.tags = [ "Gaming-Mode" ];
 
       hardware.nvidia = {
