@@ -18,7 +18,7 @@ build-vm: git
 	nh os build-vm -H ${FLAKE_HOST}
 
 clean:
-	sudo nix-collect-garbage --delete-older-than 7d
+	nh clean all--keep 5
 
 nuke:
 	nh clean all --ask

@@ -6,5 +6,6 @@
     ./niri-flake.nix
     ./noctalia.nix
     ./qt.nix
+    ./user-dirs.nix
   ];
 }

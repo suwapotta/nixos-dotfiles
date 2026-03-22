@@ -9,24 +9,28 @@
           bold = true;
           italic = false;
         };
+
         command_name = {
           foreground = "blue";
           underline = false;
           bold = false;
           italic = false;
         };
+
         example_text = {
           foreground = "yellow";
           underline = false;
           bold = false;
           italic = false;
         };
+
         example_code = {
           foreground = "cyan";
           underline = false;
           bold = false;
           italic = false;
         };
+
         example_variable = {
           foreground = "cyan";
           underline = false;

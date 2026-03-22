@@ -116,7 +116,7 @@
           "GitHub" = " 󰊤 ";
           "Workspace" = "  ";
           "nixos-dotfiles" = "  ";
-          "iso" = " 󰗮 ";
+          "Virtualisation" = " 󰗮 ";
         };
       };
 

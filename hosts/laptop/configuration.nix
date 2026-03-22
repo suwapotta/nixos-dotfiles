@@ -24,10 +24,10 @@
     # Linking binaries for neovim
     nix-ld.enable = true;
 
-    # Required for home-manager to start-up
+    # Required for home-manager to start-up (System Management tool)
     dconf.enable = true;
   };
 
-  # WARN: DO NOT change the state version below!
+  # WARN: DO NOT change the state version below no matter what!
   system.stateVersion = "25.11";
 }
