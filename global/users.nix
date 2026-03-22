@@ -4,8 +4,9 @@
   users.users.suwapotta = {
     isNormalUser = true;
     extraGroups = [
-      "networkmanager"
       "wheel"
+      "networkmanager"
+      "libvirtd"
     ];
   };
 }
