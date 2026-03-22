@@ -1,27 +1,36 @@
 FLAKE_HOST = laptop
 
-all: laptop
+all: switch
 
-laptop: git
+switch: git
 	nh os switch -H ${FLAKE_HOST}
 
-test-laptop: git
-	sudo nixos-rebuild test --flake $(CURDIR)#$(FLAKE_HOST)
+boot: git
+	nh os boot -H ${FLAKE_HOST}
 
-sandbox-laptop: git
-	sudo nixos-rebuild build-vm --flake $(CURDIR)#$(FLAKE_HOST)
+dry: git
+	nh os switch -H ${FLAKE_HOST} --dry
+
+test: git
+	nh os test -H ${FLAKE_HOST}
+
+build-vm: git
+	nh os build-vm -H ${FLAKE_HOST}
 
 clean:
 	sudo nix-collect-garbage --delete-older-than 7d
 
 nuke:
-	sudo nix-collect-garbage -d
+	nh clean all --ask
 
 update:
 	nvim --headless "+Lazy! sync" +qa
-	nix flake update
+	nh os switch -H ${FLAKE_HOST} --update
 
-git:
+safety:
+	pkill zen-beta || true
+
+git: safety
 	git add .
 
-.PHONY: all laptop test-laptop sandbox-laptop clean nuke update git
+.PHONY: all switch boot dry test build-vm clean nuke update git safety

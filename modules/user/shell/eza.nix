@@ -1,2 +1,3 @@
 {
+  catppuccin.eza.enable = true;
 }

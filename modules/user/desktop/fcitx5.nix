@@ -1,13 +1,17 @@
 { pkgs, ... }:
 
 {
+  catppuccin.fcitx5 = {
+    enable = true;
+    enableRounded = true;
+  };
+
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
 
     fcitx5 = {
       waylandFrontend = true;
-      ignoreUserConfig = true;
 
       addons = with pkgs; [
         kdePackages.fcitx5-unikey
@@ -15,11 +19,6 @@
         kdePackages.fcitx5-qt
         fcitx5-gtk
         qt6Packages.fcitx5-configtool
-        (catppuccin-fcitx5.overrideAttrs (oldAttrs: {
-          postPatch = (oldAttrs.postPatch or "") + ''
-            bash ./enable-rounded.sh
-          '';
-        }))
       ];
 
       settings = {
@@ -103,10 +102,6 @@
             PreferTextIcon = "False";
             ShowLayoutNameInIcon = "True";
             UseInputMethodLanguageToDisplayText = "True";
-            Theme = "catppuccin-mocha-sapphire";
-            DarkTheme = "default-dark";
-            UseDarkTheme = "False";
-            UseAccentColor = "True";
             PerScreenDPI = "False";
             ForceWaylandDPI = 0;
             EnableFractionalScale = "True";
@@ -114,12 +109,5 @@
         };
       };
     };
-  };
-
-  environment.sessionVariables = {
-    # NIXOS_OZONE_WL = "1";
-    XMODIFIERS = "@im=fcitx";
-    MOZ_ENABLE_WAYLAND = "1";
-    GLFW_IM_MODULE = "ibus";
   };
 }

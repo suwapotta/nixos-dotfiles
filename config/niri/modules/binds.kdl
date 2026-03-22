@@ -160,10 +160,10 @@ binds {
     Mod+Alt+T hotkey-overlay-title="Toggle DND" { spawn-sh "noctalia-shell ipc call notifications toggleDND"; }
     Mod+Insert hotkey-overlay-title="Cycle power profiles" { spawn-sh "noctalia-shell ipc call powerProfile cycle"; }
     Mod+Alt+Space hotkey-overlay-title="Window Switcher access" { spawn-sh "noctalia-shell ipc call launcher windows"; }
-    XF86AudioRaiseVolume  allow-when-locked=true hotkey-overlay-title="Increase volume" { spawn-sh "noctalia-shell ipc call volume increase"; }
-    XF86AudioLowerVolume  allow-when-locked=true hotkey-overlay-title="Decrease volume" { spawn-sh "noctalia-shell ipc call volume decrease"; }
-    XF86AudioMute         allow-when-locked=true hotkey-overlay-title="Mute volume" { spawn-sh "noctalia-shell ipc call volume muteOutput"; }
-    XF86AudioMicMute      allow-when-locked=true hotkey-overlay-title="Mute microphone" { spawn-sh "noctalia-shell ipc call volume muteInput"; }
-    XF86MonBrightnessUp   allow-when-locked=true hotkey-overlay-title="Increase brightness" { spawn-sh "noctalia-shell ipc call brightness increase"; }
-    XF86MonBrightnessDown allow-when-locked=true hotkey-overlay-title="Decrease brightness" { spawn-sh "noctalia-shell ipc call brightness decrease"; }
+    F12 allow-when-locked=true hotkey-overlay-title="Increase volume" { spawn-sh "noctalia-shell ipc call volume increase"; }
+    F11 allow-when-locked=true hotkey-overlay-title="Decrease volume" { spawn-sh "noctalia-shell ipc call volume decrease"; }
+    F10 allow-when-locked=true hotkey-overlay-title="Mute volume" { spawn-sh "noctalia-shell ipc call volume muteOutput"; }
+    F9  allow-when-locked=true hotkey-overlay-title="Mute microphone" { spawn-sh "noctalia-shell ipc call volume muteInput"; }
+    F1  allow-when-locked=true hotkey-overlay-title="Decrease brightness" { spawn-sh "noctalia-shell ipc call brightness decrease"; }
+    F2  allow-when-locked=true hotkey-overlay-title="Increase brightness" { spawn-sh "noctalia-shell ipc call brightness increase"; }
 }

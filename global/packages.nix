@@ -7,9 +7,6 @@
     gnumake
     unzip
 
-    # wl-clipboard
-    # xwayland-satellite
-    # imagemagick
     nautilus
     adwaita-icon-theme
     mcontrolcenter
@@ -20,17 +17,12 @@
     fastfetch
     fish
     kitty
-    # starship
-    # zoxide
     eza
     yazi
     fd
     fzf
     ripgrep
-    # tealdeer
-    bat
     entr
-    # tmux
     cava
     btop
     zathura

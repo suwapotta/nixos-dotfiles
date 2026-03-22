@@ -1,6 +1,8 @@
 { lib, ... }:
 
 {
+  catppuccin.lazygit.enable = true;
+
   programs.lazygit = {
     enable = true;
 
@@ -22,6 +24,4 @@
       nerdFontsVersion = "3";
     };
   };
-
-  catppuccin.lazygit.enable = true;
 }

@@ -9,7 +9,7 @@
     # ./garbage-collect.nix # Replace by nh clean
     ./hybrid.nix
     ./kernel.nix
-    # ./keyd.nix # In case niri doesn't play nice with xkb
+    ./keyd.nix
     # ./ly.nix # Can't go into tty from menu
     ./network.nix
     ./nh.nix
@@ -17,7 +17,7 @@
     ./portals.nix
     ./timezone.nix
     ./users.nix
-    ./variables.nix
+    ./environment.nix
     ./zram.nix
   ];
 }
