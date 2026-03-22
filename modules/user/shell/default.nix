@@ -1,9 +1,16 @@
+{ pkgs, ... }:
+
 {
   imports = [
     ./eza.nix
     ./fish.nix
-    ./fzf.nix
     ./starship.nix
     ./zoxide.nix
+  ];
+
+  home.packages = with pkgs; [
+    fd
+    ripgrep
+    entr
   ];
 }

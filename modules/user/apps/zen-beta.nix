@@ -151,28 +151,37 @@
             "NixOS packages" = {
               urls = [ { template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}"; } ];
               icon = "https://wiki.nixos.org/favicon.ico";
-              definedAliases = [ "@np" ];
+              definedAliases = [ "@package" ];
             };
             "NixOS options" = {
               urls = [ { template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}"; } ];
               icon = "https://wiki.nixos.org/favicon.ico";
-              definedAliases = [ "@no" ];
+              definedAliases = [ "@option" ];
             };
             "NixOS Wiki" = {
               urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
               icon = "https://wiki.nixos.org/favicon.ico";
-              definedAliases = [ "@nw" ];
+              definedAliases = [ "@wiki" ];
             };
             "Arch Wiki" = {
               urls = [ { template = "https://wiki.archlinux.org/index.php?search={searchTerms}"; } ];
               icon = "https://wiki.archlinux.org/favicon.ico";
-              definedAliases = [ "@aw" ];
+              definedAliases = [ "@archwiki" ];
             };
             "YouTube Search" = {
               urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
               icon = "https://www.youtube.com/favicon.ico";
               definedAliases = [ "@youtube" ];
             };
+            "My NixOS" = {
+              urls = [ { template = "https://mynixos.com/search?q={searchTerms}"; } ];
+              icon = "https://mynixos.com/favicon.ico";
+              definedAliases = [ "@mynixos" ];
+            };
+
+            "Wikipedia (en)".metaData.hidden = true;
+            "Wikipedia".metaData.hidden = true;
+            "Bing".metaData.hidden = true;
           };
         };
 
