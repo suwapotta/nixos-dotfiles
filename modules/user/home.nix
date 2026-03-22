@@ -10,15 +10,12 @@ let
   # Standard .config/ directories
   configs = [
     "niri"
-    "kitty"
-    "fish"
     "fastfetch"
     "yazi"
     "nvim"
     "btop"
     "cava"
     "zathura"
-    # "starship.toml"
   ];
 in
 
@@ -36,7 +33,6 @@ in
   });
 
   imports = [
-    ./catppuccin.nix
     ./apps
     ./cli
     ./desktop

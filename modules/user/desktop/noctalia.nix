@@ -138,7 +138,7 @@
           left = [
             {
               colorizeSystemIcon = "none";
-              customIconPath = "";
+              customIconPath = ../../../images/icons/niri.svg;
               enableColorization = false;
               icon = "niri";
               iconColor = "none";
@@ -276,11 +276,11 @@
             {
               colorizeDistroLogo = false;
               colorizeSystemIcon = "none";
-              customIconPath = "";
-              enableColorization = true;
-              icon = "settings-star";
+              customIconPath = ../../../images/logos/nixoscolorful.svg;
+              enableColorization = false;
+              icon = "snowflake";
               id = "ControlCenter";
-              useDistroLogo = true;
+              useDistroLogo = false;
             }
           ];
         };
@@ -698,10 +698,6 @@
           }
           {
             enabled = true;
-            id = "kitty";
-          }
-          {
-            enabled = true;
             id = "niri";
           }
           {
@@ -724,10 +720,6 @@
             enabled = true;
             id = "zathura";
           }
-          {
-            enabled = true;
-            id = "steam";
-          }
         ];
         enableUserTheming = false;
       };
@@ -747,7 +739,7 @@
 
       wallpaper = {
         automationEnabled = false;
-        directory = "/home/suwapotta/nixos-dotfiles/images/wallpapers/";
+        directory = ../../../images/wallpapers;
         enableMultiMonitorDirectories = false;
         enabled = true;
         favorites = [ ];

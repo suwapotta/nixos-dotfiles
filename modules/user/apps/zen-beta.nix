@@ -187,6 +187,8 @@
           "browser.contentblocking.category" = "strict";
           "signon.rememberSignons" = false;
           "zen.urlbar.behavior" = "float";
+          "browser.ctrlTab.sortByRecentlyUsed" = true;
+          "general.autoScroll" = true;
         };
 
         bookmarks = {

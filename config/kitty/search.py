@@ -255,10 +255,18 @@ class Search(Handler):
         elif key_event.matches("tab"):
             self.switch_mode()
             self.refresh()
-        elif key_event.matches("up") or key_event.matches("f3"):
+        elif (
+            key_event.matches("up")
+            or key_event.matches("ctrl+shift+n")
+            or key_event.matches("ctrl+p")
+        ):
             for match_arg in self.match_args():
                 call_remote_control(["kitten", match_arg, str(SCROLLMARK_FILE)])
-        elif key_event.matches("down") or key_event.matches("shift+f3"):
+        elif (
+            key_event.matches("down")
+            or key_event.matches("shift+f3")
+            or key_event.matches("ctrl+n")
+        ):
             for match_arg in self.match_args():
                 call_remote_control(["kitten", match_arg, str(SCROLLMARK_FILE), "next"])
         elif key_event.matches("enter"):

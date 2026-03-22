@@ -13,18 +13,5 @@
 
     wget
     curl
-
-    fastfetch
-    fish
-    kitty
-    eza
-    yazi
-    fd
-    fzf
-    ripgrep
-    entr
-    cava
-    btop
-    zathura
   ];
 }
