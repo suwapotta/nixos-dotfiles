@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 
 {
   qt = {
@@ -12,7 +17,7 @@
 
   xdg.configFile."qt6ct/qt6ct.conf".text = ''
     [Appearance]
-    color_scheme_path=/home/suwapotta/.config/qt6ct/colors/noctalia.conf
+    color_scheme_path=${config.xdg.configHome}qt6ct/colors/noctalia.conf
     custom_palette=true
     icon_theme=Adwaita
     standard_dialogs=default

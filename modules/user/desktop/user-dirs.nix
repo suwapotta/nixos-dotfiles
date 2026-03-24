@@ -19,6 +19,7 @@ in
   xdg.userDirs = {
     enable = true;
     createDirectories = true;
+    setSessionVariables = false;
 
     extraConfig = {
       WORKSPACE = mkDir "Workspace";

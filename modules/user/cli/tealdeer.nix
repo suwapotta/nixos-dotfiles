@@ -52,10 +52,10 @@
         tls_backend = "rustls-with-webpki-roots";
       };
 
-      directories = {
-        # cache_dir = "/home/myuser/.tealdeer-cache/";
-        # custom_pages_dir = "/home/myuser/custom-tldr-pages/";
-      };
+      # directories = {
+      #   cache_dir = "/home/myuser/.tealdeer-cache/";
+      #   custom_pages_dir = "/home/myuser/custom-tldr-pages/";
+      # };
 
       search = {
         languages = [

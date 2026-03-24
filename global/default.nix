@@ -9,7 +9,6 @@
     ./hybrid.nix
     ./kernel.nix
     ./keyd.nix
-    # ./ly.nix # Can't go into tty from menu
     ./network.nix
     ./nh.nix
     ./packages.nix

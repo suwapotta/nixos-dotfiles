@@ -414,7 +414,7 @@
         animationDisabled = false;
         animationSpeed = 1;
         autoStartAuth = false;
-        avatarImage = "/home/suwapotta/nixos-dotfiles/images/pfp/kokoro.png";
+        avatarImage = ../../../images/pfp/kokoro.png;
         boxRadiusRatio = 1;
         clockFormat = "hh\\nmm";
         clockStyle = "digital";

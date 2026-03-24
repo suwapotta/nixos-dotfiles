@@ -151,12 +151,12 @@
             "NixOS packages" = {
               urls = [ { template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}"; } ];
               icon = "https://wiki.nixos.org/favicon.ico";
-              definedAliases = [ "@package" ];
+              definedAliases = [ "@packages" ];
             };
             "NixOS options" = {
               urls = [ { template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}"; } ];
               icon = "https://wiki.nixos.org/favicon.ico";
-              definedAliases = [ "@option" ];
+              definedAliases = [ "@options" ];
             };
             "NixOS Wiki" = {
               urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];

@@ -10,6 +10,7 @@
       "msi-ec"
       "ec_sys"
     ];
+
     kernelParams = [
       "hid_apple.fnmode=2"
     ];

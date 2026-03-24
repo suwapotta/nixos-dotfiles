@@ -3,13 +3,11 @@
 {
   # List packages installed in system profile
   environment.systemPackages = with pkgs; [
+    mcontrolcenter
+
     gcc
     gnumake
     unzip
-
-    nautilus
-    adwaita-icon-theme
-    mcontrolcenter
 
     wget
     curl
