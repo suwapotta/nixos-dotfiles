@@ -1,12 +1,15 @@
-{ pkgs, ... }:
-
 {
-  catppuccin.anki.enable = true;
+  flake.homeModules."anki" =
+    { pkgs, ... }:
 
-  home.packages = [
-    (pkgs.anki.withAddons [
-      pkgs.ankiAddons.anki-connect
-      pkgs.ankiAddons.review-heatmap
-    ])
-  ];
+    {
+      catppuccin.anki.enable = true;
+
+      home.packages = [
+        (pkgs.anki.withAddons [
+          pkgs.ankiAddons.anki-connect
+          pkgs.ankiAddons.review-heatmap
+        ])
+      ];
+    };
 }

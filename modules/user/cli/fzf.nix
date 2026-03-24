@@ -1,8 +1,10 @@
 {
-  catppuccin.fzf.enable = true;
+  flake.nixosModules."fzf" = {
+    catppuccin.fzf.enable = true;
 
-  programs.fzf = {
-    enable = true;
-    enableFishIntegration = true;
+    programs.fzf = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
 }

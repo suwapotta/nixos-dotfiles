@@ -17,6 +17,9 @@ test: git
 build-vm: git
 	nh os build-vm -H ${FLAKE_HOST}
 
+legacy: git
+	sudo nixos-rebuild switch --flake ${CURDIR}#${FLAKE_HOST}
+
 clean:
 	nh clean all --keep 5
 
@@ -33,4 +36,4 @@ safety:
 git: safety
 	git add .
 
-.PHONY: all switch boot dry test build-vm clean nuke update git safety
+.PHONY: all switch boot dry test build-vm legacy clean nuke update git safety

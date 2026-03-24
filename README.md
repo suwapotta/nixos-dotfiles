@@ -1,3 +1,7 @@
 # NixOS Dotfiles
 
-Placeholder text...
+```nix
+{...}:
+
+{ };
+```

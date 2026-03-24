@@ -1,13 +1,15 @@
 {
-  programs = {
-    git = {
-      enable = true;
+  flake.nixosModules."git" = {
+    programs = {
+      git = {
+        enable = true;
 
-      config = {
-        user.name = "suwapotta";
-        user.email = "nguyenducthientan09@gmail.com";
+        config = {
+          user.name = "suwapotta";
+          user.email = "nguyenducthientan09@gmail.com";
 
-        init.defaultBranch = "master";
+          init.defaultBranch = "master";
+        };
       };
     };
   };

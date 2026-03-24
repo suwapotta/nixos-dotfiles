@@ -1,46 +1,41 @@
-{ pkgs, lib, ... }:
-
 {
-  gtk = {
-    enable = true;
+  flake.nixosModules."gtk" =
+    { pkgs, ... }:
 
-    theme = {
-      name = "adw-gtk3-dark";
-      package = pkgs.adw-gtk3;
-    };
+    {
+      gtk = {
+        enable = true;
 
-    iconTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-    };
+        theme = {
+          name = "adw-gtk3-dark";
+          package = pkgs.adw-gtk3;
+        };
 
-    font = {
-      name = "Adwaita Sans";
-      size = 10;
-    };
+        iconTheme = {
+          name = "Adwaita";
+          package = pkgs.adwaita-icon-theme;
+        };
 
-    cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      size = 24;
-    };
+        font = {
+          name = "Adwaita Sans";
+          size = 10;
+        };
 
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+        cursorTheme = {
+          name = "Bibata-Modern-Classic";
+          size = 24;
+        };
 
-    gtk4 = {
-      theme = null;
-      extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
+        gtk3.extraConfig = {
+          gtk-application-prefer-dark-theme = 1;
+        };
+
+        gtk4 = {
+          theme = null;
+          extraConfig = {
+            gtk-application-prefer-dark-theme = 1;
+          };
+        };
       };
     };
-  };
-
-  # xdg = {
-  #   configFile = {
-  #     "gtk-4.0/gtk.css".force = lib.mkForce true;
-  #     "gtk-4.0/settings.ini".force = lib.mkForce true;
-  #     "gtk-3.0/settings.ini".force = lib.mkForce true;
-  #   };
-  # };
 }

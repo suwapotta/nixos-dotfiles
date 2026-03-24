@@ -1,6 +1,8 @@
 {
-  catppuccin = {
-    accent = "sapphire";
-    flavor = "mocha";
+  flake.homeModules."catppuccin" = {
+    catppuccin = {
+      accent = "sapphire";
+      flavor = "mocha";
+    };
   };
 }

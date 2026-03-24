@@ -1,16 +1,19 @@
-{ pkgs, ... }:
-
 {
-  fonts = {
-    enableDefaultPackages = true;
-    packages = with pkgs; [
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.symbols-only
+  flake.nixosModules."fonts" =
+    { pkgs, ... }:
 
-      work-sans
+    {
+      fonts = {
+        enableDefaultPackages = true;
+        packages = with pkgs; [
+          nerd-fonts.jetbrains-mono
+          nerd-fonts.symbols-only
 
-      noto-fonts-cjk-sans
-      noto-fonts-color-emoji
-    ];
-  };
+          work-sans
+
+          noto-fonts-cjk-sans
+          noto-fonts-color-emoji
+        ];
+      };
+    };
 }
