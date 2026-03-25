@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."fzf" = {
+  flake.homeModules."fzf" = {
     catppuccin.fzf.enable = true;
 
     programs.fzf = {

@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."user-dirs" =
+  flake.homeModules."user-dirs" =
     { config, ... }:
 
     with config.home;

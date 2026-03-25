@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."niri-flake" =
+  flake.homeModules."niri-flake" =
     {
       inputs,
       pkgs,

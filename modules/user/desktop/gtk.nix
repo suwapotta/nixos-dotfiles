@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."gtk" =
+  flake.homeModules."gtk" =
     { pkgs, ... }:
 
     {

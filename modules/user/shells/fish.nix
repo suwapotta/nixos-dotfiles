@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."fish" =
+  flake.homeModules."fish" =
     let
       mkFunction = functionName: {
         body = builtins.readFile (../../../config/fish + "/${functionName}.fish");

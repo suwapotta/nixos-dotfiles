@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."starship" = {
+  flake.homeModules."starship" = {
     catppuccin.starship.enable = true;
 
     programs.starship = {

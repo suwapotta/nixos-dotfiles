@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."fcitx5" =
+  flake.homeModules."fcitx5" =
     { pkgs, ... }:
 
     {

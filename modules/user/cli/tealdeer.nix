@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."tealdeer" = {
+  flake.homeModules."tealdeer" = {
     programs.tealdeer = {
       enable = true;
 

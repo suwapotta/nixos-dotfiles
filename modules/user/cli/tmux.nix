@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."tmux" =
+  flake.homeModules."tmux" =
     { pkgs, ... }:
 
     {

@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."qt" =
+  flake.homeModules."qt" =
     {
       lib,
       pkgs,

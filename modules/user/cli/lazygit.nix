@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."lazygit" =
+  flake.homeModules."lazygit" =
     { lib, ... }:
 
     {

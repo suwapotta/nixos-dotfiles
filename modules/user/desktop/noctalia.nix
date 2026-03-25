@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."noctalia" =
+  flake.homeModules."noctalia" =
     { inputs, ... }:
     {
       imports = [

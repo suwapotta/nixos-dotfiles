@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."cursor" =
+  flake.homeModules."cursor" =
     { pkgs, ... }:
 
     {

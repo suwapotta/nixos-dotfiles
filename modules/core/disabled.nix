@@ -1,5 +1,5 @@
 {
-  flake.nixosModule."disabled" = {
+  flake.nixosModules."disabled" = {
     programs.nano.enable = false;
   };
 }

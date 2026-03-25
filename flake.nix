@@ -63,9 +63,11 @@
 
         imports = [
           (inputs.import-tree [
-            ./hosts
             ./modules
           ])
+
+          inputs.home-manager.flakeModules.home-manager
+          ./hosts/laptop/default.nix
         ];
       }
     );

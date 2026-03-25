@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."kitty" =
+  flake.homeModules."kitty" =
     { config, ... }:
 
     let

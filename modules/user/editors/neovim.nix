@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."neovim" =
+  flake.homeModules."neovim" =
     { pkgs, ... }:
 
     {
@@ -41,6 +41,7 @@
           tree-sitter
           ghostscript
           mermaid-cli
+          xdg-utils
         ];
       };
 
