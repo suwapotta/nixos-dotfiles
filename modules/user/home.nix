@@ -47,11 +47,14 @@
 
               # cli
               self.homeModules."bat"
+              self.homeModules."btop"
+              self.homeModules."cava"
               self.homeModules."fastfetch"
               self.homeModules."fzf"
               self.homeModules."lazygit"
               self.homeModules."tealdeer"
               self.homeModules."tmux"
+              self.homeModules."yazi"
 
               # desktop
               self.homeModules."cursor"
@@ -66,8 +69,11 @@
               self.homeModules."neovim"
 
               # shells
+              self.homeModules."entr"
               self.homeModules."eza"
+              self.homeModules."fd"
               self.homeModules."fish"
+              self.homeModules."ripgrep"
               self.homeModules."starship"
               self.homeModules."zoxide"
 
