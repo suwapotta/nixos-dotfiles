@@ -98,7 +98,7 @@
             mouseWheelAction = "workspace";
             mouseWheelWrap = true;
             outerCorners = true;
-            position = "top";
+            position = "left";
             reverseScroll = false;
             rightClickAction = "controlCenter";
             rightClickCommand = "";

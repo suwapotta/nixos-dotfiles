@@ -43,6 +43,7 @@
             imports = [
               # apps
               self.homeModules."anki"
+              self.homeModules."zathura"
               self.homeModules."zen-beta"
 
               # cli

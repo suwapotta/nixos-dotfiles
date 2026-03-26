@@ -1,4 +1,4 @@
-// https://yalter.github.io/niri/Configuration:-Miscellaneous
+//s https://yalter.github.io/niri/Configuration:-Miscellaneous
 
 spawn-sh-at-startup "noctalia-shell"
 spawn-sh-at-startup "mcontrolcenter"

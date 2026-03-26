@@ -3,6 +3,9 @@ return {
 
   opts = {
     servers = {
+      svls = {},
+      nixd = {},
+
       arduino_language_server = {
         cmd = {
           "arduino-language-server",
@@ -12,9 +15,6 @@ return {
           "arduino:avr:uno",
         },
       },
-
-      svls = {},
-      nixd = {},
     },
   },
 }
