@@ -1,5 +1,5 @@
 {
-  flake.nixosModules."hybrid" =
+  flake.nixosModules."nvidia" =
     # NOTE: Specs:
     # $ nix-shell -p pciutils --run "lspci | grep 'VGA\|3D'"
     #   00:02.0 VGA compatible controller: Intel Corporation TigerLake-H GT1 [UHD Graphics] (rev 01)
@@ -43,22 +43,6 @@
 
           intelBusId = "PCI:0:2:0";
           nvidiaBusId = "PCI:1:0:0";
-        };
-      };
-
-      specialisation = {
-        "Gaming-Mode".configuration = {
-          system.nixos.tags = [ "Gaming-Mode" ];
-
-          hardware.nvidia = {
-            prime.sync.enable = lib.mkForce true;
-            prime.offload = {
-              enable = lib.mkForce false;
-              enableOffloadCmd = lib.mkForce false;
-            };
-
-            powerManagement.finegrained = lib.mkForce false;
-          };
         };
       };
     };

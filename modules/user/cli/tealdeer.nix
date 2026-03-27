@@ -59,9 +59,7 @@
         # };
 
         search = {
-          languages = [
-            "en"
-          ];
+          languages = [ "en" ];
 
           platforms = [
             "linux"

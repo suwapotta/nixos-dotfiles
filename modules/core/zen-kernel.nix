@@ -1,6 +1,5 @@
 {
-  flake.nixosModules."kernel" =
-    # Target the latest zen kernel with msi-ec
+  flake.nixosModules."zen-kernel" =
     { pkgs, config, ... }:
 
     {

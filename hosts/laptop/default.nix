@@ -19,22 +19,23 @@
       self.nixosModules."experimental"
       self.nixosModules."fonts"
       self.nixosModules."git"
-      self.nixosModules."hybrid"
-      self.nixosModules."kernel"
       self.nixosModules."keyd"
       self.nixosModules."network"
       self.nixosModules."nh"
+      self.nixosModules."nvidia"
       self.nixosModules."packages"
+      self.nixosModules."polkit"
       self.nixosModules."portals"
-      self.nixosModules."qemu"
       self.nixosModules."timezone"
+      self.nixosModules."touchpad"
       self.nixosModules."users"
       self.nixosModules."variables"
+      self.nixosModules."zen-kernel"
       self.nixosModules."zram"
-      self.nixosModules."polkit"
-      self.nixosModules."touchpad"
 
       # specialisation
+      self.nixosModules."gaming"
+      self.nixosModules."qemu"
 
       # user
       self.nixosModules."home-manager"
