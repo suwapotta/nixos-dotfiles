@@ -6,7 +6,7 @@
       specialisation."VM-Host".configuration = {
         system.nixos.tags = [ "VM-Host" ];
 
-        users.users.suwapotta.extraGroups = [
+        users.users."suwapotta".extraGroups = [
           "libvirtd"
           "kvm"
         ];

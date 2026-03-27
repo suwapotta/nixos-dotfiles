@@ -30,8 +30,8 @@ update:
 	nvim --headless "+Lazy! sync" +qa
 	nh os switch -H ${FLAKE_HOST} --update
 
-safety:
-	pkill zen-beta || true
+# safety:
+# 	pkill zen-beta || true
 
 git: safety
 	git add .

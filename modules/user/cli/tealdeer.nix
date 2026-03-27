@@ -65,6 +65,8 @@
 
           platforms = [
             "linux"
+            "freebsd"
+            "all"
           ];
         };
       };

@@ -17,13 +17,13 @@
           let
             dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
 
-            # Standard .config/ directories
+            # Standard ~/.config/ directories
             configs = [
-              "niri"
-              "yazi"
-              "nvim"
               "btop"
               "cava"
+              "niri"
+              "nvim"
+              "yazi"
               "zathura"
             ];
           in
@@ -81,9 +81,8 @@
               # terminals
               self.homeModules."kitty"
 
-              # Catppuccin theme
+              # themes
               self.homeModules."catppuccin"
-              inputs.catppuccin.homeModules.catppuccin
             ];
           };
       };

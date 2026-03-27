@@ -1,7 +1,6 @@
 {
   flake.nixosModules."users" = {
-    # Define a user account
-    users.users.suwapotta = {
+    users.users."suwapotta" = {
       isNormalUser = true;
       extraGroups = [
         "wheel"

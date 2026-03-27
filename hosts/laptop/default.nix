@@ -31,6 +31,10 @@
       self.nixosModules."users"
       self.nixosModules."variables"
       self.nixosModules."zram"
+      self.nixosModules."polkit"
+      self.nixosModules."touchpad"
+
+      # specialisation
 
       # user
       self.nixosModules."home-manager"
