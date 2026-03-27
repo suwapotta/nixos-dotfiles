@@ -1,37 +1,38 @@
 FLAKE_HOST = laptop
+NOTIFY = ; status=$$?; bash ./scripts/statusNotify.sh $$status; exit $$status
 
 all: switch
 
 switch: git
-	nh os switch -H ${FLAKE_HOST}
+	nh os switch -H ${FLAKE_HOST} $(NOTIFY)
 
 boot: git
-	nh os boot -H ${FLAKE_HOST}
+	nh os boot -H ${FLAKE_HOST} $(NOTIFY)
 
 dry: git
-	nh os switch -H ${FLAKE_HOST} --dry
+	nh os switch -H ${FLAKE_HOST} --dry $(NOTIFY)
 
 test: git
-	nh os test -H ${FLAKE_HOST}
+	nh os test -H ${FLAKE_HOST} $(NOTIFY)
 
 build-vm: git
-	nh os build-vm -H ${FLAKE_HOST}
+	nh os build-vm -H ${FLAKE_HOST} $(NOTIFY)
 
 legacy: git
-	sudo nixos-rebuild switch --flake ${CURDIR}#${FLAKE_HOST}
+	sudo nixos-rebuild switch --flake ${CURDIR}#${FLAKE_HOST} $(NOTIFY)
 
 clean:
-	nh clean all --keep 5
+	nh clean all --keep 5 $(NOTIFY)
 
 nuke:
-	nh clean all --ask
+	nh clean all --ask $(NOTIFY)
 
 update:
 	nvim --headless "+Lazy! sync" +qa
-	nh os switch -H ${FLAKE_HOST} --update
+	nh os switch -H ${FLAKE_HOST} --update $(NOTIFY)
 
-# safety:
-# 	pkill zen-beta || true
+safety:
+	pkill zen-beta || true
 
 git: safety
 	git add .

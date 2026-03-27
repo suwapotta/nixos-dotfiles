@@ -3,8 +3,8 @@
     { pkgs, ... }:
 
     {
-      specialisation."VM-Host".configuration = {
-        system.nixos.tags = [ "VM-Host" ];
+      specialisation."Virtualisation".configuration = {
+        system.nixos.tags = [ "Virtualisation" ];
 
         users.users."suwapotta".extraGroups = [
           "libvirtd"

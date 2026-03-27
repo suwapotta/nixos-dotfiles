@@ -67,7 +67,7 @@
           ])
 
           inputs.home-manager.flakeModules.home-manager
-          ./hosts/laptop/default.nix
+          ./hosts/laptop
         ];
       }
     );
