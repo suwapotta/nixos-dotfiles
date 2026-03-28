@@ -635,7 +635,7 @@
                 action = "logout";
                 command = "";
                 countdownEnabled = true;
-                enabled = true;
+                enabled = false;
                 keybind = "4";
               }
               {
@@ -643,13 +643,13 @@
                 command = "";
                 countdownEnabled = true;
                 enabled = true;
-                keybind = "5";
+                keybind = "4";
               }
               {
                 action = "userspaceReboot";
                 command = "";
                 countdownEnabled = true;
-                enabled = true;
+                enabled = false;
                 keybind = "6";
               }
               {
@@ -657,7 +657,8 @@
                 command = "";
                 countdownEnabled = true;
                 enabled = true;
-                keybind = "Ctrl+R";
+                keybind = "5";
+                # keybind = "Ctrl+R";
               }
             ];
             showHeader = true;
