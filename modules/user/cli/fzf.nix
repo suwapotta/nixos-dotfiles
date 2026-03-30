@@ -5,6 +5,22 @@
     programs.fzf = {
       enable = true;
       enableFishIntegration = true;
+
+      defaultOptions = [
+        "--layout=reverse"
+        "--border=rounded"
+      ];
+
+      historyWidgetOptions = [
+        "--height=80%"
+        "--layout=reverse"
+        "--border=rounded"
+        "--prompt='󰋚 History: '"
+        "--with-nth=2.."
+        "--preview='echo {2..} | fish_indent --ansi'"
+        "--preview-window='right:50%:wrap'"
+        "--bind='ctrl-y:execute-silent(echo -n {2..} | wl-copy)+abort'"
+      ];
     };
   };
 }

@@ -278,7 +278,7 @@
                 {
                   colorizeDistroLogo = false;
                   colorizeSystemIcon = "none";
-                  customIconPath = ../../../images/logos/nixoscolorful.svg;
+                  customIconPath = ../../../images/logos/nixos-colorful.svg;
                   enableColorization = false;
                   icon = "snowflake";
                   id = "ControlCenter";

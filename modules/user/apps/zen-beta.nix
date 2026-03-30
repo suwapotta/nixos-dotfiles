@@ -144,7 +144,7 @@
 
             search = {
               force = true;
-              default = "google";
+              default = "ddg";
               engines = {
                 "NixOS packages" = {
                   urls = [ { template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}"; } ];

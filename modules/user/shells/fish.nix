@@ -1,5 +1,6 @@
 {
   flake.homeModules."fish" =
+    { config, ... }:
     let
       mkFunction = functionName: {
         body = builtins.readFile (../../../config/fish + "/${functionName}.fish");
@@ -15,14 +16,18 @@
           clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
           ls = "eza --icons";
           ll = "eza --icons -lh";
+          nix-make = "make -C ${config.home.homeDirectory}/nixos-dotfiles";
+        };
+
+        shellAbbrs = {
           lg = "lazygit";
           nlg = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
           nof = "nh os info";
           nr = "nh os repl -H laptop";
+          ns = "nh search";
         };
 
         shellInit = ''
-          set -gx FZF_CTRL_R_OPTS "--with-nth=2.."
           set -gx MANPAGER 'nvim +Man!'
           set -gx LIBVA_DRIVER_NAME iHD
           set -gx EZA_COLORS "*.txt=35:*.md=35:*.kdl=33:*.sv=33"
