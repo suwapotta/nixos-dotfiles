@@ -12,13 +12,17 @@
         enable = true;
 
         shellAliases = {
+          clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
           ls = "eza --icons";
           ll = "eza --icons -lh";
           lg = "lazygit";
-          clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
+          nlg = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+          nof = "nh os info";
+          nr = "nh os repl -H laptop";
         };
 
         shellInit = ''
+          set -gx FZF_CTRL_R_OPTS "--with-nth=2.."
           set -gx MANPAGER 'nvim +Man!'
           set -gx LIBVA_DRIVER_NAME iHD
           set -gx EZA_COLORS "*.txt=35:*.md=35:*.kdl=33:*.sv=33"

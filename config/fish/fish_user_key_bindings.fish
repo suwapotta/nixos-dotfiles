@@ -1,9 +1,6 @@
 fish_vi_key_bindings
 
 # Insert mode navigation
-bind -M insert \cr history-pager
-bind -M insert \cp up-or-search
-bind -M insert \cn down-or-search
 bind -M insert ! bind_bang
 bind -M insert '$' bind_dollar
 

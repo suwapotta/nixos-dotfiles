@@ -10,8 +10,8 @@
         extraPackages = with pkgs; [
           # arduino-cli
           # arduino-language-server
+          # lldb
           clang-tools
-          lldb
           pyright
           ruff
           bash-language-server

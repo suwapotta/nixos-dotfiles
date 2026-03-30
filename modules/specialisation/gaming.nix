@@ -4,8 +4,8 @@
 
     {
       specialisation = {
-        "Gaming-Mode".configuration = {
-          system.nixos.tags = [ "Gaming-Mode" ];
+        "Gaming".configuration = {
+          system.nixos.tags = [ "Gaming" ];
 
           hardware.nvidia = {
             prime.sync.enable = lib.mkForce true;

@@ -22,7 +22,7 @@ legacy: git
 	sudo nixos-rebuild switch --flake ${CURDIR}#${FLAKE_HOST} $(NOTIFY)
 
 clean:
-	nh clean all --keep 5 $(NOTIFY)
+	nh clean all --keep 3 $(NOTIFY)
 
 nuke:
 	nh clean all --ask $(NOTIFY)
