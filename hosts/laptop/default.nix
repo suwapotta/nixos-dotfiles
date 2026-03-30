@@ -23,7 +23,6 @@
       self.nixosModules."nh"
       self.nixosModules."nvidia"
       self.nixosModules."packages"
-      self.nixosModules."plymouth"
       self.nixosModules."polkit"
       self.nixosModules."portals"
       self.nixosModules."programs"
