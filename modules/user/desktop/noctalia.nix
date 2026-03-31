@@ -639,26 +639,19 @@
                 keybind = "4";
               }
               {
-                action = "shutdown";
-                command = "";
-                countdownEnabled = true;
-                enabled = true;
-                keybind = "4";
-              }
-              {
-                action = "userspaceReboot";
-                command = "";
-                countdownEnabled = true;
-                enabled = false;
-                keybind = "6";
-              }
-              {
                 action = "rebootToUefi";
                 command = "";
                 countdownEnabled = true;
                 enabled = true;
-                keybind = "5";
+                keybind = "4";
                 # keybind = "Ctrl+R";
+              }
+              {
+                action = "shutdown";
+                command = "";
+                countdownEnabled = true;
+                enabled = true;
+                keybind = "5";
               }
             ];
             showHeader = true;

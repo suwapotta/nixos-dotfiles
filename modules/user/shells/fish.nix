@@ -19,17 +19,21 @@
         enable = true;
 
         shellAliases = {
-          clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
-          ls = "eza --icons";
-          ll = "eza --icons -lh";
           nix-make = "make -C ${config.home.homeDirectory}/nixos-dotfiles";
+          clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
+          ll = "eza --icons -lh";
+          ls = "eza --icons";
         };
 
         shellAbbrs = {
           lg = "lazygit";
+          nr = "nix repl";
+          ni = "nix-instantiate";
+          nie = "nix-instantiate --eval";
+          nies = "nix-instantiate --eval --strict";
           nlg = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
           noi = "nh os info";
-          nr = "nh os repl -H laptop";
+          nrf = "nh os repl -H laptop";
           ns = "nh search";
           nca = "nh clean all --keep 3";
         };

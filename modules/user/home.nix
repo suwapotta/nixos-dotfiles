@@ -44,7 +44,7 @@
               # apps
               self.homeModules."anki"
               self.homeModules."zathura"
-              self.homeModules."zen-beta"
+              self.homeModules."zen-browser"
 
               # cli
               self.homeModules."bat"

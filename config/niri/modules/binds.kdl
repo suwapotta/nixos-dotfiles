@@ -281,7 +281,7 @@ binds {
     Mod+Ctrl+D {
         reset-window-height
     }
-    Mod+F {
+    Mod+F repeat=false {
         maximize-column
     }
     Mod+Shift+F {

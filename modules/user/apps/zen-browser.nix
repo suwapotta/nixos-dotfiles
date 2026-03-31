@@ -1,8 +1,10 @@
 {
-  flake.homeModules."zen-beta" =
+  flake.homeModules."zen-browser" =
     { inputs, pkgs, ... }:
 
     {
+      home.sessionVariables.BROWSER = "zen-beta";
+
       imports = [
         inputs.zen-browser.homeModules.beta
       ];
