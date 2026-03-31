@@ -11,7 +11,7 @@ return {
     vim.g.vimtex_compiler_tectonic = {
       out_dir = "",
       options = {
-        "--keep-logs",
+        -- "--keep-logs",
         "--synctex",
         "-Z",
         "shell-escape",

@@ -58,7 +58,7 @@
             showCategories = true;
             showIconBackground = false;
             sortByMostUsed = true;
-            terminalCommand = "kitty";
+            terminalCommand = "kitty -e fish -c";
             useApp2Unit = false;
             viewMode = "list";
           };

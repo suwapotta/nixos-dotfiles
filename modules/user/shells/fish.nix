@@ -9,6 +9,12 @@
     {
       catppuccin.fish.enable = true;
 
+      home.sessionVariables = {
+        MANPAGER = "nvim +Man!";
+        LIBVA_DRIVER_NAME = "iHD";
+        EZA_COLORS = "*.txt=35:*.md=35:*.kdl=33:*.sv=33";
+      };
+
       programs.fish = {
         enable = true;
 
@@ -22,16 +28,14 @@
         shellAbbrs = {
           lg = "lazygit";
           nlg = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
-          nof = "nh os info";
+          noi = "nh os info";
           nr = "nh os repl -H laptop";
           ns = "nh search";
+          nca = "nh clean all --keep 3";
         };
 
-        shellInit = ''
-          set -gx MANPAGER 'nvim +Man!'
-          set -gx LIBVA_DRIVER_NAME iHD
-          set -gx EZA_COLORS "*.txt=35:*.md=35:*.kdl=33:*.sv=33"
-        '';
+        # shellInit = ''
+        # '';
 
         interactiveShellInit = ''
           # No greeting
