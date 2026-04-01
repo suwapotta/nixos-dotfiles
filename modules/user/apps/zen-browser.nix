@@ -3,6 +3,7 @@
     { inputs, pkgs, ... }:
 
     {
+      # Fix ``nixos-help`` command
       home.sessionVariables.BROWSER = "zen-beta";
 
       imports = [

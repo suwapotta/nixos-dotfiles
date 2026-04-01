@@ -32,6 +32,7 @@
           nie = "nix-instantiate --eval";
           nies = "nix-instantiate --eval --strict";
           nlg = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+          nsp = "nix-shell -p";
           noi = "nh os info";
           nrf = "nh os repl -H laptop";
           ns = "nh search";
@@ -61,7 +62,6 @@
           bind_dollar = mkFunction "bind_dollar";
           starship_transient_prompt_func = mkFunction "starship_transient_prompt_func";
           fish_user_key_bindings = mkFunction "fish_user_key_bindings";
-          y = mkFunction "y";
           yank_to_clipboard = mkFunction "yank_to_clipboard";
         };
       };

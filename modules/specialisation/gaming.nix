@@ -7,6 +7,11 @@
         "Gaming".configuration = {
           system.nixos.tags = [ "Gaming" ];
 
+          # boot.kernelModules = [ "ntsync" ];
+          # services.udev.extraRules = ''
+          #   KERNEL=="ntsync", MODE="0666"
+          # '';
+
           hardware.nvidia = {
             prime.sync.enable = lib.mkForce true;
             prime.offload = {

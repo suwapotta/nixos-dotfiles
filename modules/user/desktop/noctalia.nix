@@ -34,7 +34,7 @@
         };
 
         settings = {
-          settingsVersion = 57;
+          settingsVersion = 59;
 
           appLauncher = {
             autoPasteClipboard = false;
@@ -139,19 +139,19 @@
               ];
               left = [
                 {
+                  colorizeDistroLogo = false;
                   colorizeSystemIcon = "none";
-                  customIconPath = ../../../images/icons/niri.svg;
+                  customIconPath = ../../../images/logos/nixos-colorful.svg;
                   enableColorization = false;
-                  icon = "niri";
-                  iconColor = "none";
-                  id = "Launcher";
+                  icon = "snowflake";
+                  id = "ControlCenter";
                   useDistroLogo = false;
                 }
                 {
                   clockColor = "none";
                   customFont = "Symbols Nerd Font";
                   formatHorizontal = "h:mm AP ddd MMM d";
-                  formatVertical = "HH mm - dd MM";
+                  formatVertical = "HH mm ~ dd MM";
                   id = "Clock";
                   tooltipFormat = "HH:mm ddd, MMM dd";
                   useCustomFont = false;
@@ -276,12 +276,12 @@
                   id = "plugin:todo";
                 }
                 {
-                  colorizeDistroLogo = false;
                   colorizeSystemIcon = "none";
-                  customIconPath = ../../../images/logos/nixos-colorful.svg;
+                  customIconPath = ../../../images/icons/niri.svg;
                   enableColorization = false;
-                  icon = "snowflake";
-                  id = "ControlCenter";
+                  icon = "niri";
+                  iconColor = "none";
+                  id = "Launcher";
                   useDistroLogo = false;
                 }
               ];
@@ -351,7 +351,7 @@
               }
             ];
             diskPath = "/";
-            position = "top_right";
+            position = "close_to_bar_button";
             shortcuts = {
               left = [
                 { id = "Network"; }

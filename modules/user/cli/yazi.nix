@@ -3,8 +3,8 @@
     programs.yazi = {
       enable = true;
 
-      shellWrapperName = "yy";
-      enableFishIntegration = false;
+      shellWrapperName = "y";
+      enableFishIntegration = true;
     };
   };
 }

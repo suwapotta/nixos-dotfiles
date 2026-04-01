@@ -66,7 +66,7 @@
             ./modules
           ])
 
-          inputs.home-manager.flakeModules.home-manager
+          inputs.home-manager.flakeModules."home-manager"
           ./hosts/laptop
         ];
       }
