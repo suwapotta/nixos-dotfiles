@@ -7,6 +7,7 @@
         "Gaming".configuration = {
           system.nixos.tags = [ "Gaming" ];
 
+          # Proton-GE performance boost
           # boot.kernelModules = [ "ntsync" ];
           # services.udev.extraRules = ''
           #   KERNEL=="ntsync", MODE="0666"
