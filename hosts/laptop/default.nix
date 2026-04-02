@@ -18,6 +18,7 @@
       self.nixosModules."experimental"
       self.nixosModules."fonts"
       self.nixosModules."git"
+      self.nixosModules."intel"
       self.nixosModules."keyd"
       self.nixosModules."network"
       self.nixosModules."nh"
@@ -36,6 +37,7 @@
       self.nixosModules."zram"
 
       # specialisation
+      self.nixosModules."cachyos-kernel"
       self.nixosModules."gaming"
       self.nixosModules."qemu"
 

@@ -6,7 +6,7 @@ return {
       verilog = { "verible" },
       systemverilog = { "verible" },
       tex = { "latexindent" },
-      kdl = { "kdlfmt" },
+      -- kdl = { "kdlfmt" },
     })
 
     return opts

@@ -1,17 +1,21 @@
 {
   flake.nixosModules."gaming" =
-    { lib, ... }:
+    { lib, pkgs, ... }:
 
     {
       specialisation = {
         "Gaming".configuration = {
           system.nixos.tags = [ "Gaming" ];
 
+          # NOTE: List of all possible options:
+          # $ nix flake show github:xddxdd/nix-cachyos-kernel/release
+          boot.kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+
           # Proton-GE performance boost
-          # boot.kernelModules = [ "ntsync" ];
-          # services.udev.extraRules = ''
-          #   KERNEL=="ntsync", MODE="0666"
-          # '';
+          boot.kernelModules = [ "ntsync" ];
+          services.udev.extraRules = ''
+            KERNEL=="ntsync", MODE="0666"
+          '';
 
           hardware.nvidia = {
             prime.sync.enable = lib.mkForce true;
