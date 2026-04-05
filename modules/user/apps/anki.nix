@@ -6,9 +6,12 @@
       catppuccin.anki.enable = true;
 
       home.packages = [
-        (pkgs.anki.withAddons [
-          pkgs.ankiAddons.anki-connect
-          pkgs.ankiAddons.review-heatmap
+        pkgs.anki.withAddons
+        (with pkgs.ankiAddons; [
+          anki-connect
+          review-heatmap
+          ajt-card-management
+          recolor
         ])
       ];
     };

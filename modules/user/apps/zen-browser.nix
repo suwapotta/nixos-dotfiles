@@ -283,7 +283,7 @@
                     }
                     {
                       name = "HCMUT Coursewave";
-                      url = "https://github.com/";
+                      url = "https://tinyurl.com/hcmut-courseware";
                     }
                     {
                       name = "Zalo";
