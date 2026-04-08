@@ -1,3 +1,5 @@
+# TODO: Clean up repeating parts
+
 {
   flake.homeModules."zen-browser" =
     {
@@ -21,9 +23,7 @@
       ];
     in
     {
-      imports = [
-        inputs.zen-browser.homeModules.beta
-      ];
+      imports = [ inputs.zen-browser.homeModules.beta ];
 
       # Fix ``nixos-help`` command
       home.sessionVariables.BROWSER = "zen-beta";
@@ -121,12 +121,14 @@
                 isEssential = true;
                 position = 101;
               };
+
               "YouTube" = {
                 id = "4cb898b1-2137-4c5b-8ffb-99c8dde3b777";
                 url = "https://www.youtube.com/";
                 isEssential = true;
                 position = 102;
               };
+
               "Messenger" = {
                 id = "47bf06cc-8702-43e5-9b0e-d8ae6c376b33";
                 url = "https://www.messenger.com/t/5765709533478160/";
@@ -134,17 +136,20 @@
                 position = 103;
               };
               "FreeBSD Manual" = {
+
                 id = "c95d3575-555a-4f2d-b860-0e0b999d10e4";
                 url = "https://docs.freebsd.org/en/books/handbook/introduction/";
                 isEssential = true;
                 position = 201;
               };
+
               "LFS" = {
                 id = "626f7fc7-4b14-4d3d-a3b4-fe3e2b4c860a";
                 url = "https://www.linuxfromscratch.org/";
                 isEssential = true;
                 position = 202;
               };
+
               "NixDev" = {
                 id = "bc2939f7-40e0-46d3-8859-1cdb1c1d1dc2";
                 url = "https://nix.dev/tutorials/nix-language";
@@ -157,6 +162,7 @@
             containersForce = true;
             spacesForce = true;
             pinsForce = true;
+
             inherit containers spaces pins;
 
             extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
@@ -176,26 +182,31 @@
                   icon = "https://wiki.nixos.org/favicon.ico";
                   definedAliases = [ "@packages" ];
                 };
+
                 "NixOS options" = {
                   urls = [ { template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}"; } ];
                   icon = "https://wiki.nixos.org/favicon.ico";
                   definedAliases = [ "@options" ];
                 };
+
                 "NixOS Wiki" = {
                   urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
                   icon = "https://wiki.nixos.org/favicon.ico";
                   definedAliases = [ "@wiki" ];
                 };
+
                 "Arch Wiki" = {
                   urls = [ { template = "https://wiki.archlinux.org/index.php?search={searchTerms}"; } ];
                   icon = "https://wiki.archlinux.org/favicon.ico";
                   definedAliases = [ "@archwiki" ];
                 };
+
                 "YouTube Search" = {
                   urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
                   icon = "https://www.youtube.com/favicon.ico";
                   definedAliases = [ "@youtube" ];
                 };
+
                 "My NixOS" = {
                   urls = [ { template = "https://mynixos.com/search?q={searchTerms}"; } ];
                   icon = "https://mynixos.com/favicon.ico";

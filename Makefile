@@ -27,7 +27,7 @@ clean:
 nuke:
 	nh clean all --ask $(NOTIFY)
 
-update:
+update: git
 	nvim --headless "+Lazy! sync" +qa
 	nh os switch -H ${FLAKE_HOST} --update $(NOTIFY)
 

@@ -19,6 +19,7 @@
         enable = true;
 
         shellAliases = {
+          lvim = "NVIM_APPNAME=lvim nvim";
           nix-make = "make -C ${config.home.homeDirectory}/nixos-dotfiles";
           clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
           ll = "eza --icons -lh";
@@ -26,6 +27,7 @@
         };
 
         shellAbbrs = {
+          nvimc = "nvim --clean";
           lg = "lazygit";
           nr = "nix repl";
           ni = "nix-instantiate";

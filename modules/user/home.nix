@@ -14,6 +14,7 @@
 
         users."suwapotta" =
           { config, ... }:
+
           let
             dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
 
@@ -21,6 +22,7 @@
             configs = [
               "btop"
               "cava"
+              "lvim"
               "niri"
               "nvim"
               "yazi"

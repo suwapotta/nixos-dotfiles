@@ -2,9 +2,7 @@
   flake.homeModules."noctalia" =
     { inputs, ... }:
     {
-      imports = [
-        inputs.noctalia.homeModules.default
-      ];
+      imports = [ inputs.noctalia.homeModules.default ];
 
       programs.noctalia-shell = {
         enable = true;
@@ -416,7 +414,7 @@
             animationDisabled = false;
             animationSpeed = 1;
             autoStartAuth = false;
-            avatarImage = ../../../images/pfp/kokoro.png;
+            avatarImage = ../../../images/pfp/youmu.png;
             boxRadiusRatio = 1;
             clockFormat = "hh\\nmm";
             clockStyle = "digital";
@@ -508,7 +506,7 @@
             firstDayOfWeek = 0;
             hideWeatherCityName = false;
             hideWeatherTimezone = false;
-            name = "Ho Chi Minh CIty, Vietnam";
+            name = "Ho Chi Minh City, Vietnam";
             showCalendarEvents = true;
             showCalendarWeather = true;
             showWeekNumberInCalendar = true;
