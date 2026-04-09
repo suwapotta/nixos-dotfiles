@@ -3,6 +3,7 @@
     { pkgs, ... }:
 
     {
+      programs.nano = true;
       programs.neovim = {
         enable = true;
         defaultEditor = true;
@@ -44,6 +45,8 @@
           ghostscript
           mermaid-cli
           xdg-utils
+
+          cargo
         ];
       };
 
