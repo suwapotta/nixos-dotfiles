@@ -28,7 +28,7 @@ nuke:
 	nh clean all --ask $(NOTIFY)
 
 update: git
-	nvim --headless "+Lazy! sync" +qa
+	NVIM_APPNAME=lvim nvim --headless "+Lazy! sync" +qa
 	nh os switch -H ${FLAKE_HOST} --update $(NOTIFY)
 
 safety:
