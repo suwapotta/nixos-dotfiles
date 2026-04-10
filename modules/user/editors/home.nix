@@ -3,6 +3,7 @@
 {
   flake.nixosModules."home-manager" =
     { lib, ... }:
+
     {
       imports = [ inputs.home-manager.nixosModules.home-manager ];
 

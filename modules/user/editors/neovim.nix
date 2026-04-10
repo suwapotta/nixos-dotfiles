@@ -3,7 +3,6 @@
     { pkgs, ... }:
 
     {
-      programs.nano = true;
       programs.neovim = {
         enable = true;
         defaultEditor = true;
@@ -13,7 +12,11 @@
         extraPackages = with pkgs; [
           # arduino-cli
           # arduino-language-server
-          # lldb
+
+          lldb
+          python314Packages.debugpy
+          bashdb
+
           clang-tools
           pyright
           ruff
@@ -46,7 +49,7 @@
           mermaid-cli
           xdg-utils
 
-          cargo
+          # cargo
         ];
       };
 

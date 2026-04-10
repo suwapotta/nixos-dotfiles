@@ -6,6 +6,28 @@ vim.pack.add({ {
 require("catppuccin").setup({
 	transparent_background = true,
 
+	---@diagnostic disable-next-line: unused-local
+	custom_highlights = function(colors)
+		return {
+			NormalFloat = { bg = "NONE" },
+			FloatBorder = { bg = "NONE" },
+			FloatTitle = { bg = "NONE" },
+
+			FzfLuaNormal = { bg = "NONE" },
+			FzfLuaBorder = { bg = "NONE" },
+
+			MiniFilesNormal = { bg = "NONE" },
+			MiniFilesBorder = { bg = "NONE" },
+			MiniFilesTitle = { bg = "NONE" },
+
+			Pmenu = { bg = "NONE" },
+			BlinkCmpMenu = { bg = "NONE" },
+			BlinkCmpMenuBorder = { bg = "NONE" },
+			BlinkCmpDoc = { bg = "NONE" },
+			BlinkCmpDocBorder = { bg = "NONE" },
+		}
+	end,
+
 	auto_integrations = false,
 	integrations = {
 		blink_cmp = true,

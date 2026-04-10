@@ -7,6 +7,10 @@ vim.pack.add({
 
 require("lint").linters_by_ft = {
 	nix = { "statix" },
+	markdown = { "markdownlint-cli2" },
+	sh = { "shellcheck" },
+	bash = { "shellcheck" },
+	zsh = { "shellcheck" },
 }
 
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

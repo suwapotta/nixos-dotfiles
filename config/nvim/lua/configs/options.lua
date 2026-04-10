@@ -69,7 +69,7 @@ opt.updatetime = 200
 opt.timeoutlen = 300
 
 -- Clipboard
-opt.clipboard = "unnamedplus"
+opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 
 -- Miscellaneous
 opt.mouse = "a"

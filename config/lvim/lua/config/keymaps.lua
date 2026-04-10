@@ -10,3 +10,8 @@ vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], { desc = "Go to Left Window"
 vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], { desc = "Go to Lower Window" })
 vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { desc = "Go to Upper Window" })
 vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], { desc = "Go to Right Window" })
+
+-- Quality of life
+vim.keymap.set("n", "<C-c>", ":%y+<CR>", { desc = "Yank whole file" })
+vim.keymap.set("n", "gh", "^", { desc = "Start of line" })
+vim.keymap.set("n", "gl", "$", { desc = "End of line" })

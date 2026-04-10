@@ -4,9 +4,10 @@ vim.pack.add({
 		name = "lualine",
 	},
 	{
-		src = "https://github.com/nvim-tree/nvim-web-devicons",
-		name = "web-devicons",
+		src = "https://github.com/echasnovski/mini.icons",
+		name = "mini.icons",
 	},
 })
 
+require("mini.icons").setup({})
 require("lualine").setup({})
