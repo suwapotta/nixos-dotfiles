@@ -5,8 +5,9 @@ options.number = true -- Line numbers
 options.relativenumber = true -- Relative line numbers
 options.cursorline = true -- Highlight current line
 options.wrap = false -- Don't wrap lines
-options.scrolloff = 10 -- Keep 10 lines above/below cursor
-options.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
+options.linebreak = true -- Wrap lines at convenient points
+options.scrolloff = 10 -- Lines of context
+options.sidescrolloff = 8 -- Columns of context
 
 -- Indentation
 options.tabstop = 2 -- Tab width
@@ -32,14 +33,15 @@ options.showmode = false -- Don't show mode in command line
 options.pumheight = 10 -- Popup menu height
 options.pumblend = 10 -- Popup menu transparency
 options.winblend = 0 -- Floating window transparency
-options.completeopt = "menu,menuone,noselect"
+options.completeopt = "menu,menuone,noselect" -- Better autocomplete experience
 options.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
 options.confirm = true -- Confirm to save changes before exiting modified buffer
 options.concealcursor = "" -- Don't hide cursor line markup
-options.synmaxcol = 300 -- Syntax highlighting limit
 options.ruler = false -- Disable the default ruler
 options.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 options.winminwidth = 5 -- Minimum window width
+options.laststatus = 3 -- global statusline
+options.list = true -- Show some invisible characters (tabs...)
 
 -- File handling
 options.backup = false -- Don't create backup files
@@ -47,7 +49,6 @@ options.writebackup = false -- Don't create backup before writing
 options.swapfile = false -- Don't create swap files
 options.undofile = true -- Persistent undo
 options.undolevels = 10000
-options.undodir = vim.fn.expand("~/.vim/undodir") -- Undo directory
 options.updatetime = 300 -- Faster completion
 options.timeoutlen = vim.g.vscode and 1000 or 300 -- Lower than default (1000) to quickly trigger which-key
 options.ttimeoutlen = 0 -- Key code timeout
@@ -56,6 +57,7 @@ options.autowrite = true -- Auto save
 
 -- Behavior settings
 options.hidden = true -- Allow hidden buffers
+options.jumpoptions = "view"
 options.errorbells = false -- No error bells
 options.backspace = "indent,eol,start" -- Better backspace behavior
 options.autochdir = false -- Don't auto change directory
@@ -78,47 +80,27 @@ options.grepprg = "rg --vimgrep"
 -- Split behavior
 options.splitbelow = true -- Horizontal splits go below
 options.splitright = true -- Vertical splits go right
-options.splitkeep = "screen"
+options.splitkeep = "screen" -- Reduce scroll jitter when opening splits
 
 -- Command-line completion
 options.wildmenu = true
 options.wildmode = "longest:full,full"
 options.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
 
--- Better diff optionsions
+-- Better diff options
 options.diffopt:append("linematch:60")
 
 -- Performance improvements
+options.synmaxcol = 500 -- Syntax highlighting limit
 options.redrawtime = 10000
 options.maxmempattern = 20000
 
+-- Misc
 options.fillchars = {
-  foldopen = " ",
-  foldclose = " ",
+  foldopen = "",
+  foldclose = "",
   fold = " ",
   foldsep = " ",
-  diff = "╱",
+  diff = "",
   eob = " ",
 }
-
-options.jumpoptions = "view"
-options.laststatus = 3 -- global statusline
-options.list = false
-options.linebreak = true -- Wrap lines at convenient points
-options.list = true -- Show some invisible characters (tabs...
-options.shiftround = true -- Round indent
-options.shiftwidth = 2 -- Size of an indent
-
-vim.filetype.add({
-  extension = {
-    env = "dotenv",
-  },
-  filename = {
-    [".env"] = "dotenv",
-    ["env"] = "dotenv",
-  },
-  pattern = {
-    ["[jt]sconfig.*.json"] = "jsonc",
-    ["%.env%.[%w_.-]+"] = "dotenv",
-  },
-})
