@@ -5,3 +5,6 @@ require("configs.keymaps")
 require("configs.options")
 
 -- ./lua/plugins/*.lua
+require("plugins.mini-icons")
+require("plugins.oil")
+require("plugins.catppuccin")

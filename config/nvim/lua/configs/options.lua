@@ -1,6 +1,6 @@
 local options = vim.opt
 
--- Line numbers and navigation
+-- Line number and navigation
 options.number = true -- Line numbers
 options.relativenumber = true -- Relative line numbers
 options.cursorline = true -- Highlight current line
@@ -20,7 +20,6 @@ options.autoindent = true -- Copy indent from current line
 -- Search settings
 options.ignorecase = true -- Case insensitive search
 options.smartcase = true -- Case sensitive if uppercase in search
-options.hlsearch = false -- Don't highlight search results
 options.incsearch = true -- Show matches as you type
 
 -- Visual settings
@@ -42,6 +41,7 @@ options.virtualedit = "block" -- Allow cursor to move where there is no text in 
 options.winminwidth = 5 -- Minimum window width
 options.laststatus = 3 -- global statusline
 options.list = true -- Show some invisible characters (tabs...)
+options.guicursor = "n-v-ve-c-sm:block,i-ci:ver25-Cursor,r-cr-o:hor20" -- Block cursor in visual mode
 
 -- File handling
 options.backup = false -- Don't create backup files
@@ -91,7 +91,7 @@ options.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
 options.diffopt:append("linematch:60")
 
 -- Performance improvements
-options.synmaxcol = 500 -- Syntax highlighting limit
+options.synmaxcol = 250 -- Syntax highlighting limit
 options.redrawtime = 10000
 options.maxmempattern = 20000
 

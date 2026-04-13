@@ -1,5 +1,8 @@
 local keymap = vim.keymap.set
 
+-- vim.pack
+keymap("n", "<leader>pu", "<cmd>lua vim.pack.update()<CR>", { desc = "Run vim.pack.update()" })
+
 -- Better up/down
 keymap({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 keymap({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
