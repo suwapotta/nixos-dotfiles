@@ -9,6 +9,11 @@ keymap({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", exp
 keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 keymap({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
+-- Better ^/0/$ (in-line motions)
+keymap("n", "gH", "0", { desc = "Go to start of line" })
+keymap("n", "gh", "^", { desc = "Go to start of line (non-ws)" })
+keymap("n", "gl", "$", { desc = "Go to end of line" })
+
 -- Move to window using the <ctrl> hjkl keys
 keymap("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 keymap("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
@@ -35,7 +40,7 @@ keymap("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 keymap("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 keymap("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 keymap("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-keymap("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer"})
+keymap("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 keymap("n", "<C-c>", "<cmd>%y<cr>", { desc = "Yank buffer" })
 
 -- Save file

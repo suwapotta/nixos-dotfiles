@@ -1,5 +1,3 @@
-# TODO: Clean up repeating parts
-
 {
   flake.homeModules."zen-browser" =
     {

@@ -97,10 +97,10 @@ options.maxmempattern = 20000
 
 -- Misc
 options.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  fold = " ",
-  foldsep = " ",
-  diff = "",
-  eob = " ",
+	foldopen = "",
+	foldclose = "",
+	fold = " ",
+	foldsep = " ",
+	diff = "",
+	eob = " ",
 }

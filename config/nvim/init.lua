@@ -3,8 +3,10 @@ require("configs.autocmds")
 require("configs.global")
 require("configs.keymaps")
 require("configs.options")
+require("configs.diagnostic")
 
 -- ./lua/plugins/*.lua
 require("plugins.mini-icons")
 require("plugins.oil")
 require("plugins.catppuccin")
+require("plugins.lsp-config")
