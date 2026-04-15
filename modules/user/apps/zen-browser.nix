@@ -19,6 +19,30 @@
         "x-scheme-handler/about"
         "x-scheme-handler/unknown"
       ];
+
+      # NOTE: Helper functions
+      mkSearchEngine = url: icon: alias: {
+        urls = [ { template = url; } ];
+        inherit icon;
+        definedAliases = [ alias ];
+      };
+
+      # HACK: For each machine, use different set of uuid:
+      # $ uuidgen | wl-copy
+      mkEssential =
+        {
+          url,
+          position,
+          id,
+        }:
+        {
+          inherit url position id;
+          isEssential = true;
+        };
+
+      mkBookmark = name: url: {
+        inherit name url;
+      };
     in
     {
       imports = [ inputs.zen-browser.homeModules.beta ];
@@ -113,46 +137,40 @@
             };
 
             pins = {
-              "NixOS-Dotfiles" = {
-                id = "ececd77f-1354-4c4b-931e-fdca3754cdeb";
+              "NixOS-Dotfiles" = mkEssential {
                 url = "https://github.com/suwapotta/nixos-dotfiles";
-                isEssential = true;
                 position = 101;
+                id = "ececd77f-1354-4c4b-931e-fdca3754cdeb";
               };
 
-              "YouTube" = {
-                id = "4cb898b1-2137-4c5b-8ffb-99c8dde3b777";
+              "YouTube" = mkEssential {
                 url = "https://www.youtube.com/";
-                isEssential = true;
                 position = 102;
+                id = "4cb898b1-2137-4c5b-8ffb-99c8dde3b777";
               };
 
-              "Messenger" = {
-                id = "47bf06cc-8702-43e5-9b0e-d8ae6c376b33";
+              "Messenger" = mkEssential {
                 url = "https://www.messenger.com/t/5765709533478160/";
-                isEssential = true;
                 position = 103;
+                id = "47bf06cc-8702-43e5-9b0e-d8ae6c376b33";
               };
-              "FreeBSD Manual" = {
 
-                id = "c95d3575-555a-4f2d-b860-0e0b999d10e4";
+              "FreeBSD Manual" = mkEssential {
                 url = "https://docs.freebsd.org/en/books/handbook/introduction/";
-                isEssential = true;
                 position = 201;
+                id = "c95d3575-555a-4f2d-b860-0e0b999d10e4";
               };
 
-              "LFS" = {
-                id = "626f7fc7-4b14-4d3d-a3b4-fe3e2b4c860a";
+              "LFS" = mkEssential {
                 url = "https://www.linuxfromscratch.org/";
-                isEssential = true;
                 position = 202;
+                id = "626f7fc7-4b14-4d3d-a3b4-fe3e2b4c860a";
               };
 
-              "NixDev" = {
-                id = "bc2939f7-40e0-46d3-8859-1cdb1c1d1dc2";
+              "NixDev" = mkEssential {
                 url = "https://nix.dev/tutorials/nix-language";
-                isEssential = true;
                 position = 203;
+                id = "bc2939f7-40e0-46d3-8859-1cdb1c1d1dc2";
               };
             };
           in
@@ -175,41 +193,34 @@
               force = true;
               default = "ddg";
               engines = {
-                "NixOS packages" = {
-                  urls = [ { template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}"; } ];
-                  icon = "https://wiki.nixos.org/favicon.ico";
-                  definedAliases = [ "@packages" ];
-                };
+                "NixOS packages" =
+                  mkSearchEngine "https://search.nixos.org/packages?channel=unstable&query={searchTerms}"
+                    "https://wiki.nixos.org/favicon.ico"
+                    "@packages";
 
-                "NixOS options" = {
-                  urls = [ { template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}"; } ];
-                  icon = "https://wiki.nixos.org/favicon.ico";
-                  definedAliases = [ "@options" ];
-                };
+                "NixOS options" =
+                  mkSearchEngine "https://search.nixos.org/options?channel=unstable&query={searchTerms}"
+                    "https://wiki.nixos.org/favicon.ico"
+                    "@options";
 
-                "NixOS Wiki" = {
-                  urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
-                  icon = "https://wiki.nixos.org/favicon.ico";
-                  definedAliases = [ "@wiki" ];
-                };
+                "NixOS Wiki" =
+                  mkSearchEngine "https://wiki.nixos.org/w/index.php?search={searchTerms}"
+                    "https://wiki.nixos.org/favicon.ico"
+                    "@wiki";
 
-                "Arch Wiki" = {
-                  urls = [ { template = "https://wiki.archlinux.org/index.php?search={searchTerms}"; } ];
-                  icon = "https://wiki.archlinux.org/favicon.ico";
-                  definedAliases = [ "@archwiki" ];
-                };
+                "Arch Wiki" =
+                  mkSearchEngine "https://wiki.archlinux.org/index.php?search={searchTerms}"
+                    "https://wiki.archlinux.org/favicon.ico"
+                    "@archwiki";
 
-                "YouTube Search" = {
-                  urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
-                  icon = "https://www.youtube.com/favicon.ico";
-                  definedAliases = [ "@youtube" ];
-                };
+                "YouTube Search" =
+                  mkSearchEngine "https://www.youtube.com/results?search_query={searchTerms}"
+                    "https://www.youtube.com/favicon.ico"
+                    "@youtube";
 
-                "My NixOS" = {
-                  urls = [ { template = "https://mynixos.com/search?q={searchTerms}"; } ];
-                  icon = "https://mynixos.com/favicon.ico";
-                  definedAliases = [ "@mynixos" ];
-                };
+                "My NixOS" =
+                  mkSearchEngine "https://mynixos.com/search?q={searchTerms}" "https://mynixos.com/favicon.ico"
+                    "@mynixos";
 
                 "wikipedia".metaData.hidden = true;
                 "bing".metaData.hidden = true;
@@ -238,70 +249,22 @@
                   name = "Bookmarks Toolbar";
                   toolbar = true;
                   bookmarks = [
-                    {
-                      name = "Arch Linux";
-                      url = "https://archlinux.org/";
-                    }
-                    {
-                      name = "Google";
-                      url = "https://www.google.com/";
-                    }
-                    {
-                      name = "Messenger";
-                      url = "https://www.messenger.com/t/5765709533478160/";
-                    }
-                    {
-                      name = "YouTube";
-                      url = "https://www.youtube.com/";
-                    }
-                    {
-                      name = "Gmail";
-                      url = "https://mail.google.com/mail/u/0/?ogbl#inbox";
-                    }
-                    {
-                      name = "BK-LMS";
-                      url = "https://lms.hcmut.edu.vn/my/";
-                    }
-                    {
-                      name = "My Bach Khoa";
-                      url = "https://mybk.hcmut.edu.vn/my/index.action";
-                    }
-                    {
-                      name = "Academic Affairs Office";
-                      url = "https://mybk.hcmut.edu.vn/app/";
-                    }
-                    {
-                      name = "Google Calender";
-                      url = "https://calendar.google.com/calendar/u/1/r";
-                    }
-                    {
-                      name = "Google Gemini";
-                      url = "https://gemini.google.com/app";
-                    }
-                    {
-                      name = "Tinkercad";
-                      url = "https://www.tinkercad.com/dashboard/designs/circuits";
-                    }
-                    {
-                      name = "アニメ";
-                      url = "https://aanime.biz/";
-                    }
-                    {
-                      name = "GitHub";
-                      url = "https://github.com/";
-                    }
-                    {
-                      name = "HCMUT Coursewave";
-                      url = "https://tinyurl.com/hcmut-courseware";
-                    }
-                    {
-                      name = "Zalo";
-                      url = "https://chat.zalo.me/";
-                    }
-                    {
-                      name = "LFS News";
-                      url = "https://www.linuxfromscratch.org/lfs/news.html";
-                    }
+                    (mkBookmark "Arch Linux" "https://archlinux.org/")
+                    (mkBookmark "Google" "https://www.google.com/")
+                    (mkBookmark "Messenger" "https://www.messenger.com/t/5765709533478160/")
+                    (mkBookmark "YouTube" "https://www.youtube.com/")
+                    (mkBookmark "Gmail" "https://mail.google.com/mail/u/0/?ogbl#inbox")
+                    (mkBookmark "BK-LMS" "https://lms.hcmut.edu.vn/my/")
+                    (mkBookmark "My Bach Khoa" "https://mybk.hcmut.edu.vn/my/index.action")
+                    (mkBookmark "Academic Affairs Office" "https://mybk.hcmut.edu.vn/app/")
+                    (mkBookmark "Google Calender" "https://calendar.google.com/calendar/u/1/r")
+                    (mkBookmark "Google Gemini" "https://gemini.google.com/app")
+                    (mkBookmark "Tinkercad" "https://www.tinkercad.com/dashboard/designs/circuits")
+                    (mkBookmark "アニメ" "https://aanime.biz/")
+                    (mkBookmark "GitHub" "https://github.com/")
+                    (mkBookmark "HCMUT Coursewave" "https://tinyurl.com/hcmut-courseware")
+                    (mkBookmark "Zalo" "https://chat.zalo.me/")
+                    (mkBookmark "LFS News" "https://www.linuxfromscratch.org/lfs/news.html")
                   ];
                 }
               ];

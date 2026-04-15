@@ -5,7 +5,7 @@
 -- Default shell
 vim.opt.shell = "fish"
 
--- Dynamic change border color based on Neovim mode
+-- Dynamic change NIRI's border color based on Neovim mode
 vim.opt.title = true
 vim.api.nvim_create_autocmd({ "ModeChanged", "VimEnter", "BufEnter" }, {
   callback = function()
@@ -20,3 +20,6 @@ vim.api.nvim_create_autocmd({ "ModeChanged", "VimEnter", "BufEnter" }, {
     vim.opt.titlestring = "nvim-" .. mode .. " - %t"
   end,
 })
+
+-- Custom chars for vim.opt.list
+vim.opt.listchars = { trail = "·" }

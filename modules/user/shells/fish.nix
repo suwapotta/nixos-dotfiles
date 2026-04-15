@@ -24,6 +24,7 @@
           clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
           ll = "eza --icons -lh";
           ls = "eza --icons";
+          la = "eza --icons -a";
         };
 
         shellAbbrs = {

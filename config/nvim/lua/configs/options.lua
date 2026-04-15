@@ -41,6 +41,12 @@ options.virtualedit = "block" -- Allow cursor to move where there is no text in 
 options.winminwidth = 5 -- Minimum window width
 options.laststatus = 3 -- global statusline
 options.list = true -- Show some invisible characters (tabs...)
+options.listchars = { -- Characters to show for opts.list
+	tab = "» ",
+	trail = "·",
+	nbsp = "␣",
+	extends = "…",
+}
 options.guicursor = "n-v-ve-c-sm:block,i-ci:ver25-Cursor,r-cr-o:hor20" -- Block cursor in visual mode
 
 -- File handling

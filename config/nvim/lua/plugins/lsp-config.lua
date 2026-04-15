@@ -7,4 +7,6 @@ vim.pack.add({
 
 vim.lsp.enable({
 	"lua_ls",
+	-- "clangd",
+	-- "nixd",
 })

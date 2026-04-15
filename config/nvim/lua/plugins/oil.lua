@@ -28,6 +28,7 @@ require("oil").setup({
     ["q"] = "actions.close",
 		["<C-p>"] = "actions.preview",
 		["<C-r>"] = "actions.refresh",
+    ["<C-l>"] = false,
 	},
 
 	view_options = {

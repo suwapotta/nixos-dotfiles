@@ -40,7 +40,7 @@ autocmd("VimResized", {
 	command = "wincmd =",
 })
 
--- syntax highlighting for dotenv files
+-- Syntax highlighting for dotenv files
 autocmd("BufRead", {
 	group = augroup("dotenv_ft", { clear = true }),
 	pattern = { ".env", ".env.*" },
@@ -49,7 +49,7 @@ autocmd("BufRead", {
 	end,
 })
 
--- ide like highlight when stopping cursor
+-- Ide like highlight when stopping cursor
 autocmd("CursorMoved", {
 	group = augroup("LspReferenceHighlight", { clear = true }),
 	desc = "Highlight references under cursor",
@@ -73,7 +73,7 @@ autocmd("CursorMoved", {
 		end
 	end,
 })
--- ide like highlight when stopping cursor
+-- Ide like highlight when stopping cursor
 autocmd("CursorMovedI", {
 	group = "LspReferenceHighlight",
 	desc = "Clear highlights when entering insert mode",

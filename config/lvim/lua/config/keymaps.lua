@@ -12,6 +12,10 @@ vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { desc = "Go to Upper Window
 vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], { desc = "Go to Right Window" })
 
 -- Quality of life
-vim.keymap.set("n", "<C-c>", ":%y+<CR>", { desc = "Yank whole file" })
-vim.keymap.set("n", "gh", "^", { desc = "Start of line" })
+vim.keymap.set("n", "<C-c>", "<Cmd>%y+<CR>", { desc = "Yank whole file" })
+vim.keymap.set("n", "gh", "^", { desc = "Start of line (non ws)" })
+vim.keymap.set("n", "gH", "0", { desc = "Start of line" })
 vim.keymap.set("n", "gl", "$", { desc = "End of line" })
+
+-- fzf-lua
+vim.keymap.set("n", "z=", "<Cmd>FzfLua spell_suggest<Cr>", { desc = "Find spell suggestions" })

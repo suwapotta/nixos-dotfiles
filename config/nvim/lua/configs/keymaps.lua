@@ -62,3 +62,7 @@ keymap("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
 keymap("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 keymap("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
 keymap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
+-- Quick sourcing and restarting neovim
+keymap("n", "<leader>so", "<cmd>source<cr>", { desc = "Source init.lua" })
+keymap("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart neovim" })
