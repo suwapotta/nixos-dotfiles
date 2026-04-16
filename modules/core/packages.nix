@@ -13,6 +13,9 @@
 
         wget
         curl
+
+        # TEST: Javascript/Typescript test
+        nodejs
       ];
     };
 }

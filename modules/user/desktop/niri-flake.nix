@@ -7,9 +7,7 @@
     }:
 
     {
-      imports = [
-        inputs.niri-flake.homeModules."niri"
-      ];
+      imports = [ inputs.niri-flake.homeModules."niri" ];
 
       home = {
         sessionVariables = {
@@ -30,7 +28,7 @@
 
         package = pkgs.niri;
         # package = pkgs.niri-stable;
-        # package = pkgs.niri-stable;
+        # package = pkgs.niri-unstable;
       };
     };
 }

@@ -20,6 +20,3 @@ vim.api.nvim_create_autocmd({ "ModeChanged", "VimEnter", "BufEnter" }, {
     vim.opt.titlestring = "nvim-" .. mode .. " - %t"
   end,
 })
-
--- Custom chars for vim.opt.list
-vim.opt.listchars = { trail = "·" }

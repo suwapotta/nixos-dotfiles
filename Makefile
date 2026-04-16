@@ -29,7 +29,7 @@ nuke:
 
 update: git
 	NVIM_APPNAME=lvim nvim --headless "+Lazy! sync" +qa
-	nvim --headless +"lua vim.pack.update()" +qa
+	nvim --headless +"lua vim.pack.update()" +w +qa
 	@echo
 	nh os switch -H ${FLAKE_HOST} --update $(NOTIFY)
 

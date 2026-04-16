@@ -25,6 +25,7 @@
           ll = "eza --icons -lh";
           ls = "eza --icons";
           la = "eza --icons -a";
+          lla = "eza --icons -la";
         };
 
         shellAbbrs = {

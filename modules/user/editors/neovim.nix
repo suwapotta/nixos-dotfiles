@@ -10,13 +10,12 @@
         withPython3 = true;
 
         extraPackages = with pkgs; [
-          # arduino-cli
-          # arduino-language-server
-
+          # Debuggers
           lldb
           python314Packages.debugpy
           bashdb
 
+          # LSPs/Formatters
           clang-tools
           pyright
           ruff
@@ -39,7 +38,11 @@
           texlivePackages.latexindent
           verible
           svls
+          taplo
+          vtsls
+          # arduino-language-server
 
+          # CLI tools
           (python314.withPackages (qs: with qs; [ pygments ]))
           imagemagick
           sqlite
@@ -48,8 +51,7 @@
           ghostscript
           mermaid-cli
           xdg-utils
-
-          # cargo
+          # arduino-cli
         ];
       };
 

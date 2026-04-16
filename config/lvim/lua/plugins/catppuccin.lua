@@ -12,6 +12,8 @@ return {
     -- Force completion menu background to be transparent
     custom_highlights = function(colors)
       return {
+        FloatTitle = { bg = colors.red, fg = colors.base },
+
         Pmenu = { bg = colors.none },
         PmenuSel = { bg = colors.surface0, fg = colors.none },
 
