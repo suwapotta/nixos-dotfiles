@@ -16,6 +16,7 @@ include "modules/window-rules.kdl"
 include "modules/layer-rules.kdl"
 include "modules/animations.kdl"
 include "modules/debug.kdl"
+include "modules/blur.kdl"
 
 /*
 *                        __        ___                  __         ____

@@ -81,3 +81,19 @@ autocmd("CursorMovedI", {
 		vim.lsp.buf.clear_references()
 	end,
 })
+
+-- Dynamic change NIRI's border color based on Neovim mode
+vim.opt.title = true
+vim.api.nvim_create_autocmd({ "ModeChanged", "VimEnter", "BufEnter" }, {
+	callback = function()
+		local mode = string.upper(vim.fn.mode())
+		local filename = vim.fn.expand("%:t")
+
+		if filename == "" then
+			vim.opt.titlestring = "nvim-" .. mode .. " "
+			return
+		end
+
+		vim.opt.titlestring = "nvim-" .. mode .. " - %t"
+	end,
+})

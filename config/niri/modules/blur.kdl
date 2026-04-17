@@ -1,0 +1,117 @@
+// Overall blur settings
+blur {
+  passes 3        // more passes = stronger blur (default: 3)
+  offset 3.0      // sample distance per pass (default: 3.0)
+  noise 0.03      // grain overlay (default: 0.02)
+  saturation 1.5  // color saturation boost (default: 1.5)
+}
+
+// NOTE: Experimental with niri-unstable
+// Noctalia: Blur without xray for performance and better look
+layer-rule {
+  match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+
+  opacity 0.89
+  background-effect {
+    blur true
+    xray false
+  }
+}
+
+// Override ./window-rule.kdl with blur
+window-rule {
+    match app-id="^anki$"
+    opacity 0.89
+
+    draw-border-with-background false
+    clip-to-geometry true
+    background-effect {
+      blur true
+      xray false
+    }
+}
+
+// window-rule {
+//     match app-id="^kitty$"
+//
+//     draw-border-with-background false
+//     background-effect {
+//       blur true
+//       xray false
+//     }
+// }
+
+window-rule {
+    match title="^nvim-N"
+
+    border {
+        active-color   "#89b4fb"
+        inactive-color "#1e1e2e"
+        urgent-color   "#f38ba9"
+    }
+
+    background-effect {
+      blur true
+      xray false
+    }
+}
+
+window-rule {
+    match title="^nvim-I"
+
+    border {
+        active-color   "#a6e3a2"
+        inactive-color "#1e1e2e"
+        urgent-color   "#f38ba9"
+    }
+
+    background-effect {
+      blur true
+      xray false
+    }
+}
+
+window-rule {
+    match title="^nvim-V"
+
+    border {
+        active-color   "#cba6f8"
+        inactive-color "#1e1e2e"
+        urgent-color   "#f38ba9"
+    }
+
+    background-effect {
+      blur true
+      xray false
+    }
+}
+
+window-rule {
+    match title="^nvim-C"
+
+    border {
+        active-color   "#fab388"
+        inactive-color "#1e1e2e"
+        urgent-color   "#f38ba9"
+    }
+
+    background-effect {
+      blur true
+      xray false
+    }
+}
+
+window-rule {
+    match title="^nvim-R"
+
+    border {
+        active-color   "#f38ba8"
+        inactive-color "#1e1e2e"
+        urgent-color   "#f38ba9"
+    }
+
+    background-effect {
+      blur true
+      xray false
+    }
+}

@@ -58,9 +58,7 @@
       { ... }:
 
       {
-        systems = [
-          "x86_64-linux"
-        ];
+        systems = [ "x86_64-linux" ];
 
         imports = [
           (inputs.import-tree [ ./modules ])
