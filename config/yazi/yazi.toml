@@ -1,2 +1,2 @@
 [opener]
-edit = [{ run = "nvim %s", block = true, for = "unix" }]
+edit = [{ run = "NVIM_APPNAME=lvim nvim %s", block = true, for = "unix" }]

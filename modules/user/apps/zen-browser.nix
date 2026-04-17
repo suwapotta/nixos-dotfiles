@@ -3,23 +3,10 @@
     {
       inputs,
       pkgs,
-      lib,
       ...
     }:
 
     let
-      browserDesktop = "zen-beta.desktop";
-
-      browserMimeTypes = [
-        "text/html"
-        "application/xhtml+xml"
-        "x-scheme-handler/file"
-        "x-scheme-handler/http"
-        "x-scheme-handler/https"
-        "x-scheme-handler/about"
-        "x-scheme-handler/unknown"
-      ];
-
       # NOTE: Helper functions
       mkSearchEngine = url: icon: alias: {
         urls = [ { template = url; } ];
@@ -49,10 +36,6 @@
 
       # Fix ``nixos-help`` command
       home.sessionVariables.BROWSER = "zen-beta";
-      xdg.mimeApps = {
-        enable = true;
-        defaultApplications = lib.genAttrs browserMimeTypes (_: browserDesktop);
-      };
 
       programs.zen-browser = {
         enable = true;
