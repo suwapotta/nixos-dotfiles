@@ -22,6 +22,7 @@
       self.nixosModules."keyd"
       self.nixosModules."network"
       self.nixosModules."nh"
+      self.nixosModules."niri-cache"
       self.nixosModules."nvidia"
       self.nixosModules."packages"
       self.nixosModules."polkit"

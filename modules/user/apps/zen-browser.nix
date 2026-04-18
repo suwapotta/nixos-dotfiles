@@ -27,9 +27,7 @@
           isEssential = true;
         };
 
-      mkBookmark = name: url: {
-        inherit name url;
-      };
+      mkBookmark = name: url: { inherit name url; };
     in
     {
       imports = [ inputs.zen-browser.homeModules.beta ];
@@ -232,22 +230,23 @@
                   name = "Bookmarks Toolbar";
                   toolbar = true;
                   bookmarks = [
-                    (mkBookmark "Arch Linux" "https://archlinux.org/")
-                    (mkBookmark "Google" "https://www.google.com/")
-                    (mkBookmark "Messenger" "https://www.messenger.com/t/5765709533478160/")
-                    (mkBookmark "YouTube" "https://www.youtube.com/")
-                    (mkBookmark "Gmail" "https://mail.google.com/mail/u/0/?ogbl#inbox")
-                    (mkBookmark "BK-LMS" "https://lms.hcmut.edu.vn/my/")
-                    (mkBookmark "My Bach Khoa" "https://mybk.hcmut.edu.vn/my/index.action")
                     (mkBookmark "Academic Affairs Office" "https://mybk.hcmut.edu.vn/app/")
+                    (mkBookmark "Arch Linux" "https://archlinux.org/")
+                    (mkBookmark "BK-LMS" "https://lms.hcmut.edu.vn/my/")
+                    (mkBookmark "GitHub" "https://github.com/")
+                    (mkBookmark "Gmail" "https://mail.google.com/mail/u/0/?ogbl#inbox")
                     (mkBookmark "Google Calender" "https://calendar.google.com/calendar/u/1/r")
                     (mkBookmark "Google Gemini" "https://gemini.google.com/app")
-                    (mkBookmark "Tinkercad" "https://www.tinkercad.com/dashboard/designs/circuits")
-                    (mkBookmark "アニメ" "https://aanime.biz/")
-                    (mkBookmark "GitHub" "https://github.com/")
+                    (mkBookmark "Google" "https://www.google.com/")
                     (mkBookmark "HCMUT Coursewave" "https://tinyurl.com/hcmut-courseware")
-                    (mkBookmark "Zalo" "https://chat.zalo.me/")
                     (mkBookmark "LFS News" "https://www.linuxfromscratch.org/lfs/news.html")
+                    (mkBookmark "Messenger" "https://www.messenger.com/t/5765709533478160/")
+                    (mkBookmark "Motion Canvas (Docs)" "https://archive.canvascommons.io/")
+                    (mkBookmark "My Bach Khoa" "https://mybk.hcmut.edu.vn/my/index.action")
+                    (mkBookmark "Tinkercad" "https://www.tinkercad.com/dashboard/designs/circuits")
+                    (mkBookmark "YouTube" "https://www.youtube.com/")
+                    (mkBookmark "Zalo" "https://chat.zalo.me/")
+                    (mkBookmark "アニメ" "https://aanime.biz/")
                   ];
                 }
               ];

@@ -3,9 +3,7 @@
     { inputs, ... }:
 
     {
-      imports = [
-        inputs.catppuccin.homeModules.catppuccin
-      ];
+      imports = [ inputs.catppuccin.homeModules.catppuccin ];
 
       catppuccin = {
         accent = "sapphire";

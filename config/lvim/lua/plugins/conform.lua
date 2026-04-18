@@ -6,7 +6,14 @@ return {
       verilog = { "verible" },
       systemverilog = { "verible" },
       tex = { "latexindent" },
+      yaml = { "prettier" },
+      typescript = { "biome" },
+      typescriptreact = { "biome" },
+      -- rust = { "rustfmt" },
       -- kdl = { "kdlfmt" },
+
+      ["*"] = { "codespell" },
+      ["_"] = { "trim_whitespace" },
     })
 
     return opts

@@ -10,132 +10,14 @@ animations {
     }
 
     window-open {
-        duration-ms 500
-        curve "ease-out-quad" 
-
-        custom-shader r"
-            float hash(vec2 p) {
-                return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
-            }
-
-            vec2 noise2(vec2 p) {
-                vec2 i = floor(p);
-                vec2 f = fract(p);
-                vec2 u = f * f * (3.0 - 2.0 * f);
-
-                float n1 = mix(mix(hash(i + vec2(0.0, 0.0)), hash(i + vec2(1.0, 0.0)), u.x),
-                               mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
-
-                vec2 p2 = p + vec2(100.0, -50.0);
-                vec2 i2 = floor(p2);
-                vec2 f2 = fract(p2);
-                vec2 u2 = f2 * f2 * (3.0 - 2.0 * f2);
-
-                float n2 = mix(mix(hash(i2 + vec2(0.0, 0.0)), hash(i2 + vec2(1.0, 0.0)), u2.x),
-                               mix(hash(i2 + vec2(0.0, 1.0)), hash(i2 + vec2(1.0, 1.0)), u2.x), u2.y);
-
-                return vec2(n1, n2) * 2.0 - 1.0; 
-            }
-
-            vec4 open_color(vec3 coords_geo, vec3 size_geo) {
-                float progress = niri_clamped_progress;
-                float t = 1.0 - progress; 
-
-                vec2 p = coords_geo.xy;
-
-                p = (p - 0.5) * (1.0 - (t * 0.04)) + 0.5;
-
-                vec2 o = vec2(hash(p * size_geo.xy)); 
-
-                const int steps = 8;
-                vec4 col = vec4(0.0);
-
-                for (int i = 0; i < steps; ++i) {
-                    vec2 shifted_p = p + noise2(p * 6.0 + o) * t * 0.015;
-                    shifted_p.y += t * 0.005; 
-
-                    vec3 coords_tex = niri_geo_to_tex * vec3(shifted_p, 1.0);
-
-                    col += texture2D(niri_tex, coords_tex.st);
-                }
-
-                col /= float(steps);
-
-                vec3 smoke_tint = vec3(0.8, 0.85, 0.9);
-                col.rgb = mix(col.rgb, smoke_tint * col.a, t * 0.6);
-
-                col *= smoothstep(0.0, 0.4, progress);
-
-                float within_bounds = step(0.0, coords_geo.x) * step(coords_geo.x, 1.0) *
-                                      step(0.0, coords_geo.y) * step(coords_geo.y, 1.0);
-
-                return col * within_bounds;
-            }
-        "
+        curve "ease-out-expo"
+        // curve "linear"
     }
 
     window-close {
-        curve "ease-out-quad" 
-
-        custom-shader r"
-            float hash(vec2 p) {
-                return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
-            }
-
-            vec2 noise2(vec2 p) {
-                vec2 i = floor(p);
-                vec2 f = fract(p);
-                vec2 u = f * f * (3.0 - 2.0 * f);
-
-                float n1 = mix(mix(hash(i + vec2(0.0, 0.0)), hash(i + vec2(1.0, 0.0)), u.x),
-                               mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
-
-                vec2 p2 = p + vec2(100.0, -50.0);
-                vec2 i2 = floor(p2);
-                vec2 f2 = fract(p2);
-                vec2 u2 = f2 * f2 * (3.0 - 2.0 * f2);
-
-                float n2 = mix(mix(hash(i2 + vec2(0.0, 0.0)), hash(i2 + vec2(1.0, 0.0)), u2.x),
-                               mix(hash(i2 + vec2(0.0, 1.0)), hash(i2 + vec2(1.0, 1.0)), u2.x), u2.y);
-
-                return vec2(n1, n2) * 2.0 - 1.0; 
-            }
-
-            vec4 close_color(vec3 coords_geo, vec3 size_geo) {
-                float progress = niri_clamped_progress;
-
-                float t = progress; 
-
-                vec2 p = coords_geo.xy;
-
-                p = (p - 0.5) * (1.0 - (t * 0.04)) + 0.5;
-
-                vec2 o = vec2(hash(p * size_geo.xy)); 
-
-                const int steps = 8;
-                vec4 col = vec4(0.0);
-
-                for (int i = 0; i < steps; ++i) {
-                    vec2 shifted_p = p + noise2(p * 6.0 + o) * t * 0.015;
-                    shifted_p.y += t * 0.005; 
-
-                    vec3 coords_tex = niri_geo_to_tex * vec3(shifted_p, 1.0);
-
-                    col += texture2D(niri_tex, coords_tex.st);
-                }
-
-                col /= float(steps);
-
-                vec3 smoke_tint = vec3(0.8, 0.85, 0.9);
-                col.rgb = mix(col.rgb, smoke_tint * col.a, t * 0.6);
-                col *= 1.0 - smoothstep(0.5, 1.0, progress);
-
-                float within_bounds = step(0.0, coords_geo.x) * step(coords_geo.x, 1.0) *
-                                      step(0.0, coords_geo.y) * step(coords_geo.y, 1.0);
-
-                return col * within_bounds;
-            }
-        "
+        duration-ms 150
+        curve "ease-out-quad"
+        // curve "linear"
     }
 
     horizontal-view-movement  {

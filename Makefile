@@ -34,7 +34,7 @@ update: git
 	nh os switch -H ${FLAKE_HOST} --update $(NOTIFY)
 
 safety:
-	# pkill zen-beta || true
+	pkill zen-beta || true
 
 git: safety
 	git add .

@@ -66,3 +66,8 @@ keymap("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 -- Quick sourcing and restarting neovim
 keymap("n", "<leader>so", "<cmd>source<cr>", { desc = "Source init.lua" })
 keymap("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart neovim" })
+
+-- Rounded corner for 'K' documentation hover
+keymap("n", "K", function()
+	vim.lsp.buf.hover({ border = "rounded" })
+end, { desc = "Hover documentation" })

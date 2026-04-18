@@ -42,6 +42,7 @@ keymap("n", "<leader>fm", "<cmd>FzfLua manpages<cr>", { desc = "Find man pages" 
 keymap("n", "<leader>cm", "<cmd>FzfLua marks<cr>", { desc = "Find (code) marks" })
 keymap("n", "<leader>fk", "<cmd>FzfLua keymaps<cr>", { desc = "Find Keymaps" })
 keymap("n", "<leader>ft", "<cmd>FzfLua filetypes<cr>", { desc = "Find file types" })
+keymap("n", "z=", "<cmd>FzfLua spell_suggest<cr>", { desc = "Find spell suggestions" })
 
 -- Zoxide
 keymap("n", "<leader>fz", "<cmd>FzfLua zoxide<cr>", { desc = "Find ``zoxide edit``" })

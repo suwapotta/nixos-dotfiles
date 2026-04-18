@@ -16,6 +16,7 @@ vim.keymap.set("n", "<C-c>", "<Cmd>%y+<CR>", { desc = "Yank whole file" })
 vim.keymap.set("n", "gh", "^", { desc = "Start of line (non ws)" })
 vim.keymap.set("n", "gH", "0", { desc = "Start of line" })
 vim.keymap.set("n", "gl", "$", { desc = "End of line" })
+vim.keymap.set("n", "<leader>re", "<Cmd>restart<cr>", { desc = "Restart neovim" })
 
 -- fzf-lua
 vim.keymap.set("n", "z=", "<Cmd>FzfLua spell_suggest<Cr>", { desc = "Find spell suggestions" })

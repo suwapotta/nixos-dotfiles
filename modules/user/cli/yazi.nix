@@ -4,6 +4,7 @@
       enable = true;
 
       shellWrapperName = "y";
+      enableBashIntegration = true;
       enableFishIntegration = true;
     };
   };

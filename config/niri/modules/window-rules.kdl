@@ -35,6 +35,7 @@ window-rule {
 // Neovim modes
 window-rule {
     match title="^nvim-N"
+
     border {
         active-color   "#89b4fb"
         inactive-color "#1e1e2e"
@@ -43,7 +44,8 @@ window-rule {
 }
 
 window-rule {
-    match title="^nvim-I"
+    match title="^nvim-[IT]"
+
     border {
         active-color   "#a6e3a2"
         inactive-color "#1e1e2e"
@@ -53,6 +55,7 @@ window-rule {
 
 window-rule {
     match title="^nvim-V"
+
     border {
         active-color   "#cba6f8"
         inactive-color "#1e1e2e"
@@ -62,6 +65,7 @@ window-rule {
 
 window-rule {
     match title="^nvim-C"
+
     border {
         active-color   "#fab388"
         inactive-color "#1e1e2e"
@@ -71,6 +75,7 @@ window-rule {
 
 window-rule {
     match title="^nvim-R"
+
     border {
         active-color   "#f38ba8"
         inactive-color "#1e1e2e"
