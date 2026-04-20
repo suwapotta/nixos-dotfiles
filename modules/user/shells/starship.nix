@@ -15,7 +15,7 @@
         add_newline = false;
 
         format = ''
-          $username$hostname  $cmd_duration  $directory $git_branch
+          $username$hostname  $cmd_duration  $nix_shell$directory $git_branch
           $character
         '';
         # format = ''
@@ -103,11 +103,12 @@
           home_symbol = "  ";
           read_only = "  ";
           style = "bg:green fg:black";
-          truncation_length = 6;
+          truncation_length = 2;
           truncation_symbol = " ••/";
           format = "[](bold fg:green)[󰉋 $path]($style)[](bold fg:green)";
 
           substitutions = {
+            ".config" = "  ";
             "Desktop" = "  ";
             "Documents" = "  ";
             "Downloads" = "  ";
@@ -124,6 +125,10 @@
         cmd_duration = {
           min_time = 0;
           format = "[](bold fg:yellow)[󰪢 $duration](bold bg:yellow fg:black)[](bold fg:yellow)";
+        };
+
+        nix_shell = {
+          format = "[](bold fg:blue)[ $name](bg:blue fg:black)[](bold fg:blue)  ";
         };
       };
     };

@@ -19,6 +19,8 @@
 
         {
           devshells.default = {
+            name = "Motion Canvas";
+
             packages = with pkgs; [
               nodejs
               vtsls
