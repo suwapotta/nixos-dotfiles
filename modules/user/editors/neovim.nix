@@ -37,7 +37,6 @@
         verible
         svls
         taplo
-        vtsls
         biome
         yaml-language-server
         # arduino-language-server
