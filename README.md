@@ -12,3 +12,13 @@
 ![**NixOS** Distro logo](./images/logos/nixos-text.svg)
 
 ## Personal notes
+
+- Initialize _flake-parts_ command (useful for **devshell**
+  environment template):
+
+```fish
+# .../<project-directory>
+nix flake init -t github:hercules-ci/flake-parts
+```
+
+- [**devshell Documentation** ]<https://flake.parts/options/devshell>

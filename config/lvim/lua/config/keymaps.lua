@@ -20,3 +20,4 @@ vim.keymap.set("n", "<leader>re", "<Cmd>restart<cr>", { desc = "Restart neovim" 
 
 -- fzf-lua
 vim.keymap.set("n", "z=", "<Cmd>FzfLua spell_suggest<Cr>", { desc = "Find spell suggestions" })
+vim.keymap.set("n", "<leader>fu", "<Cmd>FzfLua undotree<Cr>", { desc = "Find spell suggestions" })

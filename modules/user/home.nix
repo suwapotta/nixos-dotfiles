@@ -74,6 +74,7 @@
               self.homeModules."neovim"
 
               # shells
+              self.homeModules."direnv"
               self.homeModules."entr"
               self.homeModules."eza"
               self.homeModules."fd"
