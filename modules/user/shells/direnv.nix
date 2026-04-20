@@ -12,7 +12,7 @@
         config = {
           global = {
             log_format = "${ESC}[2mdirenv: %s${ESC}[0m";
-            # hide_env_diff = true;
+            hide_env_diff = true;
           };
         };
 

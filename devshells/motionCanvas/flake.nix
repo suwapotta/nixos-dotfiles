@@ -1,5 +1,5 @@
 {
-  description = "Testing using devShell";
+  description = "Motion Canvas (Devshell)";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -25,6 +25,11 @@
               nodejs
               vtsls
             ];
+
+            devshell.motd = ''
+              󱖲 {45}Welcome to Motion Canvas.{reset}
+              Enter 'menu' for general commands.
+            '';
           };
         };
     };
