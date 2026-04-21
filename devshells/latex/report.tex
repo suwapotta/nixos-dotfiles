@@ -1,0 +1,46 @@
+\documentclass[twoside, english]{hcmut-report}
+
+%%% Optional packages
+% \usepackage{}
+
+%%% Configurations
+\setstretch{1.2}
+\setlength{\arraycolsep}{15pt}
+\AtBeginDocument{\counterwithin{lstlisting}{section}}
+
+%%% Custom commands
+% \newcommand{\ol}[1]{\overline{#1}}
+
+%%% Rename sections
+% \AtBeginDocument{\renewcommand*{\contentsname}{Contents}}
+% \AtBeginDocument{\renewcommand*{\refname}{References}}
+% \AtBeginDocument{\renewcommand*{\bibname}{References}}
+
+%%% MAIN DOCUMENT
+\begin{document}
+\coverpage
+
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+
+\tableofcontents
+% \listoffigures
+% \listoftables
+% \lstlistoflistings{}
+\clearpage
+
+\input{chapters/chapterTest.tex}
+
+% \begin{noindent}
+\begingroup
+  \raggedright
+    \bibliographystyle{apacite}
+    \bibliography{refs/refs.bib}
+  \nocite{*}
+\endgroup
+% \end{noindent}
+
+% \clearpage
+% \appendix
+
+\end{document}

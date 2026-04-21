@@ -42,7 +42,7 @@ nuke:
 	@printf "$(C_RED)   CLEAN   $(C_NONE) All\n"
 	@nh clean all --ask $(NOTIFY)
 
-update: git update-devshells
+update: git
 	@printf "$(C_BLUE)   UPDATE  $(C_NONE) lazy.nvim\n"
 	@NVIM_APPNAME=lvim nvim --headless "+Lazy! sync" +qa &>/dev/null
 	@printf "$(C_BLUE)   UPDATE  $(C_NONE) vim.pack\n"
@@ -63,16 +63,6 @@ update: git update-devshells
 		fi; \
 	fi $(NOTIFY)
 
-update-devshells: git
-	@printf "$(C_BLUE)   UPDATE  $(C_NONE) devshells\n"
-	@for dir in ./devshells/*; do \
-		if [ -f "$$dir/flake.nix" ]; then \
-			printf "$(C_GREEN)        ->    $$dir$(C_NONE)\n"; \
-			nix flake update --flake $$dir; \
-		fi;\
-	done
-	@echo
-
 safety:
 	@if pgrep "zen-beta" >/dev/null 2>&1; then \
 		printf "$(C_RED)   PKILL?  $(C_NONE) zen-beta [Y/n]: "; \
@@ -90,4 +80,4 @@ git: safety
 	@printf "$(C_GREEN)   GIT     $(C_NONE) *\n"
 	@git add .
 
-.PHONY: all switch boot dry test build-vm legacy clean nuke update update-devshells git safety
+.PHONY: all switch boot dry test build-vm legacy clean nuke update git safety

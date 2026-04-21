@@ -1,5 +1,5 @@
 {
-  description = "Motion Canvas (Devshell)";
+  description = "C++ (Devshell)";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -19,16 +19,15 @@
 
         {
           devshells.default = {
-            name = "Motion Canvas";
+            name = "C++";
 
             packages = with pkgs; [
-              nodejs
-              vtsls
-              biome
+              clang-tools
+              lldb
             ];
 
             devshell.motd = ''
-              󱖲 {45}Welcome to Motion Canvas.{reset}
+               {45}Welcome to C++.{reset}
               Enter 'menu' for general commands.
             '';
           };

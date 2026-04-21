@@ -1,5 +1,5 @@
 {
-  description = "Motion Canvas (Devshell)";
+  description = "LaTeX (Devshell)";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -19,16 +19,20 @@
 
         {
           devshells.default = {
-            name = "Motion Canvas";
+            name = "LaTeX";
 
             packages = with pkgs; [
-              nodejs
-              vtsls
-              biome
+              ghostscript
+
+              tectonic
+
+              bibtex-tidy
+              texlab
+              texlivePackages.latexindent
             ];
 
             devshell.motd = ''
-              󱖲 {45}Welcome to Motion Canvas.{reset}
+               {45}Welcome to LaTeX.{reset}
               Enter 'menu' for general commands.
             '';
           };
