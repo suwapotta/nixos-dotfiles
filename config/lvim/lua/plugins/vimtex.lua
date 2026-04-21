@@ -10,10 +10,12 @@ return {
     vim.g.vimtex_compiler_method = "tectonic"
     vim.g.vimtex_compiler_tectonic = {
       out_dir = "",
+      hooks = {},
+
       options = {
+        "--keep-logs",
         "--synctex",
-        "-Z",
-        "shell-escape",
+        "-Z shell-escape",
       },
     }
   end,

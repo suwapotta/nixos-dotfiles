@@ -21,4 +21,4 @@
 nix flake init -t github:hercules-ci/flake-parts
 ```
 
-- [**devshell Documentation** ]<https://flake.parts/options/devshell>
+- [**devshell Documentation**]<https://flake.parts/options/devshell>

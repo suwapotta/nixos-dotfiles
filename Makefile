@@ -52,7 +52,7 @@ update: git update-devshells
 
 update-devshells: git
 	@printf "$(C_BLUE)   UPDATE  $(C_NONE) devshells\n"
-	@for dir in ./devshell/*; do \
+	@for dir in ./devshells/*; do \
 		if [ -f "$$dir/flake.nix" ]; then \
 			printf "$(C_GREEN)        ->    $$dir$(C_NONE)\n"; \
 			nix flake update --flake $$dir; \
