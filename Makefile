@@ -48,7 +48,20 @@ update: git update-devshells
 	@printf "$(C_BLUE)   UPDATE  $(C_NONE) vim.pack\n"
 	@nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
 	@printf "$(C_BLUE)  󰟁 UPDATE  $(C_NONE) NixOS\n"
-	@nh os switch -H ${FLAKE_HOST} --update $(NOTIFY)
+	@nh os switch -H ${FLAKE_HOST} --update
+	@if pgrep ".quickshell-wra" >/dev/null 2>&1; then \
+		printf "$(C_RED)   PKILL?  $(C_NONE) noctalia-shell [Y/n]: "; \
+		\
+		read answer; \
+		if [ "$$answer" != "n" ] && [ "$$answer" != "N" ]; then \
+			kill -15 $$(pgrep ".quickshell-wra") 2>/dev/null || true; \
+			nohup noctalia-shell >/dev/null 2>&1 & \
+			printf "$(C_GREEN)   RESTART $(C_NONE) noctalia-shell\n"; \
+			sleep 3; \
+		else \
+			printf "$(C_BLUE)  󰜺 SKIPPED $(C_NONE) noctalia-shell\n"; \
+		fi; \
+	fi $(NOTIFY)
 
 update-devshells: git
 	@printf "$(C_BLUE)   UPDATE  $(C_NONE) devshells\n"
