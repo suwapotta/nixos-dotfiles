@@ -13,12 +13,15 @@
 
 ## Personal notes
 
-- Initialize _flake-parts_ command (useful for **devshell**
-  environment template):
+- Initialize a language _template_ with `devshell` environment, e.g.:
 
 ```fish
-# .../<project-directory>
-nix flake init -t github:hercules-ci/flake-parts
+# .../<c-project-directory>
+## Shell abbreviation: `nfil` (current repository)
+nix flake init -t github:suwapotta/nixos-dotfiles#c
+
+## Shell abbreviation: `nfir` (local ~/nixos-dotfiles)
+nix flake init -t ~/nixos-dotfiles#c
 ```
 
 - [**devshell Documentation**]<https://flake.parts/options/devshell>
