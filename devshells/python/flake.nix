@@ -1,5 +1,5 @@
 {
-  description = "LaTeX (Devshell)";
+  description = "Python (Devshell)";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -19,25 +19,16 @@
 
         {
           devshells.default = {
-            name = "LaTeX";
+            name = "Python";
 
             packages = with pkgs; [
-              ghostscript
-
-              # Option 1: tectonic compiler
-              tectonic
-              (python314.withPackages (qs: with qs; [ pygments ]))
-              (texlive.withPackages (ps: with ps; [ latexindent ]))
-
-              # Option 2: texlive & latexmk compiler (haven't tested yet)
-              # texlive.combined.scheme-full
-
-              bibtex-tidy
-              texlab
+              pyright
+              python314Packages.debugpy
+              ruff
             ];
 
             devshell.motd = ''
-               {45}Welcome to LaTeX.{reset}
+               {45}Welcome to Python.{reset}
               Enter 'menu' for general commands.
             '';
           };

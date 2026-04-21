@@ -19,5 +19,9 @@
         enableBashIntegration = true;
         enableFishIntegration = true;
       };
+
+      home.file.".ignore".text = ''
+        .direnv/
+      '';
     };
 }

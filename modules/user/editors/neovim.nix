@@ -44,23 +44,6 @@
         codespell
         taplo
         yaml-language-server
-
-        # # Debuggers
-        # python314Packages.debugpy
-        #
-        # # LSPs/Formatters
-        # vscode-langservers-extracted
-        # pyright
-        # ruff
-        # verible
-        # svls
-        # # arduino-language-server
-        # # rust-analyzer
-        # # rustfmt
-        #
-        # # CLI tools
-        # (python314.withPackages (qs: with qs; [ pygments ]))
-        # # arduino-cli
       ];
     };
 }

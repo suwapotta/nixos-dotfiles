@@ -37,6 +37,9 @@
           nies = "nix-instantiate --eval --strict";
           nlg = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
           nsp = "nix-shell -p";
+          nfir = "nix flake init github:suwapotta/nixos-dotfiles#";
+          nfil = "nix flake init ~/nixos-dotfiles/devshells#";
+          dac = "direnv allow .";
           noi = "nh os info";
           nrf = "nh os repl -H laptop";
           ns = "nh search";

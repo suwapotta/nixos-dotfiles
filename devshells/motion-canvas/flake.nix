@@ -25,6 +25,7 @@
               nodejs
               vtsls
               biome
+              vscode-langservers-extracted
             ];
 
             devshell.motd = ''

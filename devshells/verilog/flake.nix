@@ -1,5 +1,5 @@
 {
-  description = "LaTeX (Devshell)";
+  description = "SystemVerilog (Devshell)";
 
   inputs = {
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -19,25 +19,19 @@
 
         {
           devshells.default = {
-            name = "LaTeX";
+            name = "SystemVerilog";
 
             packages = with pkgs; [
-              ghostscript
+              verible
+              svls
 
-              # Option 1: tectonic compiler
-              tectonic
-              (python314.withPackages (qs: with qs; [ pygments ]))
-              (texlive.withPackages (ps: with ps; [ latexindent ]))
+              iverilog
 
-              # Option 2: texlive & latexmk compiler (haven't tested yet)
-              # texlive.combined.scheme-full
-
-              bibtex-tidy
-              texlab
+              surfer
             ];
 
             devshell.motd = ''
-               {45}Welcome to LaTeX.{reset}
+               {45}Welcome to SystemVerilog.{reset}
               Enter 'menu' for general commands.
             '';
           };
