@@ -1,5 +1,3 @@
-# WARN: WIP... Use with caution.
-
 COMPILER = iverilog
 SIMULATOR = vvp
 WAVEFORM_VIEWER = surfer
@@ -25,3 +23,5 @@ view: $(WAVEFORM)
 clean:
 	pkill $(WAVEFORM_VIEWER) || true
 	rm -f $(OUTPUT) $(WAVEFORM)
+
+.PHONY: all view clean

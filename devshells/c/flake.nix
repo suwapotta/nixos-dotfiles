@@ -22,8 +22,10 @@
             name = "C";
 
             packages = with pkgs; [
+              gcc
               clang-tools
               lldb
+              # bear
             ];
 
             devshell.motd = ''

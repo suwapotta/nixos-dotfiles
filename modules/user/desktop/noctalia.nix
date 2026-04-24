@@ -764,7 +764,7 @@
             wallhavenQuery = "";
             wallhavenRatios = "";
             wallhavenResolutionHeight = "";
-            wallhavenResolutionMode = "atleast";
+            wallhavenResolutionMode = "at least";
             wallhavenResolutionWidth = "";
             wallhavenSorting = "relevance";
             wallpaperChangeMode = "random";

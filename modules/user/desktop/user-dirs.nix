@@ -11,7 +11,7 @@
         download = "Downloads";
         pictures = "Pictures";
         documents = "Documents";
-        templates = "Templates";
+        # templates = "Templates";
         publicShare = "Public";
       };
 

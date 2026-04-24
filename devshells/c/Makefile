@@ -9,8 +9,6 @@ OBJ = $(patsubst src/%.c, build/%.o, $(SRC))
 DEP = $(OBJ:%.o=%.d)
 EXE = build/main
 
-.PHONY: all debug run clean
-
 all: $(EXE)
 
 debug: C_FLAGS += -g
@@ -38,3 +36,5 @@ clean:
 	@rm -rf build
 
 -include $(DEP)
+
+.PHONY: all debug run clean

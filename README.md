@@ -17,10 +17,10 @@
 
 ```fish
 # .../<c-project-directory>
-## Shell abbreviation: `nfil` (current repository)
+## Shell abbreviation: `nfitl` (current repository)
 nix flake init -t github:suwapotta/nixos-dotfiles#c
 
-## Shell abbreviation: `nfir` (local ~/nixos-dotfiles)
+## Shell abbreviation: `nfitr` (local ~/nixos-dotfiles)
 nix flake init -t ~/nixos-dotfiles#c
 ```
 

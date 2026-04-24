@@ -25,6 +25,9 @@
               nodejs
               vtsls
               biome
+
+              ffmpeg
+
               vscode-langservers-extracted
             ];
 

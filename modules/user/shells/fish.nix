@@ -1,6 +1,7 @@
 {
   flake.homeModules."fish" =
     { config, ... }:
+
     let
       mkFunction = functionName: {
         body = builtins.readFile (../../../config/fish + "/${functionName}.fish");
@@ -25,7 +26,7 @@
           ll = "eza --icons -lh";
           ls = "eza --icons";
           la = "eza --icons -a";
-          lla = "eza --icons -la";
+          lla = "eza --icons -lha";
         };
 
         shellAbbrs = {
@@ -36,9 +37,9 @@
           nie = "nix-instantiate --eval";
           nies = "nix-instantiate --eval --strict";
           nlg = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
-          nsp = "nix-shell -p";
-          nfir = "nix flake init github:suwapotta/nixos-dotfiles#";
-          nfil = "nix flake init ~/nixos-dotfiles/devshells#";
+          nsp = "nix-shell --run \"fish\" -p";
+          nfitr = "nix flake init -t github:suwapotta/nixos-dotfiles#";
+          nfitl = "nix flake init -t ~/nixos-dotfiles#";
           dac = "direnv allow .";
           noi = "nh os info";
           nrf = "nh os repl -H laptop";
