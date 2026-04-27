@@ -2,7 +2,7 @@
   flake.nixosModules."packages" =
     { pkgs, ... }:
 
-    # List packages installed in system profile
+    # List of system packages
     {
       environment.systemPackages = with pkgs; [
         gnumake
