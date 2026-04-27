@@ -4,22 +4,24 @@
   flake.nixosConfigurations."laptop" = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = { inherit self inputs; };
+
     modules = [
-      # host
+      ### host
       ./configuration.nix
       ./hardware-configuration.nix
+      ./home.nix
 
-      # core
+      ### core
       self.nixosModules."audio"
       self.nixosModules."auto-login"
       self.nixosModules."bluetooth"
       self.nixosModules."btrfs"
-      self.nixosModules."disabled"
       self.nixosModules."experimental"
       self.nixosModules."fonts"
       self.nixosModules."git"
       self.nixosModules."intel"
       self.nixosModules."keyd"
+      self.nixosModules."nano"
       self.nixosModules."network"
       self.nixosModules."nh"
       self.nixosModules."niri-cache"
@@ -37,13 +39,10 @@
       self.nixosModules."zen-kernel"
       self.nixosModules."zram"
 
-      # specialisation
+      ### specialisation
       self.nixosModules."cachyos-kernel"
       self.nixosModules."gaming"
       self.nixosModules."qemu"
-
-      # user
-      self.nixosModules."home-manager"
     ];
   };
 }

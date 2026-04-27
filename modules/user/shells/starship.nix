@@ -1,7 +1,5 @@
 {
   flake.homeModules."starship" = {
-    catppuccin.starship.enable = true;
-
     programs.starship = {
       enable = true;
       enableTransience = true;

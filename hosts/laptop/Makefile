@@ -1,6 +1,6 @@
 # Systems information & Macros
 FLAKE_HOST = laptop
-NOTIFY = ; status=$$?; bash ./scripts/statusNotify.sh $$status; exit $$status
+NOTIFY = ; status=$$?; bash ../../scripts/statusNotify.sh $$status; exit $$status
 
 # ANSI color codes
 C_RED   := \033[1;31m
@@ -11,27 +11,27 @@ C_NONE := \033[0m
 all: switch
 
 switch: git
-	@printf "$(C_BLUE)  󰟁 SWITCH  $(C_NONE) NixOS\n"
-	@nh os switch -H ${FLAKE_HOST} $(NOTIFY)
+	@printf "$(C_BLUE)  󰟁 SWITCH  $(C_NONE) NixOS#${FLAKE_HOST}\n"
+	@nh os switch . -H ${FLAKE_HOST} $(NOTIFY)
 
 boot: git
-	@printf "$(C_BLUE)  󰜉 BOOT    $(C_NONE) NixOS\n"
-	@nh os boot -H ${FLAKE_HOST} $(NOTIFY)
+	@printf "$(C_BLUE)  󰜉 BOOT    $(C_NONE) NixOS#${FLAKE_HOST}\n"
+	@nh os boot . -H ${FLAKE_HOST} $(NOTIFY)
 
 dry: git
-	@printf "$(C_BLUE)   DRY     $(C_NONE) NixOS\n"
-	@nh os switch -H ${FLAKE_HOST} --dry $(NOTIFY)
+	@printf "$(C_BLUE)   DRY     $(C_NONE) NixOS#${FLAKE_HOST}\n"
+	@nh os switch . -H ${FLAKE_HOST} --dry $(NOTIFY)
 
 test: git
-	@printf "$(C_BLUE)  󰙨 TEST    $(C_NONE) NixOS\n"
-	@nh os test -H ${FLAKE_HOST} $(NOTIFY)
+	@printf "$(C_BLUE)  󰙨 TEST    $(C_NONE) NixOS#${FLAKE_HOST}\n"
+	@nh os test . -H ${FLAKE_HOST} $(NOTIFY)
 
 build-vm: git
-	@printf "$(C_BLUE)   VM      $(C_NONE) NixOS\n"
-	@nh os build-vm -H ${FLAKE_HOST} $(NOTIFY)
+	@printf "$(C_BLUE)   VM      $(C_NONE) NixOS#${FLAKE_HOST}\n"
+	@nh os build-vm . -H ${FLAKE_HOST} $(NOTIFY)
 
 legacy: git
-	@printf "$(C_BLUE)  󰟁 SWITCH  $(C_NONE) (L) NixOS\n"
+	@printf "$(C_BLUE)  󰟁 SWITCH  $(C_NONE) (L) NixOS#${FLAKE_HOST}\n"
 	@sudo nixos-rebuild switch --flake ${CURDIR}#${FLAKE_HOST} $(NOTIFY)
 
 clean:
@@ -47,8 +47,8 @@ update: git
 	@NVIM_APPNAME=lvim nvim --headless "+Lazy! sync" +qa &>/dev/null
 	@printf "$(C_BLUE)   UPDATE  $(C_NONE) vim.pack\n"
 	@nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
-	@printf "$(C_BLUE)  󰟁 UPDATE  $(C_NONE) NixOS\n"
-	@nh os switch -H ${FLAKE_HOST} --update
+	@printf "$(C_BLUE)  󰟁 UPDATE  $(C_NONE) NixOS#${FLAKE_HOST}\n"
+	@nh os switch . -H ${FLAKE_HOST} --update
 	@if pgrep ".quickshell-wra" >/dev/null 2>&1; then \
 		printf "$(C_RED)   PKILL?  $(C_NONE) noctalia-shell [Y/n]: "; \
 		\
@@ -78,6 +78,6 @@ safety:
 
 git: safety
 	@printf "$(C_GREEN)   GIT     $(C_NONE) *\n"
-	@git add .
+	@git add -A
 
 .PHONY: all switch boot dry test build-vm legacy clean nuke update git safety

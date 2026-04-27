@@ -3,13 +3,13 @@
     { config, ... }:
 
     let
+      FLAKE_HOST = "laptop";
+
       mkFunction = functionName: {
         body = builtins.readFile (../../../config/fish + "/${functionName}.fish");
       };
     in
     {
-      catppuccin.fish.enable = true;
-
       home.sessionVariables = {
         MANPAGER = "env NVIM_APPNAME=lvim nvim +Man!";
         LIBVA_DRIVER_NAME = "iHD";
@@ -21,7 +21,7 @@
 
         shellAliases = {
           lvim = "NVIM_APPNAME=lvim nvim";
-          nix-make = "make -C ${config.home.homeDirectory}/nixos-dotfiles";
+          nix-make = "make -C ${config.home.homeDirectory}/nixos-dotfiles/hosts/${FLAKE_HOST}";
           clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
           ll = "eza --icons -lh";
           ls = "eza --icons";
@@ -42,7 +42,7 @@
           nfitl = "nix flake init -t ~/nixos-dotfiles#";
           dac = "direnv allow .";
           noi = "nh os info";
-          nrf = "nh os repl -H laptop";
+          nrf = "nh os repl -H";
           ns = "nh search";
           nca = "nh clean all --keep 3";
         };

@@ -1,11 +1,9 @@
 {
   flake.homeModules."fzf" = {
-    catppuccin.fzf.enable = true;
-
     programs.fzf = {
       enable = true;
       enableFishIntegration = true;
-      # enableBashIntegration = true;
+      enableBashIntegration = true;
 
       defaultOptions = [
         "--layout=reverse"

@@ -61,10 +61,10 @@
         systems = [ "x86_64-linux" ];
 
         imports = [
-          (inputs.import-tree [ ./modules ])
+          (inputs.import-tree [ ../../modules ])
 
           inputs.home-manager.flakeModules."home-manager"
-          ./hosts/laptop
+          ./default.nix
         ];
       }
     );

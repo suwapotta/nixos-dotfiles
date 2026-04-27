@@ -4,7 +4,6 @@
 
     {
       home.packages = with pkgs; [
-        # NOTE: Since home-manager keeps writing to ~/.config/nvim/init.lua
         # Core
         neovim
 

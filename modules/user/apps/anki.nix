@@ -3,8 +3,6 @@
     { pkgs, ... }:
 
     {
-      catppuccin.anki.enable = true;
-
       home.packages = [
         (pkgs.anki.withAddons (
           with pkgs.ankiAddons;

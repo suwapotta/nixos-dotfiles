@@ -8,8 +8,6 @@
         config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos-dotfiles/config/kitty/${pyFile}";
     in
     {
-      catppuccin.kitty.enable = true;
-
       programs.kitty = {
         enable = true;
 
