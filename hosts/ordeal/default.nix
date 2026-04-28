@@ -1,4 +1,9 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  disko,
+  ...
+}:
 
 {
   flake.nixosConfigurations."ordeal" = inputs.nixpkgs.lib.nixosSystem {
@@ -9,36 +14,41 @@
       ### host
       ./configuration.nix
       ./hardware-configuration.nix
-      # ./<DISKO>.nix
-      ./home.nix
+
+      ### home-manager
+      # ./home.nix
+
+      ### disko
+      disko.nixosModules.disko
 
       ### core
-      # self.nixosModules."audio"
+      self.nixosModules."audio"
       # self.nixosModules."auto-login"
       # self.nixosModules."bluetooth"
-      # self.nixosModules."btrfs"
-      # self.nixosModules."experimental"
-      # self.nixosModules."fonts"
-      # self.nixosModules."git"
+      self.nixosModules."btrfs"
+      self.nixosModules."experimental"
+      self.nixosModules."fonts"
+      self.nixosModules."git"
       # self.nixosModules."intel"
-      # self.nixosModules."keyd"
+      self.nixosModules."keyd"
+      self.nixosModules."latest-kernel"
       # self.nixosModules."nano"
-      # self.nixosModules."network"
-      # self.nixosModules."nh"
+      self.nixosModules."network"
+      self.nixosModules."nh"
       # self.nixosModules."niri-cache"
       # self.nixosModules."nvidia"
-      # self.nixosModules."packages"
+      self.nixosModules."packages"
       # self.nixosModules."polkit"
       # self.nixosModules."portals"
-      # self.nixosModules."programs"
+      self.nixosModules."programs"
       # self.nixosModules."services"
-      # self.nixosModules."systemd-boot"
-      # self.nixosModules."timezone"
+      self.nixosModules."systemd-boot"
+      self.nixosModules."timezone"
       # self.nixosModules."touchpad"
-      # self.nixosModules."users"
-      # self.nixosModules."variables"
+      self.nixosModules."users"
+      self.nixosModules."variables"
       # self.nixosModules."zen-kernel"
-      # self.nixosModules."zram"
+      self.nixosModules."zram"
 
       ### specialisation
       # self.nixosModules."cachyos-kernel"

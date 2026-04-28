@@ -25,3 +25,5 @@ nix flake init -t ~/nixos-dotfiles#c
 ```
 
 - [**devshell Documentation**]<https://flake.parts/options/devshell>
+
+- **Disko configuration**: (WIP)
