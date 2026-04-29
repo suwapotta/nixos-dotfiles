@@ -39,8 +39,8 @@
           nfu = "nix flake update";
           nlg = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
           nsp = "nix-shell --run \"fish\" -p";
-          nfitr = "nix flake init -t github:suwapotta/nixos-dotfiles#";
-          nfitl = "nix flake init -t ~/nixos-dotfiles#";
+          nfitr = "nix flake init -t github:suwapotta/nixos-dotfiles/hosts/laptop#";
+          nfitl = "nix flake init -t ~/nixos-dotfiles/hosts/laptop#";
           dac = "direnv allow .";
           noi = "nh os info";
           nrf = "nh os repl -H";

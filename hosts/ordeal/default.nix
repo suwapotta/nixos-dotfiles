@@ -1,7 +1,6 @@
 {
   self,
   inputs,
-  disko,
   ...
 }:
 
@@ -19,7 +18,7 @@
       # ./home.nix
 
       ### disko
-      disko.nixosModules.disko
+      inputs.disko.nixosModules.disko
 
       ### core
       self.nixosModules."audio"

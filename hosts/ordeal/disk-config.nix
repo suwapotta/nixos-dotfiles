@@ -1,11 +1,10 @@
-# LUKS-BTRFS with subvolumes filesystems
-
+# WARN: Check disk name before proceed
 {
   disko.devices = {
     disk = {
       main = {
         type = "disk";
-        device = "/dev/<NAME>";
+        device = "/dev/sda";
         content = {
           type = "gpt";
           partitions = {
@@ -19,12 +18,12 @@
                 mountOptions = [ "umask=0077" ];
               };
             };
+
             luks = {
               size = "100%";
               content = {
                 type = "luks";
                 name = "encrypted";
-
                 # disable settings.keyFile if you want to use interactive password entry
                 passwordFile = "/tmp/secret.key"; # Interactive
                 settings = {
@@ -32,12 +31,11 @@
                   # keyFile = "/tmp/secret.key";
                 };
 
-                additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
+                # additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
 
                 content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ];
-
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/";
@@ -46,7 +44,6 @@
                         "noatime"
                       ];
                     };
-
                     "/home" = {
                       mountpoint = "/home";
                       mountOptions = [
@@ -54,7 +51,6 @@
                         "noatime"
                       ];
                     };
-
                     "/nix" = {
                       mountpoint = "/nix";
                       mountOptions = [
@@ -62,15 +58,6 @@
                         "noatime"
                       ];
                     };
-
-                    "/var/log" = {
-                      mountpoint = "/var/log";
-                      mountOptions = [
-                        "compress=zstd"
-                        "noatime"
-                      ];
-                    };
-
                     "/swap" = {
                       mountpoint = "/.swapvol";
                       swap.swapfile.size = "4G";
