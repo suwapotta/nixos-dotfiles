@@ -346,7 +346,7 @@ binds {
     Mod+V hotkey-overlay-title="Clipboard History" {
         spawn-sh "noctalia-shell ipc call launcher clipboard"
     }
-    Mod+Shift+C hotkey-overlay-title="Calender" {
+    Mod+Shift+C hotkey-overlay-title="Calendar" {
         spawn-sh "noctalia-shell ipc call calendar toggle"
     }
     Mod+Delete hotkey-overlay-title="Session Menu" {
@@ -379,7 +379,7 @@ binds {
     Mod+Shift+T hotkey-overlay-title="Clear oldest notifications" {
         spawn-sh "noctalia-shell ipc call notifications removeOldestHistory"
     }
-    Mod+Alt+Left hotkey-overlay-title="Toggle Bar Visibilty" {
+    Mod+Alt+Left hotkey-overlay-title="Toggle Bar Visibility" {
         spawn-sh "noctalia-shell ipc call bar toggle"
     }
     Mod+Alt+T hotkey-overlay-title="Toggle DND" {

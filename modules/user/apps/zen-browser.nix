@@ -1,10 +1,6 @@
 {
   flake.homeModules."zen-browser" =
-    {
-      inputs,
-      pkgs,
-      ...
-    }:
+    { inputs, pkgs, ... }:
 
     let
       # NOTE: Helper functions
@@ -235,7 +231,7 @@
                     (mkBookmark "BK-LMS" "https://lms.hcmut.edu.vn/my/")
                     (mkBookmark "GitHub" "https://github.com/")
                     (mkBookmark "Gmail" "https://mail.google.com/mail/u/0/?ogbl#inbox")
-                    (mkBookmark "Google Calender" "https://calendar.google.com/calendar/u/1/r")
+                    (mkBookmark "Google Calendar" "https://calendar.google.com/calendar/u/1/r")
                     (mkBookmark "Google Gemini" "https://gemini.google.com/app")
                     (mkBookmark "Google" "https://www.google.com/")
                     (mkBookmark "HCMUT Coursewave" "https://tinyurl.com/hcmut-courseware")

@@ -36,6 +36,7 @@
           ni = "nix-instantiate";
           nie = "nix-instantiate --eval";
           nies = "nix-instantiate --eval --strict";
+          nfu = "nix flake update";
           nlg = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
           nsp = "nix-shell --run \"fish\" -p";
           nfitr = "nix flake init -t github:suwapotta/nixos-dotfiles#";
