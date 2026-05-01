@@ -13,6 +13,7 @@ all: switch
 switch: git
 	@printf "$(C_BLUE)  󰟁 SWITCH  $(C_NONE) NixOS#${FLAKE_HOST}\n"
 	@nh os switch . -H ${FLAKE_HOST} $(NOTIFY)
+	@bash ../../scripts/autoCommit.sh
 
 boot: git
 	@printf "$(C_BLUE)  󰜉 BOOT    $(C_NONE) NixOS#${FLAKE_HOST}\n"
@@ -49,6 +50,7 @@ update: git
 	@nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
 	@printf "$(C_BLUE)  󰟁 UPDATE  $(C_NONE) NixOS#${FLAKE_HOST}\n"
 	@nh os switch . -H ${FLAKE_HOST} --update
+	@bash ../../scripts/autoCommit.sh
 	@if pgrep ".quickshell-wra" >/dev/null 2>&1; then \
 		printf "$(C_RED)   PKILL?  $(C_NONE) noctalia-shell [Y/n]: "; \
 		\
