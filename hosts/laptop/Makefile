@@ -34,6 +34,7 @@ build-vm: git
 legacy: git
 	@printf "$(C_BLUE)  󰟁 SWITCH  $(C_NONE) (L) NixOS#${FLAKE_HOST}\n"
 	@sudo nixos-rebuild switch --flake ${CURDIR}#${FLAKE_HOST} $(NOTIFY)
+	@bash ../../scripts/autoCommit.sh
 
 clean:
 	@printf "$(C_RED)   CLEAN   $(C_NONE) Partial\n"
@@ -58,7 +59,7 @@ update: git
 		if [ "$$answer" != "n" ] && [ "$$answer" != "N" ]; then \
 			kill -15 $$(pgrep ".quickshell-wra") 2>/dev/null || true; \
 			nohup noctalia-shell >/dev/null 2>&1 & \
-			printf "$(C_GREEN)   RESTART $(C_NONE) noctalia-shell\n"; \
+			printf "$(C_BLUE)   RESTART $(C_NONE) noctalia-shell\n"; \
 			sleep 3; \
 		else \
 			printf "$(C_BLUE)  󰜺 SKIPPED $(C_NONE) noctalia-shell\n"; \
