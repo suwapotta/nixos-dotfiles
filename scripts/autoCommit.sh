@@ -13,5 +13,6 @@ if git diff --quiet --cached; then
   exit 0
 fi
 
+git add -A "$HOME/nixos-dotfiles"
 git commit -m "$MESS" -m "$DESC" &>/dev/null
 printf "%b   COMMIT  %b Latest Generation\n" "${C_GREEN}" "${C_NONE}"
