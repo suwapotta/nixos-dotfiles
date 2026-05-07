@@ -22,18 +22,17 @@
             name = "LaTeX";
 
             packages = with pkgs; [
-              ghostscript
+              ### Option 1: tectonic compiler (tends to break with minted)
+              # tectonic
+              # (python314.withPackages (qs: with qs; [ pygments ]))
+              # (texlive.withPackages (ps: with ps; [ latexindent ]))
 
-              # Option 1: tectonic compiler
-              tectonic
-              (python314.withPackages (qs: with qs; [ pygments ]))
-              (texlive.withPackages (ps: with ps; [ latexindent ]))
-
-              # Option 2: texlive & latexmk compiler (haven't tested yet)
-              # texlive.combined.scheme-full
+              ### Option 2: texlive & latexmk compiler
+              texliveFull
 
               bibtex-tidy
               texlab
+              ghostscript
             ];
 
             devshell.motd = ''
