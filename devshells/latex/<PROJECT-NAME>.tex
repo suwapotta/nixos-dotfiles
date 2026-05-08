@@ -9,7 +9,19 @@
 \AtBeginDocument{\counterwithin{lstlisting}{section}}
 
 %%% Custom commands
-% \newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\inputaltcode}[3][]{
+    \begin{mdframed}[backgroundcolor=gray!10]%
+        \inputminted[#1]{#2}{codes/#3}%
+    \end{mdframed}%
+}
+\newcommand{\inputfigure}[3][0.95]{
+\begin{figure}[H]%
+  \begin{center}%
+    \includegraphics[width=#1\textwidth]{figures/#2}%
+  \end{center}%
+  \caption{#3}%
+\end{figure}%
+}
 
 %%% Rename sections
 % \AtBeginDocument{\renewcommand*{\contentsname}{Contents}}

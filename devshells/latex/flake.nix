@@ -27,7 +27,7 @@
               # (python314.withPackages (qs: with qs; [ pygments ]))
               # (texlive.withPackages (ps: with ps; [ latexindent ]))
 
-              ### Option 2: texlive & latexmk compiler
+              ### Option 2: latexmk compiler
               texliveFull
 
               bibtex-tidy
