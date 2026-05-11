@@ -27,4 +27,4 @@ nix flake init -t ~/nixos-dotfiles/hosts/laptop#c
 
 - [**devshell Documentation**]<https://flake.parts/options/devshell>
 
-- **Disko configuration**: (WIP)
+- **Disko configuration**: in `./modules/_disko` directory.

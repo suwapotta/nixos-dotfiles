@@ -1,7 +1,7 @@
 {
   flake.nixosModules."nh" =
     let
-      FLAKE_DIR = "/home/suwapotta/nixos-dotfiles";
+      FLAKE_DIR = "/home/suwapotta/nixos-dotfiles/hosts/laptop";
     in
     {
       programs.nh = {

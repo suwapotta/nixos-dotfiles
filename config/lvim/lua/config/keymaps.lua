@@ -24,6 +24,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Better Ctrl-U" })
 vim.keymap.set("n", "z=", "<Cmd>FzfLua spell_suggest<Cr>", { desc = "Find spell suggestions" })
 vim.keymap.set("n", "<leader>fu", "<Cmd>FzfLua undotree<Cr>", { desc = "UndoTree" })
 vim.keymap.set("n", "<leader>fN", "<Cmd>FzfLua files cwd=~/nixos-dotfiles<Cr>", { desc = "NixOS Dotfiles" })
+-- vim.keymap.set("n", "<leader>fz", "<Cmd>FzfLua zoxide<Cr>", { desc = "Zoxide menu" })
 
 -- Harpoon-like buffer jump
 vim.keymap.set("n", "<leader>h", "<Cmd>BufferLinePick<CR>", { desc = "Pick Buffer (alt.)" })

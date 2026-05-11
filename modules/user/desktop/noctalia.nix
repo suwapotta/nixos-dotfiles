@@ -149,7 +149,7 @@
                   clockColor = "none";
                   customFont = "Symbols Nerd Font";
                   formatHorizontal = "h:mm AP ddd MMM d";
-                  formatVertical = "HH mm ~ dd MM";
+                  formatVertical = "HH mm ~ MMM dd";
                   id = "Clock";
                   tooltipFormat = "HH:mm ddd, MMM dd";
                   useCustomFont = false;
