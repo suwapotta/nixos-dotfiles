@@ -13,5 +13,6 @@ in
     motion-canvas = mkTemplate "motion-canvas" "Motion Canvas devshell";
     python = mkTemplate "python" "Python devshell";
     verilog = mkTemplate "verilog" "SystemVerilog devshell";
+    octave = mkTemplate "octave" "GNU Octave devshell";
   };
 }
