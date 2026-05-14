@@ -15,7 +15,7 @@
     \end{mdframed}%
 }
 \newcommand{\inputfigure}[3][0.95]{
-\begin{figure}[H]%
+\begin{figure}[htbp]%
   \begin{center}%
     \includegraphics[width=#1\textwidth]{figures/#2}%
   \end{center}%
@@ -40,6 +40,8 @@
 % \listoftables
 % \lstlistoflistings{}
 \clearpage
+
+\raggedbottom
 
 \input{chapters/chapterTest.tex}
 
