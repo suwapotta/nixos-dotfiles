@@ -59,7 +59,7 @@
           self.homeModules."fzf"
           self.homeModules."lazygit"
           self.homeModules."tealdeer"
-          self.homeModules."tmux"
+          # self.homeModules."tmux"
           self.homeModules."yazi"
 
           # desktop

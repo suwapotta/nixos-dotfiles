@@ -3,28 +3,48 @@
 <!--toc:start-->
 
 - [NixOS Dotfiles](#nixos-dotfiles)
-  - [NixOS Logo](#nixos-logo)
   - [Personal notes](#personal-notes)
+    - [Devshell](#devshell)
+    - [Disko](#disko)
+  - [NixOS Logo](#nixos-logo)
   <!--toc:end-->
-
-## NixOS Logo
-
-![**NixOS** Distro logo](./images/logos/nixos-text.svg)
 
 ## Personal notes
 
-- Initialize a language _template_ with `devshell` environment, e.g.:
+### Devshell
+
+- Available templates:
+
+  | Status |      Language      | Template Name |
+  | :----: | :----------------: | :-----------: |
+  |   OK   |        `C`         |       c       |
+  |   OK   |       `C++`        |      cpp      |
+  |   OK   |      `LaTeX`       |     latex     |
+  |   OK   |  `Motion Canvas`   | motion-canvas |
+  |   OK   |      `Octave`      |    octave     |
+  | _WIP_  |      `Python`      |    python     |
+  |   OK   | `(System) Verilog` |    verilog    |
+
+- Initialize a **language template** with `devshell` environment, e.g.:
 
 ```fish
 # With laptop host:
 # .../<c-project-directory>
-## Shell abbreviation: `nfitl` (current repository)
-nix flake init -t github:suwapotta/nixos-dotfiles/hosts/laptop#c
-
 ## Shell abbreviation: `nfitr` (local ~/nixos-dotfiles)
 nix flake init -t ~/nixos-dotfiles/hosts/laptop#c
+
+## Shell abbreviation: `nfitl` (current repository)
+nix flake init -t github:suwapotta/nixos-dotfiles/hosts/laptop#c
 ```
 
-- [**devshell Documentation**]<https://flake.parts/options/devshell>
+- **Configuration**: `./modules/flake-utils/templates.nix` and `./devshells/*`
+- [Documentation URL](https://flake.parts/options/devshell)
 
-- **Disko configuration**: in `./modules/_disko` directory.
+### Disko
+
+- **Configuration**: `./modules/_disko`
+- [Documentation URL](urlhttps://github.com/nix-community/disko/blob/master/docs/quickstart.md)
+
+## NixOS Logo
+
+![**NixOS** Distro logo](./images/logos/nixos-text.png)

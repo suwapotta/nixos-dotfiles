@@ -24,6 +24,7 @@
       self.nixosModules."intel"
       self.nixosModules."keyd"
       # self.nixosModules."latest-kernel"
+      # self.nixosModules."libimobiledevice"
       self.nixosModules."nano"
       self.nixosModules."network"
       self.nixosModules."nh"
