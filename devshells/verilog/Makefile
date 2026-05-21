@@ -2,16 +2,23 @@ COMPILER = iverilog
 SIMULATOR = vvp
 WAVEFORM_VIEWER = surfer
 
-ALL_SV = $(wildcard *.sv)
-TEST_BENCH = $(wildcard tb_*.sv)
+SRC_DIR = src
+BUILD_DIR = build
+
+ALL_SV = $(wildcard $(SRC_DIR)/*.sv)
+TEST_BENCH = $(wildcard $(SRC_DIR)/tb_*.sv)
 DESIGN = $(filter-out $(TEST_BENCH), $(ALL_SV))
-OUTPUT = sim.vvp
-WAVEFORM = waveform.vcd
+
+OUTPUT = $(BUILD_DIR)/sim.vvp
+WAVEFORM = $(BUILD_DIR)/waveform.vcd
 
 all: view
 
-$(OUTPUT): $(DESIGN) $(TEST_BENCH)
-	$(COMPILER) $(DESIGN) $(TEST_BENCH) -Wall -o $(OUTPUT)
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+$(OUTPUT): $(DESIGN) $(TEST_BENCH) | $(BUILD_DIR)
+	$(COMPILER) -Wall -o $(OUTPUT) $(DESIGN) $(TEST_BENCH)
 
 $(WAVEFORM): $(OUTPUT)
 	$(SIMULATOR) $(OUTPUT)
@@ -22,6 +29,6 @@ view: $(WAVEFORM)
 
 clean:
 	pkill $(WAVEFORM_VIEWER) || true
-	rm -f $(OUTPUT) $(WAVEFORM)
+	rm -rf $(BUILD_DIR)
 
 .PHONY: all view clean
