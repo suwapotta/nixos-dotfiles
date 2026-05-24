@@ -31,6 +31,15 @@
 
         shellAbbrs = {
           nvimc = "nvim --clean";
+          gi = "git init";
+          gs = "git status";
+          ga = "git add";
+          gaa = "git add -A";
+          gd = "git diff";
+          gc = "git clone";
+          gp = "git push -v";
+          gpl = "git pull";
+          grc = "git reset --hard; git clean --force";
           lg = "lazygit";
           nr = "nix repl";
           ni = "nix-instantiate";
@@ -41,12 +50,13 @@
           nsp = "nix-shell --run \"fish\" -p";
           nfitr = "nix flake init -t github:suwapotta/nixos-dotfiles/hosts/laptop#";
           nfitl = "nix flake init -t ~/nixos-dotfiles/hosts/laptop#";
-          dac = "direnv allow .";
-          dbc = "direnv block .";
           noi = "nh os info";
           nrf = "nh os repl -H";
           ns = "nh search";
           nca = "nh clean all --keep 3";
+          dac = "direnv allow .";
+          dbc = "direnv block .";
+          drc = "direnv reload .";
         };
 
         # shellInit = ''

@@ -199,6 +199,10 @@
                   mkSearchEngine "https://mynixos.com/search?q={searchTerms}" "https://mynixos.com/favicon.ico"
                     "@mynixos";
 
+                "Noggle" =
+                  mkSearchEngine "https://noogle.dev/q?term={searchTerms}" "https://noogle.dev/favicon.ico"
+                    "@noggle";
+
                 "wikipedia".metaData.hidden = true;
                 "bing".metaData.hidden = true;
               };
@@ -243,6 +247,7 @@
                     (mkBookmark "YouTube" "https://www.youtube.com/")
                     (mkBookmark "Zalo" "https://chat.zalo.me/")
                     (mkBookmark "アニメ" "https://aanime.biz/")
+                    (mkBookmark "Noggle" "https://noogle.dev/")
                   ];
                 }
               ];
