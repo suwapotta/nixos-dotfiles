@@ -28,3 +28,12 @@ vim.keymap.set("n", "<leader>fN", "<Cmd>FzfLua files cwd=~/nixos-dotfiles<Cr>", 
 
 -- Harpoon-like buffer jump
 vim.keymap.set("n", "<leader>h", "<Cmd>BufferLinePick<CR>", { desc = "Pick Buffer (alt.)" })
+
+-- Running gtest
+vim.keymap.set("n", "<leader>tg", function()
+  Snacks.terminal("make gtest && echo; read", {
+    win = {
+      border = "rounded",
+    },
+  })
+end, { desc = "Run make gtest (Terminal)" })
