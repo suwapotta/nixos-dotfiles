@@ -20,7 +20,7 @@
   |   OK   |        `C`         |       c       |
   |   OK   |       `C++`        |      cpp      |
   | _WIP_  |      `LaTeX`       |     latex     |
-  | _WIP_  |  `Motion Canvas`   | motion-canvas |
+  |   OK   |  `Motion Canvas`   | motion-canvas |
   | _WIP_  |      `Octave`      |    octave     |
   |   OK   |      `Python`      |    python     |
   |   OK   | `(System) Verilog` |    verilog    |
