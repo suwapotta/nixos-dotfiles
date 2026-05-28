@@ -2,7 +2,6 @@
   description = "C++ (Devshell)";
 
   inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     devshell.url = "github:numtide/devshell";
   };
@@ -22,14 +21,18 @@
             name = "C++";
 
             packages = with pkgs; [
+              gnumake
+              bear
+
               gcc
               clang-tools
               lldb
               gtest
+              valgrind
 
               ruff
               pyright
-              (python314.withPackages (
+              (python3.withPackages (
                 python-pkgs: with python-pkgs; [
                   debugpy
 
@@ -55,6 +58,14 @@
               {
                 name = "GTEST_LIB";
                 value = "${pkgs.gtest}/lib";
+              }
+            ];
+
+            commands = [
+              {
+                name = "kickstart";
+                command = "make bear";
+                help = "generate LSP bindings this project through bear";
               }
             ];
 

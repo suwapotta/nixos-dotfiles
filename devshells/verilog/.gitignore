@@ -1,19 +1,13 @@
 # build artifacts
 build/
-*.o
-*.d
-*.out
+*.vvp
+*.vcd
 
 # Python & Pytest
 __pycache__/
 .pytest_cache/
 .coverage
 REPORT.md
-
-# LSP helpers
-compile_commands.json
-.cache/
-.clangd/
 
 # Nix environment
 .direnv/

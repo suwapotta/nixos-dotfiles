@@ -1,8 +1,8 @@
 # NOTE: Cheatsheet: https://devhints.io/makefile
 
 CXX = g++
-CXXFLAGS= -MMD -Wall -Wextra -pedantic -Wshadow
-# CXXFLAGS=--std=c++23 -MMD -Wall -Wextra -pedantic -Wshadow
+CXXFLAGS= -Iinclude -MMD -Wall -Wextra -pedantic -Wshadow
+# CXXFLAGS=--std=c++3  -Iinclude -MMD -Wall -Wextra -pedantic -Wshadow
 GTEST_FLAGS = -I$(GTEST_INCLUDE) -L$(GTEST_LIB) -lgtest_main -lgtest -pthread
 
 SRC = $(wildcard src/*.cpp)
@@ -13,7 +13,7 @@ TEST_SRC = $(wildcard tests/*.cpp)
 
 EXE = build/main
 TEST_EXE = build/testRunner
-ARGS ?= test_000
+ARGS ?= test_001
 
 all: $(EXE)
 
@@ -31,7 +31,6 @@ build/%.o: src/%.cpp
 
 run: $(EXE)
 	@echo "  RUN     ${EXE}"
-	@echo
 	@echo "=== RESULT ==="
 	@./$(EXE) $(ARGS)
 	@echo "=> Returned $$?."
@@ -51,12 +50,28 @@ gtest: $(TEST_EXE)
 
 report: $(EXE)
 	@echo "  REPORT  tests/"
-	@pytest tests/ -vvv --md-report --md-report-verbose=2 --md-report-show-duration --md-report-output=REPORT.md
+	@pytest -vvv --md-report --md-report-verbose=2 --md-report-show-duration --md-report-output=REPORT.md
+
+valgrind: debug
+	@echo "  VALGRIND  ${EXE}"
+	@echo "=== RESULT ==="
+	@valgrind --leak-check=full \
+		--show-leak-kinds=all \
+		--track-origins=yes \
+		--verbose \
+		--log-file=build/valgrind-out.txt \
+		./$(EXE) $(ARGS)
+	@echo "=> Valgrind finished. Check valgrind-out.txt for the report."
 
 clean:
 	@echo "  CLEAN   build/"
 	@rm -rf build
 
+bear:
+	@echo "  BEAR    compile_commands.json"
+	@$(MAKE) --no-print-directory clean
+	@bear -- $(MAKE) --no-print-directory all $(TEST_EXE)
+
 -include $(DEP)
 
-.PHONY: all debug run pytest gtest report clean
+.PHONY: all debug run pytest gtest report valgrind clean bear

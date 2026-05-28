@@ -1,34 +1,51 @@
+# NOTE: Cheatsheet: https://devhints.io/makefile
+
 COMPILER = iverilog
+IVERILOG_FLAGS = -Wall
 SIMULATOR = vvp
 WAVEFORM_VIEWER = surfer
 
-SRC_DIR = src
-BUILD_DIR = build
-
-ALL_SV = $(wildcard $(SRC_DIR)/*.sv)
-TEST_BENCH = $(wildcard $(SRC_DIR)/tb_*.sv)
-DESIGN = $(filter-out $(TEST_BENCH), $(ALL_SV))
-
-OUTPUT = $(BUILD_DIR)/sim.vvp
-WAVEFORM = $(BUILD_DIR)/waveform.vcd
+DESIGN := $(wildcard src/*.sv)
+TEST ?= test_001
+ACTIVE_TB := $(wildcard tests/$(TEST)/tb_*.sv)
+ACTIVE_VVP := build/$(TEST).vvp
+ACTIVE_VCD := build/$(TEST).vcd
 
 all: view
 
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
+mkdir:
+	mkdir -p build/
 
-$(OUTPUT): $(DESIGN) $(TEST_BENCH) | $(BUILD_DIR)
-	$(COMPILER) -Wall -o $(OUTPUT) $(DESIGN) $(TEST_BENCH)
+$(ACTIVE_VVP): $(DESIGN) $(ACTIVE_TB) | mkdir
+	@echo "  OUTPUT  $(ACTIVE_VVP)"
+	@$(COMPILER) $(IVERILOG_FLAGS) -o $@ $(DESIGN) $(ACTIVE_TB)
 
-$(WAVEFORM): $(OUTPUT)
-	$(SIMULATOR) $(OUTPUT)
+$(ACTIVE_VCD): $(ACTIVE_VVP)
+	@echo "  VVP     $(ACTIVE_VVP)"
+	@echo "=== RESULT ==="
+	@$(SIMULATOR) $<
 
-view: $(WAVEFORM)
-	pkill $(WAVEFORM_VIEWER) || true
-	nohup $(WAVEFORM_VIEWER) $(WAVEFORM) >/dev/null 2>&1 &
+view: pkill $(ACTIVE_VCD)
+	@echo "  SURFER  $(ACTIVE_VCD)"
+	@nohup $(WAVEFORM_VIEWER) $(ACTIVE_VCD) >/dev/null 2>&1 &
 
-clean:
-	pkill $(WAVEFORM_VIEWER) || true
-	rm -rf $(BUILD_DIR)
+pytest:
+	@echo "  PYTEST  tests/"
+	@pytest
 
-.PHONY: all view clean
+report:
+	@echo "  REPORT  tests/"
+	@pytest -vvv --md-report --md-report-verbose=2 --md-report-show-duration --md-report-output=REPORT.md
+
+pkill:
+	@if pgrep ".surfer-wrapped" >/dev/null 2>&1; then \
+		echo "  PKILL   surfer"; \
+		pkill .surfer-wrapped; \
+	fi
+
+clean: pkill
+	@echo "  CLEAN   build/"
+	@rm -rf build/
+
+.SILENT: mkdir
+.PHONY: all view pytest report pkill clean

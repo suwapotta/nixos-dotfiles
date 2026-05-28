@@ -1,0 +1,5 @@
+in: 00 -> sum: 0, carry: 0
+in: 01 -> sum: 0, carry: 0
+in: 11 -> sum: 1, carry: 0
+in: 10 -> sum: 0, carry: 1
+in: 00 -> sum: 0, carry: 1

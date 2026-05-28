@@ -1,0 +1,4 @@
+signal is 1.
+signal is floating.
+signal is floating.
+signal is unknown.

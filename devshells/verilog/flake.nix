@@ -2,7 +2,6 @@
   description = "SystemVerilog (Devshell)";
 
   inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     devshell.url = "github:numtide/devshell";
   };
@@ -22,12 +21,30 @@
             name = "SystemVerilog";
 
             packages = with pkgs; [
+              gnumake
+
+              iverilog
               verible
               svls
 
-              iverilog
-
               surfer
+
+              ruff
+              pyright
+              (python3.withPackages (
+                python-pkgs: with python-pkgs; [
+                  # cocotb
+
+                  debugpy
+
+                  pytest
+                  pytest-cov
+                  pytest-instafail
+                  pytest-md-report
+                  # pytest-sugar
+                  # pytest-mock
+                ]
+              ))
             ];
 
             devshell.motd = ''

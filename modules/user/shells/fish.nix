@@ -57,6 +57,7 @@
           dac = "direnv allow .";
           dbc = "direnv block .";
           drc = "direnv reload .";
+          ze = "zoxide edit";
         };
 
         # shellInit = ''

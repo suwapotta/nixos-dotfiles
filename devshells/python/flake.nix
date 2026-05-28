@@ -2,7 +2,6 @@
   description = "Python (Devshell)";
 
   inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     devshell.url = "github:numtide/devshell";
   };
@@ -23,8 +22,20 @@
 
             packages = with pkgs; [
               pyright
-              python314Packages.debugpy
               ruff
+
+              (python3.withPackages (
+                python-pkgs: with python-pkgs; [
+                  debugpy
+
+                  pytest
+                  pytest-cov
+                  pytest-instafail
+                  pytest-md-report
+                  # pytest-sugar
+                  # pytest-mock
+                ]
+              ))
             ];
 
             devshell.motd = ''

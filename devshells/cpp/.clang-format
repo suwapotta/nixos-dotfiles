@@ -1,0 +1,14 @@
+# clang-format configuration file
+#
+# For more information, see:
+#
+#   Documentation/dev-tools/clang-format.rst
+#   https://clang.llvm.org/docs/ClangFormat.html
+#   https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+#
+
+---
+BasedOnStyle: LLVM
+
+SortIncludes:
+  Enabled: true
