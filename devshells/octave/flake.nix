@@ -2,7 +2,6 @@
   description = "Octave (Devshell)";
 
   inputs = {
-    flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     devshell.url = "github:numtide/devshell";
   };
@@ -26,6 +25,20 @@
               # octaveFull
 
               # matlab-language-server
+              ruff
+              pyright
+              (python3.withPackages (
+                python-pkgs: with python-pkgs; [
+                  debugpy
+
+                  pytest
+                  pytest-cov
+                  pytest-instafail
+                  pytest-md-report
+                  # pytest-sugar
+                  # pytest-mock
+                ]
+              ))
             ];
 
             devshell.motd = ''
