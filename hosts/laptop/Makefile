@@ -60,7 +60,7 @@ update: git ## Update flake.lock + neovim plugins and building new NixOS generat
 		printf "$(C_RED)   PKILL?  $(C_NONE) noctalia-shell [Y/n]: "; \
 		\
 		read answer; \
-		if [ "$$answer" != "n" ] && [ "$$answer" != "N" ]; then \
+		if [ "$$answer" == "n" ] && [ "$$answer" == "N" ]; then \
 			kill -15 $$(pgrep ".quickshell-wra") 2>/dev/null || true; \
 			nohup noctalia-shell >/dev/null 2>&1 & \
 			printf "$(C_BLUE)   RESTART $(C_NONE) noctalia-shell\n"; \
@@ -75,11 +75,11 @@ safety: ## Safety measure for zen-beta browser
 		printf "$(C_RED)   PKILL?  $(C_NONE) zen-beta [y/N]: "; \
 		\
 		read answer; \
-		if [ "$$answer" == "n" ] && [ "$$answer" == "N" ]; then \
+		if [ "$$answer" != "y" ] && [ "$$answer" != "Y" ]; then \
+			printf "$(C_BLUE)  󰜺 SKIPPED $(C_NONE) zen-beta\n"; \
+		else \
 			pkill zen-beta; \
 			printf "$(C_RED)  󱒼 KILLED  $(C_NONE) zen-beta\n"; \
-		else \
-			printf "$(C_BLUE)  󰜺 SKIPPED $(C_NONE) zen-beta\n"; \
 		fi; \
 	fi
 
@@ -91,4 +91,4 @@ help: ## Show this help message
 	@printf "$(C_GREEN)Available commands:$(C_NONE)\n"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  $(C_BLUE)%-15s$(C_NONE) %s\n", $$1, $$2}'
 
-.PHONY: all qemu switch boot dry test build-vm legacy clean nuke update git safety
+.PHONY: all qemu switch boot dry test build-vm legacy clean nuke update safety git help

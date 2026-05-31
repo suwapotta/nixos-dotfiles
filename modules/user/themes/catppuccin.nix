@@ -6,6 +6,9 @@
       imports = [ inputs.catppuccin.homeModules.catppuccin ];
 
       catppuccin = {
+        enable = true;
+        autoEnable = false;
+
         accent = "sapphire";
         flavor = "mocha";
 
