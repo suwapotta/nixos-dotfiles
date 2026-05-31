@@ -17,6 +17,9 @@
       ### home-manager
       ./home-manager.nix
 
+      ### containers
+      self.nixosModules."testbox"
+
       ### core
       self.nixosModules."audio"
       self.nixosModules."auto-login"

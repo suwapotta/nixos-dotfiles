@@ -58,6 +58,7 @@
           dbc = "direnv block .";
           drc = "direnv reload .";
           ze = "zoxide edit";
+          nc = "nixos-container";
         };
 
         # shellInit = ''
