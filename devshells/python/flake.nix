@@ -39,6 +39,14 @@
               ))
             ];
 
+            commands = [
+              {
+                name = "debug";
+                command = builtins.readFile ./debugging.sh;
+                help = "run pytest continuously";
+              }
+            ];
+
             devshell.motd = ''
                {45}Welcome to Python.{reset}
               Enter 'menu' for general commands.
