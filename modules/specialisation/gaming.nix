@@ -40,11 +40,17 @@
               "steam"
               "steam-unwrapped"
             ];
-          programs.steam = {
-            enable = true;
-            extraCompatPackages = with pkgs; [
-              proton-ge-bin
-            ];
+          programs = {
+            steam = {
+              enable = true;
+
+              gamescopeSession.enable = true;
+              extraCompatPackages = with pkgs; [
+                proton-ge-bin
+              ];
+            };
+
+            gamemode.enable = true;
           };
         };
       };
