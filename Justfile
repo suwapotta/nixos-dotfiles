@@ -108,24 +108,25 @@ dry host=FLAKE_HOST: safety git
 
 update host=FLAKE_HOST: safety git
     #!/usr/bin/env bash
-    printf "{{ C_BLUE }}   UPDATE  {{ C_NONE }} lazy.nvim\n"
-    NVIM_APPNAME=lvim nvim --headless "+Lazy! sync" +qa &>/dev/null
-
-    printf "{{ C_BLUE }}   UPDATE  {{ C_NONE }} vim.pack\n"
-    nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
-
-    printf "{{ C_BLUE }}  󰟁 UPDATE  {{ C_NONE }} NixOS#{{ host }}\n"
-    if nh os switch {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} --update; then
-      just notify 0
-    else
-      just notify $?
-      exit 1
-    fi
+    # printf "{{ C_BLUE }}   UPDATE  {{ C_NONE }} lazy.nvim\n"
+    # NVIM_APPNAME=lvim nvim --headless "+Lazy! sync" +qa &>/dev/null
+    #
+    # printf "{{ C_BLUE }}   UPDATE  {{ C_NONE }} vim.pack\n"
+    # nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
+    #
+    # printf "{{ C_BLUE }}  󰟁 UPDATE  {{ C_NONE }} NixOS#{{ host }}\n"
+    # if nh os switch {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} --update; then
+    #   just notify 0
+    # else
+    #   just notify $?
+    #   exit 1
+    # fi
 
     if pgrep "noctalia" >/dev/null 2>&1; then
       printf "{{ C_RED }}   RESTART? {{ C_NONE }} noctalia [Y/n]: "
       read -r answer
-      if [[ "$answer" != "y" && "$answer" != "Y" ]]; then
+
+      if [[ "$answer" == "n" || "$answer" == "N" ]]; then
         printf "{{ C_BLUE }}  󰜺 SKIPPED {{ C_NONE }} noctalia\n"
       else
         pkill "noctalia"
