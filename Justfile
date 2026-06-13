@@ -12,6 +12,10 @@ C_GREEN := "\\033[1;32m"
 C_BLUE := "\\033[1;34m"
 C_NONE := "\\033[0m"
 
+# Commands macro
+NOTIFY := "&& just notify 0 || just notify $?"
+COMMIT := "&& just notify 0 && just commit || just notify $?"
+
 default:
     just --list
 
@@ -29,13 +33,48 @@ safety app_name="zen-beta":
       fi
     fi
 
+restart app_name="noctalia":
+    #!/usr/bin/env bash
+    if pgrep "{{ app_name }}" >/dev/null 2>&1; then
+      printf "{{ C_RED }}   RESTART? {{ C_NONE }} {{ app_name }} [Y/n]: "
+      read -r answer
+
+      if [[ "$answer" == "n" || "$answer" == "N" ]]; then
+        printf "{{ C_BLUE }}  󰜺 SKIPPED {{ C_NONE }} {{ app_name }}\n"
+      else
+        printf "{{ C_RED }}  󱒼 KILLED  {{ C_NONE }} {{ app_name }}\n";
+        pkill "{{ app_name }}"
+
+        printf "{{ C_BLUE }}   RESTART {{ C_NONE }} {{ app_name }}\n"
+        {{ app_name }} >/dev/null 2>&1 & disown
+
+        sleep 3
+      fi
+    fi
+
 git:
     printf "{{ C_GREEN }}   GIT     {{ C_NONE }} *\n"
     git add -A
 
-notify exit_code="0":
+notify exit_code="0" context="system":
     #!/usr/bin/env bash
-    ICON_PATH="{{ justfile_directory() }}/images/logos/nixos-colorful.png"
+
+    # Context path
+    if [[ "{{ context }}" == "system" ]]; then
+      APP_NAME="System Task"
+      ICON="{{ justfile_directory() }}/images/logos/nixos-colorful.png"
+      SUCC_TITLE="Task Completed"
+      SUCC_BODY="The operation finished successfully without errors."
+      FAIL_TITLE="Task Failed (Code: {{ exit_code }})"
+      FAIL_BODY="The operation was aborted. Check your terminal for the error."
+    else
+      APP_NAME="Git"
+      ICON="{{ justfile_directory() }}/images/icons/git.png"
+      SUCC_TITLE="Push Successful"
+      SUCC_BODY="All commits have been safely pushed to the remote repository."
+      FAIL_TITLE="Push Rejected (Code: {{ exit_code }})"
+      FAIL_BODY="Check the terminal for upstream conflicts or network issues."
+    fi
 
     IS_GUI_RUNNING() {
       pgrep "noctalia" &>/dev/null
@@ -48,10 +87,10 @@ notify exit_code="0":
         nix run nixpkgs#libnotify -- \
           --transient \
           -u critical \
-          -a "System Task" \
-          -i "$ICON_PATH" \
-          "Task Failed (Code: {{ exit_code }})" \
-          "The operation was aborted. Check your terminal for the error."
+          -a "$APP_NAME" \
+          -i "$ICON" \
+          "$FAIL_TITLE" \
+          "$FAIL_BODY"
       fi
       exit {{ exit_code }}
     fi
@@ -61,10 +100,10 @@ notify exit_code="0":
     if IS_GUI_RUNNING; then
       nix run nixpkgs#libnotify -- \
         --transient \
-        -a "System Task" \
-        -i "$ICON_PATH" \
-        "Task Completed" \
-        "The operation finished successfully without errors."
+          -a "$APP_NAME" \
+          -i "$ICON" \
+          "$SUCC_TITLE" \
+          "$SUCC_BODY"
     fi
     exit 0
 
@@ -83,57 +122,59 @@ commit: git
     printf "{{ C_GREEN }}   COMMIT  {{ C_NONE }} Latest Generation\n"
 
 push:
-    printf "{{ C_BLUE }}   PUSH    {{ C_NONE }} *\n"
-    git push -v
+    printf "{{ C_BLUE }}   PUSH    {{ C_NONE }} Github\n"
+    git push -v && just notify 0 push || just notify $? push
 
 specialisation spec_name="Virtualisation" host=FLAKE_HOST: safety git
     printf "{{ C_BLUE }}   SPECIAL {{ C_NONE }} NixOS#{{ host }}\n"
-    nh os test {{ justfile_directory() }}/hosts/{{ host }} --specialisation {{ spec_name }} -H {{ host }} && just notify 0 || just notify $?
+    nh os test {{ justfile_directory() }}/hosts/{{ host }} --specialisation {{ spec_name }} -H {{ host }} {{ NOTIFY }}
 
 switch host=FLAKE_HOST: safety git
     printf "{{ C_BLUE }}  󰟁 SWITCH  {{ C_NONE }} NixOS#{{ host }}\n"
-    nh os switch {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} && just notify 0 && just commit || just notify $?
+    nh os switch {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} {{ COMMIT }}
 
 boot host=FLAKE_HOST: safety git
     printf "{{ C_BLUE }}  󰜉 BOOT    {{ C_NONE }} NixOS#{{ host }}\n"
-    nh os boot {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} && just notify 0 && just commit || just notify $?
+    nh os boot {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} {{ COMMIT }}
 
 test host=FLAKE_HOST: safety git
     printf "{{ C_BLUE }}  󰙨 TEST    {{ C_NONE }} NixOS#{{ host }}\n"
-    nh os test {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} && just notify 0 || just notify $?
+    nh os test {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} {{ NOTIFY }}
 
 dry host=FLAKE_HOST: safety git
     printf "{{ C_BLUE }}   DRY     {{ C_NONE }} NixOS#{{ host }}\n"
-    nh os build {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} --dry && just notify 0 || just notify $?
+    nh os switch {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} --dry {{ NOTIFY }}
+
+legacy host=FLAKE_HOST: safety git
+    printf "{{ C_BLUE }}  󰟁 SWITCH  {{ C_NONE }} (L) NixOS#{{ host }}\n"
+    sudo nixos-rebuild switch --flake {{ justfile_directory() }}/hosts/{{ host }} {{ COMMIT }}
 
 update host=FLAKE_HOST: safety git
     #!/usr/bin/env bash
-    # printf "{{ C_BLUE }}   UPDATE  {{ C_NONE }} lazy.nvim\n"
-    # NVIM_APPNAME=lvim nvim --headless "+Lazy! sync" +qa &>/dev/null
-    #
-    # printf "{{ C_BLUE }}   UPDATE  {{ C_NONE }} vim.pack\n"
-    # nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
-    #
-    # printf "{{ C_BLUE }}  󰟁 UPDATE  {{ C_NONE }} NixOS#{{ host }}\n"
-    # if nh os switch {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} --update; then
-    #   just notify 0
-    # else
-    #   just notify $?
-    #   exit 1
-    # fi
+    printf "{{ C_BLUE }}   UPDATE  {{ C_NONE }} lazy.nvim\n"
+    NVIM_APPNAME=lvim nvim --headless "+Lazy! sync" +qa &>/dev/null
 
-    if pgrep "noctalia" >/dev/null 2>&1; then
-      printf "{{ C_RED }}   RESTART? {{ C_NONE }} noctalia [Y/n]: "
-      read -r answer
+    printf "{{ C_BLUE }}   UPDATE  {{ C_NONE }} vim.pack\n"
+    nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
 
-      if [[ "$answer" == "n" || "$answer" == "N" ]]; then
-        printf "{{ C_BLUE }}  󰜺 SKIPPED {{ C_NONE }} noctalia\n"
-      else
-        pkill "noctalia"
-        nohup noctalia >/dev/null 2>&1 &
-        printf "{{ C_BLUE }}   RESTART {{ C_NONE }} noctalia\n"
-        sleep 3
-      fi
+    printf "{{ C_BLUE }}  󰟁 UPDATE  {{ C_NONE }} NixOS#{{ host }}\n"
+    if nh os switch {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} --update; then
+      just notify 0
+    else
+      just notify $?
+      exit 1
     fi
 
+    just restart noctalia
     just commit
+
+clean keep_num="3":
+    printf "{{ C_RED }}   CLEAN   {{ C_NONE }} Partial (Keeping: {{ keep_num }})\n"
+    nh clean all --keep {{ keep_num }} {{ NOTIFY }}
+
+nuke:
+    printf "{{ C_RED }}   CLEAN   {{ C_NONE }} All\n"
+    nh clean all --ask {{ NOTIFY }}
+
+optimise:
+    nix store optimise {{ NOTIFY }}

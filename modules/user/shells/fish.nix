@@ -6,8 +6,6 @@
     }:
 
     let
-      FLAKE_HOST = "laptop";
-
       mkFunction = functionName: {
         body = builtins.readFile (../../../config/fish + "/${functionName}.fish");
       };
@@ -27,7 +25,7 @@
 
         shellAliases = {
           lvim = "NVIM_APPNAME=lvim nvim";
-          nix-make = "make -C ${config.home.homeDirectory}/nixos-dotfiles/hosts/${FLAKE_HOST}";
+          nix-just = "just -f ${config.home.homeDirectory}/nixos-dotfiles/Justfile";
           clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
           ll = "eza --icons -lh";
           ls = "eza --icons";
@@ -67,6 +65,8 @@
           drc = "direnv reload .";
           ze = "zoxide edit";
           noc = "nixos-container";
+          j = "just";
+          nj = "nix-just";
         };
 
         # shellInit = ''
