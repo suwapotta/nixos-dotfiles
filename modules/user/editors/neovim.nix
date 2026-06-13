@@ -39,6 +39,10 @@
         mermaid-cli
         prettier
 
+        ## just
+        just
+        just-lsp
+
         ## Others (e.g., yaml, toml, etc.)
         codespell
         taplo

@@ -30,6 +30,8 @@ return {
           "arduino:avr:uno",
         },
       },
+
+      just = {},
     },
   },
 }

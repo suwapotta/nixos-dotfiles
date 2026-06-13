@@ -33,6 +33,7 @@ return {
         "markdown",
         "markdown_inline",
         "make",
+        "just",
         "nix",
         "rust",
       }

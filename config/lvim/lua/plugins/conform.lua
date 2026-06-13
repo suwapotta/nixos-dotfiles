@@ -11,6 +11,7 @@ return {
       yaml = { "prettier" },
       typescript = { "biome" },
       typescriptreact = { "biome" },
+      just = { "just" },
       -- rust = { "rustfmt" },
       -- kdl = { "kdlfmt" },
 

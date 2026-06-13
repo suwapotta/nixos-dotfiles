@@ -396,28 +396,28 @@ binds {
   Mod+Alt+Space hotkey-overlay-title="Window Switcher access" {
     spawn-sh "noctalia msg panel-toggle launcher \"/win\""
   }
-  F12 allow-when-locked=true hotkey-overlay-title="Increase volume" {
+  Mod+F12 allow-when-locked=true hotkey-overlay-title="Increase volume" {
     spawn-sh "noctalia msg volume-up"
   }
-  F11 allow-when-locked=true hotkey-overlay-title="Decrease volume" {
+  Mod+F11 allow-when-locked=true hotkey-overlay-title="Decrease volume" {
     spawn-sh "noctalia msg volume-down"
   }
-  F10 allow-when-locked=true hotkey-overlay-title="Mute volume" {
+  Mod+F10 allow-when-locked=true hotkey-overlay-title="Mute volume" {
     spawn-sh "noctalia msg volume-mute"
   }
-  F9 allow-when-locked=true hotkey-overlay-title="Mute microphone" {
+  Mod+F9 allow-when-locked=true hotkey-overlay-title="Mute microphone" {
     spawn-sh "noctalia msg mic-mute"
   }
-  F1 allow-when-locked=true hotkey-overlay-title="Decrease brightness" {
+  Mod+F1 allow-when-locked=true hotkey-overlay-title="Decrease brightness" {
     spawn-sh "noctalia msg brightness-down"
   }
-  F2 allow-when-locked=true hotkey-overlay-title="Increase brightness" {
+  Mod+F2 allow-when-locked=true hotkey-overlay-title="Increase brightness" {
     spawn-sh "noctalia msg brightness-up"
   }
-  Shift+F1 allow-when-locked=true hotkey-overlay-title="Set minimum brightness (1)" {
+  Mod+Shift+F1 allow-when-locked=true hotkey-overlay-title="Set minimum brightness (1)" {
     spawn-sh "noctalia msg brightness-set 1"
   }
-  Shift+F2 allow-when-locked=true hotkey-overlay-title="Set maximum brightness (100)" {
+  Mod+Shift+F2 allow-when-locked=true hotkey-overlay-title="Set maximum brightness (100)" {
     spawn-sh "noctalia msg brightness-set 100"
   }
 }
