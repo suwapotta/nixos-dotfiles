@@ -1,6 +1,9 @@
 {
   flake.homeModules."fish" =
-    { config, ... }:
+    {
+      config,
+      ...
+    }:
 
     let
       FLAKE_HOST = "laptop";
@@ -17,6 +20,10 @@
 
       programs.fish = {
         enable = true;
+
+        completions = {
+          just = "JUST_COMPLETE=fish just | source";
+        };
 
         shellAliases = {
           lvim = "NVIM_APPNAME=lvim nvim";

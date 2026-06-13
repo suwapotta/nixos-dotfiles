@@ -5,7 +5,9 @@
     # List of system packages
     {
       environment.systemPackages = with pkgs; [
-        gnumake
+        # gnumake
+        just
+
         unzip
 
         wget

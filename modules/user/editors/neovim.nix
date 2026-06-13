@@ -39,8 +39,7 @@
         mermaid-cli
         prettier
 
-        ## just
-        just
+        ## Just
         just-lsp
 
         ## Others (e.g., yaml, toml, etc.)
