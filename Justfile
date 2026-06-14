@@ -171,7 +171,8 @@ update host=FLAKE_HOST: safety git
 rollback gen="":
     #!/usr/bin/env bash
     if [[ -z "{{ gen }}" ]]; then
-      printf "{{ C_BLUE }}   ROLLBACK{{ C_NONE }} Last Generation\n"
+      CURRENT_GEN=$(readlink /nix/var/nix/profiles/system | cut -d "-" -f 2)
+      printf "{{ C_BLUE }}   ROLLBACK{{ C_NONE }} Generation $((CURRENT_GEN - 1))\n"
       nh os rollback {{ NOTIFY }}
     else
       printf "{{ C_BLUE }}   ROLLBACK{{ C_NONE }} Generation {{ gen }}\n"

@@ -319,9 +319,6 @@ binds {
   Mod+W {
     toggle-column-tabbed-display
   }
-  Mod+Shift+Delete hotkey-overlay-title="Exit niri session" {
-    quit
-  }
   Mod+Shift+S hotkey-overlay-title="Snipping Tool" {
     screenshot show-pointer=false
   }
@@ -347,6 +344,9 @@ binds {
   }
   Mod+V hotkey-overlay-title="Clipboard History" {
     spawn-sh "noctalia msg panel-toggle clipboard"
+  }
+  Mod+Shift+Delete hotkey-overlay-title="Clear Clipboard History" {
+    spawn-sh "noctalia msg clipboard-clear"
   }
   Mod+Shift+C hotkey-overlay-title="Calendar" {
     spawn-sh "noctalia msg panel-toggle control-center calendar"
