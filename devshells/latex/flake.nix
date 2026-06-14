@@ -2,6 +2,7 @@
   description = "LaTeX (Devshell)";
 
   inputs = {
+    flake-parts.url = "github:hercules-ci/flake-parts";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     devshell.url = "github:numtide/devshell";
   };
@@ -17,7 +18,7 @@
         { pkgs, ... }:
 
         {
-          devshells.default = {
+          devshells."latex" = {
             name = "LaTeX";
 
             packages = with pkgs; [
