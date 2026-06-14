@@ -3,12 +3,13 @@
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
-\LoadClass[a4paper]{article}
+\LoadClass[letter]{article}
 
 % Formatting
 \RequirePackage[fontsize = 12pt]{scrextend}
 \RequirePackage[main=english]{babel}
 \RequirePackage[T5]{fontenc}
+\RequirePackage{lmodern}
 \RequirePackage{anyfontsize}
 \RequirePackage{setspace, geometry, indentfirst}
 \RequirePackage{fancyhdr, hyperref}
@@ -171,7 +172,7 @@
 
 		\draw ([yshift=-0.3cm,xshift=0.3cm]A)-- ([yshift=-0.3cm,xshift=-0.3cm]B)--
 		([yshift=0.3cm,xshift=-0.3cm]B) --([yshift=0.3cm,xshift=0.3cm]B)--([yshift=-0.3cm,xshift=0.3cm]C)--([yshift=-0.3cm,xshift=-0.3cm]C)--([yshift=0.3cm,xshift=-0.3cm]C)-- ([yshift=0.3cm,xshift=0.3cm]D)--([yshift=-0.3cm,xshift=0.3cm]D)--([yshift=-0.3cm,xshift=-0.3cm]D)--([yshift=0.3cm,xshift=-0.3cm]A)--([yshift=0.3cm,xshift=0.3cm]A)--([yshift=-0.3cm,xshift=0.3cm]A);
-  \end{tikzpicture}
+	\end{tikzpicture}
 
 	\vspace*{-3\baselineskip}
 	\begin{center}
