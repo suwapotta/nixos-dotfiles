@@ -5,6 +5,7 @@ return {
     opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft or {}, {
       cpp = { "clang-format" },
       c = { "clang-format" },
+      python = { "ruff_format" },
       verilog = { "verible" },
       systemverilog = { "verible" },
       tex = { "latexindent" },
