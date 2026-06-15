@@ -1,0 +1,17 @@
+# LaTeX artifacts
+indent.log
+_minted/
+*.aux
+*.bbl
+*.fdb_latexmk
+*.fls
+*.listing
+*.log
+*.synctex.gz
+*.synctex.gz(busy)
+*.toc
+
+# Nix environment
+.direnv/
+result
+result-*
