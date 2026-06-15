@@ -28,6 +28,8 @@
           # }))
         ];
 
+        hideTopBar = true;
+        # hideBottomBar = true;
         answerKeys = [
           {
             ease = 1;
@@ -52,7 +54,7 @@
 
           sync = {
             username = "nguyenducthientan09@gmail.com";
-            # HACK:
+            # HACK: -> path to key file
             # - Navigate to the sync settings page. (Tools > Preferences > Syncing)
             # - Log in to your AnkiWeb account.
             # - Select "Yes" to the prompt about saving preferences and syncing.
