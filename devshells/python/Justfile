@@ -1,0 +1,29 @@
+# NOTE: Documentation: https://just.systems
+
+set quiet
+
+lint args="" +files=".":
+    echo "  LINT    tests/*.py"
+    ruff check {{ files }} {{ args }}
+
+format +files="": lint
+    echo "  FORMAT  *.py"
+    ruff format {{ files }}
+
+test: lint format
+    echo "  PYTEST  tests/"
+    pytest
+    echo "  PASSED  pytest"
+
+entr:
+    #!/usr/bin/env bash
+    fd . src/ tests/ | entr -c bash -c "just test"
+
+report:
+    echo "  REPORT  tests/"
+    pytest -vvv --md-report --md-report-verbose=2 --md-report-show-duration --md-report-output=REPORT.md
+
+clean:
+    #!/usr/bin/env bash
+    [[ -f REPORT.md ]] && echo "  CLEAN   REPORT.md" && rm -f REPORT.md || true
+    [[ -f .coverage ]] && echo "  CLEAN   .coverage" && rm -f .coverage || true

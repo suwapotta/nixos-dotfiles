@@ -14,14 +14,16 @@ format-c +files="src/*.c include/*.h tests/*.c":
     echo "  FORMAT  {{ files }}"
     clang-format -i {{ files }}
 
-lint-c +files="src/*.c include/*.h tests/*.c":
+# --fix
+lint-c args="" +files="src/*.c include/*.h tests/*.c":
     echo "  LINT    {{ files }}"
-    clang-tidy -p . {{ files }}
+    clang-tidy -p . {{ files }} {{ args }}
 
 format-py +files=".":
     echo "  FORMAT  tests/*.py"
     ruff format {{ files }}
 
+# --fix
 lint-py args="" +files=".":
     echo "  LINT    tests/*.py"
     ruff check {{ files }} {{ args }}
@@ -74,7 +76,7 @@ bear: clean
 
 clean:
     #!/usr/bin/env bash
-    make clean
-    [ -f compile_commands.json ] && echo "  CLEAN   compile_commands.json" && rm -f compile_commands.json || true
-    [ -f REPORT.md ]             && echo "  CLEAN   REPORT.md"             && rm -f REPORT.md             || true
-    [ -f .coverage ]             && echo "  CLEAN   .coverage"             && rm -f .coverage             || true
+    [[ -e build ]]                 && echo "  CLEAN   build/"                && rm -rf build                || true
+    [[ -f compile_commands.json ]] && echo "  CLEAN   compile_commands.json" && rm -f compile_commands.json || true
+    [[ -f REPORT.md ]]             && echo "  CLEAN   REPORT.md"             && rm -f REPORT.md             || true
+    [[ -f .coverage ]]             && echo "  CLEAN   .coverage"             && rm -f .coverage             || true

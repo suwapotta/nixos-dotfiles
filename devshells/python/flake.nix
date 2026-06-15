@@ -22,6 +22,11 @@
             name = "Python";
 
             packages = with pkgs; [
+              entr
+              fd
+              just
+              lefthook
+
               pyright
               ruff
 
@@ -41,9 +46,9 @@
 
             commands = [
               {
-                name = "debug";
-                command = builtins.readFile ./debugging.sh;
-                help = "run pytest continuously";
+                name = "kickstart";
+                command = "git init && lefthook install";
+                help = "install git hooks";
               }
             ];
 

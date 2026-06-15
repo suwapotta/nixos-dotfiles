@@ -12,7 +12,7 @@ from sample import bubble_sort
         ([1, 2, 3, 4], [1, 2, 3, 4]),
         ([9, 7, 5, 3], [3, 5, 7, 9]),
         ([-5, 0, 5, -2], [-5, -2, 0, 5]),
-        ([555, -222, -111, 444, 333], [-222, -111, 333, 444, 555])
+        ([555, -222, -111, 444, 333], [-222, -111, 333, 444, 555]),
     ],
     ids=[
         "standard_unsorted",
@@ -22,7 +22,7 @@ from sample import bubble_sort
         "reversed_list",
         "negative_numbers",
         "mixed_signed_numbers",
-    ]
+    ],
 )
 def test_bubble_sort(input_arr: list[int], expected_out: list[int]) -> None:
     bubble_sort(input_arr)
