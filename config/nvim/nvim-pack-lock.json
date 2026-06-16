@@ -22,7 +22,7 @@
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "mini.icons": {
-      "rev": "284509648db084c5e40a31afa9abb9887c49e04a",
+      "rev": "d48ad47359218d2b019034f95f601b3861180885",
       "src": "https://github.com/echasnovski/mini.icons"
     },
     "nvim-lspconfig": {

@@ -3,6 +3,7 @@ indent.log
 _minted/
 *.aux
 *.bbl
+*.blg
 *.fdb_latexmk
 *.fls
 *.listing
@@ -10,6 +11,7 @@ _minted/
 *.synctex.gz
 *.synctex.gz(busy)
 *.toc
+*.bak*
 
 # Nix environment
 .direnv/

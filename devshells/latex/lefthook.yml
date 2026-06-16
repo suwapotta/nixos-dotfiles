@@ -1,0 +1,18 @@
+# lefthook.yml
+
+pre-commit:
+  parallel: true
+  commands:
+    format-and-lint:
+      glob: "*.{tex,bib}"
+      run: just lint && git add {staged_files}
+
+    grammar:
+      glob: "*.tex"
+      run: just grammar
+
+pre-push:
+  parallel: false
+  commands:
+    test:
+      run: just test

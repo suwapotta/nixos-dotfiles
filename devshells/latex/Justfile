@@ -1,0 +1,42 @@
+# NOTE: Documentation: https://just.systems
+
+set quiet
+
+default:
+    just --list
+
+test: lint grammar
+
+lint: format
+    echo "  LINT    *.tex"
+    fd -e tex -x chktex -q
+
+grammar:
+    echo "  GRAMMAR *.tex"
+    textidote --check en --ci *.tex
+
+strict-grammar:
+    echo "  GRAMMAR *.tex"
+    textidote --check en *.tex
+
+format:
+    echo "  FORMAT  *.tex"
+    fd -e tex -x latexindent --modifylinebreaks --silent --overwrite -g=/dev/null
+    echo "  FORMAT  *.bib"
+    fd -e bib -x bibtex-tidy {} --modify --quiet
+    fd -I -g "*.bak*" -q && echo "  CLEAN   *.bak" && fd -I -g "*.bak*" -x rm -f || true
+
+zip content="*.pdf *.tex *.cls *.sty chapters/* codes/* figures/* refs/*": test
+    #!/usr/bin/env bash
+    ZIP_NAME="$(fd -e tex -d 1 | head -n 1 | cut -d "." -f 1).zip"
+    echo "  ZIP     {{ content }}"
+    zip -r "$ZIP_NAME" {{ content }}
+
+# C/c
+clean clean_type="c":
+    #!/usr/bin/env bash
+    echo "  CLEAN   latexmk"
+    latexmk -{{ clean_type }} &>/dev/null
+    fd -I -e zip -d 1 -q && echo "  CLEAN   *.zip" && fd -I -e zip -d 1 -x rm -f || true
+    fd -I -e log -d 1 -q && echo "  CLEAN   *.log" && fd -I -e log -d 1 -x rm -f || true
+    fd -I -e bbl -d 1 -q && echo "  CLEAN   *.bbl" && fd -I -e bbl -d 1 -x rm -f || true

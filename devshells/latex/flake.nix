@@ -22,12 +22,25 @@
             name = "LaTeX";
 
             packages = with pkgs; [
+              zip
+              fd
+              just
+              lefthook
+
               texliveFull
 
-              bibtex-tidy
               texlab
-              ghostscript
+              bibtex-tidy
               textidote
+              ghostscript
+            ];
+
+            commands = [
+              {
+                name = "kickstart";
+                command = "git init && lefthook install";
+                help = "initialize git repository and hooks";
+              }
             ];
 
             devshell.motd = ''

@@ -36,7 +36,7 @@ safety app_name="zen-beta":
 restart app_name="noctalia":
     #!/usr/bin/env bash
     if pgrep "{{ app_name }}" >/dev/null 2>&1; then
-      printf "{{ C_RED }}   RESTART? {{ C_NONE }} {{ app_name }} [Y/n]: "
+      printf "{{ C_RED }}   RESTART?{{ C_NONE }} {{ app_name }} [Y/n]: "
       read -r answer
 
       if [[ "$answer" == "n" || "$answer" == "N" ]]; then

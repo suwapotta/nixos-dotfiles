@@ -30,7 +30,7 @@
 
 %%% MAIN DOCUMENT
 \begin{document}
-\coverpage
+\coverpage{}
 
 \renewcommand{\thesection}{\Roman{section}}
 \renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
@@ -41,13 +41,13 @@
 % \lstlistoflistings{}
 \clearpage
 
-\raggedbottom
+\raggedbottom{}
 
 \input{chapters/chapterTest.tex}
 
 % \begin{noindent}
 \begingroup
-  \raggedright
+  \raggedright{}
     \bibliographystyle{apacite}
     \bibliography{refs/refs.bib}
   \nocite{*}

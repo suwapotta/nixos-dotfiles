@@ -9,6 +9,7 @@ return {
       verilog = { "verible" },
       systemverilog = { "verible" },
       tex = { "latexindent" },
+      bib = { "bibtex-tidy" },
       yaml = { "prettier" },
       typescript = { "biome" },
       typescriptreact = { "biome" },
