@@ -28,3 +28,5 @@ CheckOptions:
     value: UPPER_CASE
   - key: readability-identifier-naming.IgnoreMainLikeFunctions
     value: 1
+  - key: readability-identifier-naming.VariableIgnoredRegexp
+    value: "^cr_.*"

@@ -1,18 +1,18 @@
 # ── meson.build ───────────────────────────────────────────────────────────────
 project(
-    'cpp-template',
-    'cpp',
+    'c-template',
+    'c',
     version: '0.0.0',
     default_options: [
         'warning_level=3',
-        'cpp_std=c++26',
+        'c_std=c23',
     ],
 )
-project_description = 'An example C++ template using Meson + Ninja'
+project_description = 'An example C template using Meson + Ninja'
 
 # ── Target ────────────────────────────────────────────────────────────────────
 core_sources = [
-    './src/hello.cpp',
+    './src/int_qsort.c',
 ]
 
 public_headers = include_directories('include')
@@ -40,7 +40,7 @@ build_args += [
 
 executable(
     meson.project_name(),
-    sources: ['src/main.cpp'],
+    sources: ['./src/main.c'],
     include_directories: public_headers,
     dependencies: core_dep,
     cpp_args: build_args,
@@ -49,32 +49,18 @@ executable(
 
 # ── Unit tests ────────────────────────────────────────────────────────────────
 if not meson.is_subproject()
-    gtest_dep = dependency('gtest', main: true, required: true)
+    criterion_dep = dependency('criterion', main: true, required: true)
 
     test(
-        'matrix_test',
+        'int_qsort_test',
         executable(
-            'matrix_test',
+            'int_qsort_test',
             sources: [
-                './tests/testMatrix.cpp',
+                './tests/test_int_qsort.c',
             ],
             dependencies: [
                 core_dep,
-                gtest_dep,
-            ],
-        ),
-    )
-
-    test(
-        'hello_test',
-        executable(
-            'hello_test',
-            sources: [
-                './tests/testHello.cpp',
-            ],
-            dependencies: [
-                core_dep,
-                gtest_dep,
+                criterion_dep,
             ],
         ),
     )

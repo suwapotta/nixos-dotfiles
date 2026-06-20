@@ -1,8 +1,8 @@
 # NOTE: Cheatsheet: https://devhints.io/makefile
 
 CC = gcc
-C_FLAGS= -Iinclude -MMD -Wall -Wextra -Wshadow
-# C_FLAGS=--std=<here> -Iinclude -MMD -Wall -Wextra -pedantic -Wshadow
+# C_FLAGS= -Iinclude -MMD -Wall -Wextra -Wshadow
+C_FLAGS=--std=c23 -Iinclude -MMD -Wall -Wextra -pedantic -Wshadow
 LD_FLAGS =
 CRITERION_FLAGS = -I$(CRITERION_INCLUDE) -L$(CRITERION_LIB) -lcriterion
 

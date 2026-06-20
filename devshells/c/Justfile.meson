@@ -3,19 +3,19 @@
 set quiet
 
 b_mode := "debug"
-bin := "cpp-template"
-cpp-std := "c++26"
+bin := "c-template"
+c-std := "c23"
 prefix := "~/.local"
 
 default:
     just --list
 
-format +files="src/*.cpp include/*.h tests/*.cpp":
+format +files="src/*.c include/*.h tests/*.c":
     echo "  FORMAT  {{ files }}"
     clang-format -i {{ files }}
 
 # --fix
-lint args="" +files="src/*.cpp include/*.h tests/*.cpp":
+lint args="" +files="src/*.c include/*.h tests/*.c":
     echo "  LINT    {{ files }}"
     clang-tidy -p . {{ files }} {{ args }}
 
@@ -24,7 +24,7 @@ configure b_type=b_mode install_prefix=prefix:
     #!/usr/bin/env bash
     set -euo pipefail
     args=(--buildtype={{ if b_type == "release" { "release" } else { "debug" } }} \
-        -Dcpp_std={{ cpp-std }})
+        -Dc_std={{ c-std }})
     [[ "{{ b_type }}" == "release" ]] && args+=(-Db_lto=true)
     [[ "{{ b_type }}" == "asan" ]] && args+=(-Db_sanitize=address,undefined)
     [[ "{{ b_type }}" == "coverage" ]] && args+=(-Db_coverage=true)
@@ -74,7 +74,7 @@ cov b_type="coverage": (_ensure-configured b_type)
           --print-summary
 
 entr *mode="test":
-    fd -e cpp -e h -e hpp | entr -c bash -c "just {{ mode }}"
+    fd -e c -e h | entr -c bash -c "just {{ mode }}"
 
 # release/debug/asan/coverage
 clean b_type=b_mode:
