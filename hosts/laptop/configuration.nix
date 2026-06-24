@@ -22,6 +22,7 @@
     kernelParams = [ "hid_apple.fnmode=2" ];
   };
 
-  # WARN: DO NOT change the state version below no matter what!
+  # WARN: DO NOT change the state version below no matter what
+  # unless reinstalling OS
   system.stateVersion = "25.11";
 }
