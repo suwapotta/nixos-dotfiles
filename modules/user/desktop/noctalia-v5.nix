@@ -256,7 +256,6 @@
             };
 
             tray = {
-              detached_panel = true;
               drawer = true;
             };
 

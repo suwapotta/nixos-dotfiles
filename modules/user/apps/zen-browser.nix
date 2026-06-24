@@ -238,7 +238,7 @@
                     (mkBookmark "Google Calendar" "https://calendar.google.com/calendar/u/1/r")
                     (mkBookmark "Google Gemini" "https://gemini.google.com/app")
                     (mkBookmark "Google" "https://www.google.com/")
-                    (mkBookmark "HCMUT Coursewave" "https://tinyurl.com/hcmut-courseware")
+                    (mkBookmark "HCMUT Coursewave" "https://www.hcmut-courseware.org")
                     (mkBookmark "LFS News" "https://www.linuxfromscratch.org/lfs/news.html")
                     (mkBookmark "Messenger" "https://www.messenger.com/t/5765709533478160/")
                     (mkBookmark "Motion Canvas (Docs)" "https://archive.canvascommons.io/")
