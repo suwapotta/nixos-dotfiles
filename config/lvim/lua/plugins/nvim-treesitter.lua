@@ -21,6 +21,7 @@ return {
         "css",
         "systemverilog",
         "latex",
+        "typst",
         "bibtex",
         "python",
         "scss",
