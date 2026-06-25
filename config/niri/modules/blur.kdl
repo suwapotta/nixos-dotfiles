@@ -11,7 +11,18 @@ blur {
 // Noctalia v.5+
 layer-rule {
   // match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
-  match namespace="^noctalia-(notification|dock|panel|osd)$"
+  match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|osd)$"
+
+  opacity 0.89
+  background-effect {
+    blur true
+    xray false
+  }
+}
+
+layer-rule {
+  // match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+  match namespace="^noctalia-(bar-[^\"]|attached-panel)$"
 
   opacity 0.89
   background-effect {
