@@ -24,6 +24,7 @@
   |   OK   |      `Python`      |    python     |
   |   OK   | `(System) Verilog` |    verilog    |
   | _WIP_  |      `Octave`      |    octave     |
+  |   OK   |      `Typst`       |     typst     |
 
 - Initialize a **language template** with `devshell` environment, e.g.:
 

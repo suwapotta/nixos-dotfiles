@@ -6,7 +6,7 @@ local fmt = lse.fmt
 
 return {
   s(
-    "bcomment",
+    "blockcomment",
     fmt(
       [[
     /*

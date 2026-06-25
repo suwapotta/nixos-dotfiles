@@ -1,0 +1,51 @@
+# NOTE: Documentation: https://just.systems
+
+set quiet
+
+default:
+    just --list
+
+format +files="":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [[ -z "{{ files }}" ]]; then
+      echo "  FORMAT  *.typ"
+      fd -e typ -x typstyle -i
+    else
+      echo "  FORMAT  {{ files }}"
+      typstyle -i {{ files }}
+    fi
+
+lint +files="":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if [[ -z "{{ files }}" ]]; then
+      echo "  LINT    *.typ"
+      fd -e typ -x typstyle --check
+    else
+      echo "  LINT    {{ files }}"
+      typstyle -i {{ files }}
+    fi
+
+# typst compile <args>
+pdf +args="":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    MAIN="$(fd -e typ -d 1 | head -n 1 | cut -d "." -f 1)"
+    echo "  BUILD   ${MAIN}.pdf"
+    typst compile "${MAIN}.typ" {{ args }}
+
+view: pdf
+    #!/usr/bin/env bash
+    set -euo pipefail
+    PDF="$(fd -e pdf -d 1 | head -n 1)"
+    echo "  VIEW    ${PDF}"
+    zathura "$PDF"
+
+clean:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    if fd --quiet -e pdf; then
+      echo "  CLEAN   *.pdf"
+      rm -f *.pdf
+    fi

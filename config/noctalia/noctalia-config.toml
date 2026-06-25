@@ -19,6 +19,7 @@ minimum_brightness = 0.0099999997764825821
 
 [calendar]
 enabled = true
+refresh_minutes = 240
 
     [calendar.account.personal_google]
     name = "sv_cal"
@@ -37,6 +38,7 @@ widget_order = []
     [desktop_widgets.widget]
 
 [dock]
+active_monitor_only = true
 cross_axis_padding = 6
 enabled = true
 icon_size = 35
@@ -133,6 +135,7 @@ settings_show_advanced = true
     [shell.panel]
     open_near_click_control_center = true
     session_placement = "centered"
+    transparency_mode = "glass"
 
     [shell.screen_corners]
     enabled = true
@@ -183,13 +186,16 @@ directory = "/home/suwapotta/nixos-dotfiles/images/wallpapers"
 transition_on_startup = true
 
     [wallpaper.default]
-    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/oceanSunsetWaveSequence.jpg"
+    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/sunsetLandscape.jpg"
 
     [wallpaper.last]
-    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/oceanSunsetWaveSequence.jpg"
+    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/pastelWindow.png"
+
+    [wallpaper.monitors.HDMI-A-1]
+    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/sunsetLandscape.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/oceanSunsetWaveSequence.jpg"
+    path = "/home/suwapotta/nixos-dotfiles/images/wallpapers/pastelWindow.png"
 
 [widget.active_window]
 display = "icon_only"
@@ -225,7 +231,7 @@ stat = "disk_pct"
 show_label = false
 
 [widget.tray]
-detached_panel = true
+detached_panel = false
 drawer = true
 
 [widget.workspaces]

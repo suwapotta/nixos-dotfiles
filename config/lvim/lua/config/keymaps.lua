@@ -46,7 +46,7 @@ vim.keymap.set("n", "gcC", function()
   local snippets = ls.get_snippets("all")
 
   for _, snip in ipairs(snippets) do
-    if snip.trigger == "fcomment" then
+    if snip.trigger == "fancycomment" then
       ls.snip_expand(snip)
 
       vim.cmd("startinsert")

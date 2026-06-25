@@ -5,7 +5,7 @@ local i = ls.insert_node
 local f = ls.function_node
 
 return {
-  s("fcomment", {
+  s("fancycomment", {
     f(function()
       local cstr = vim.bo.commentstring
       local prefix = cstr ~= "" and cstr:match("^(.-)%s*%%s") or "#"

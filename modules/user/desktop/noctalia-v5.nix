@@ -52,6 +52,7 @@
 
           calendar = {
             enabled = true;
+            refresh_minutes = 240;
 
             account = {
               "personal_google" = {
@@ -157,6 +158,7 @@
             font_family = "Work Sans SemiBold";
 
             panel = {
+              transparency_mode = "soft";
               open_near_click_control_center = true;
               session_placement = "centered";
             };
@@ -257,6 +259,7 @@
 
             tray = {
               drawer = true;
+              detached_panel = false;
             };
 
             workspaces = {

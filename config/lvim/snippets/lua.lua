@@ -21,7 +21,7 @@ return {
     }),
   }),
 
-  s("asnippet", {
+  s("addsnippet", {
     t('s("'),
     i(1, "node_name"),
     t({ '", {', "\t" }),

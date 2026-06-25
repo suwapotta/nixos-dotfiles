@@ -1,0 +1,16 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      glob: "*.typ"
+      run: just format {staged_files} && git add {staged_files}
+    lint:
+      glob: "*.typ"
+      run: just lint {staged_files}
+
+pre-push:
+  parallel: true
+  commands:
+    pdf:
+      glob: "*.typ"
+      run: just pdf
