@@ -5,8 +5,9 @@
 
 // ── Template ─────────────────────────────────────────────────────────────────
 #let template = doc => {
-  set page(width: 11cm, height: auto)
+  set page(paper: "a4", width: 11cm, numbering: "Page 1/1")
   set heading(numbering: "1.")
+  show heading: smallcaps
 
   show: codly-init
   codly(

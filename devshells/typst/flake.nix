@@ -34,6 +34,7 @@
               just
               fd
               zathura
+              yaml-language-server
 
               typst
               typstyle
