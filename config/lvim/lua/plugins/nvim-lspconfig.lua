@@ -34,6 +34,8 @@ return {
       just = {},
 
       mesonlsp = {},
+
+      asm_lsp = {},
     },
   },
 }

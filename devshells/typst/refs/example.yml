@@ -1,3 +1,6 @@
+# NOTE: Hayagriva YAML syntax
+# See at: https://github.com/typst/hayagriva/blob/main/docs/file-format.md
+
 plaque:
   type: Misc
   title: Informational plaque about Jacoby's 1967 photos
