@@ -210,7 +210,12 @@
             builtin = "Catppuccin";
             source = "builtin";
             templates = {
-              builtin_ids = [ "niri" ];
+              builtin_ids = [
+                "gtk3"
+                "gtk4"
+                "niri"
+                "qt"
+              ];
               community_ids = [ "zen-browser" ];
             };
           };

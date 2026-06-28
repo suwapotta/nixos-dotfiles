@@ -31,6 +31,8 @@
           enable = true;
           enableRounded = true;
         };
+        # qt5ct.enable = true;
+        # gtk.icon.enable = true;
 
         ### editors
 

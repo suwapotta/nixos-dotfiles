@@ -27,7 +27,7 @@
         extraConfig = {
           PRIVATE = mkDir "Private";
           VIRTUALISATION = mkDir "Virtualisation";
-          WORKSPACE = mkDir "Workspace";
+          # WORKSPACE = mkDir "Workspace";
         };
       }
       // builtins.mapAttrs (name: folder: "${homeDirectory}/${folder}") folders;

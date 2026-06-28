@@ -1,4 +1,5 @@
 # WARN: Check disk name before proceed
+
 {
   disko.devices = {
     disk = {
