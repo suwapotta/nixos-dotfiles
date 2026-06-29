@@ -252,6 +252,9 @@
                 }
               ];
             };
+
+            # TODO: css files at ~/.cache/noctalia/zen-browser
+            # userChrome = ...
           };
       };
     };
