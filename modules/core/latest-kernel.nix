@@ -1,11 +1,16 @@
 {
-  flake.nixosModules."latest-kernel" =
-    {
-      pkgs,
-      ...
-    }:
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-    {
-      boot.kernelPackages = pkgs.linuxPackages_latest;
-    };
+{
+  options = {
+    modules.core.kernel-latest.enable = lib.mkEnableOption "latest kernel pkg";
+  };
+
+  config = lib.mkIf config.modules.core.kernel-latest.enable {
+    boot.kernelPackages = pkgs.linuxPackages_latest;
+  };
 }

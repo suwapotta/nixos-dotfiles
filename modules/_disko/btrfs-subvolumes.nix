@@ -1,4 +1,4 @@
-# WARN: Check disk name before proceed
+# BTRFS Subvolumes
 
 {
   disko.devices = {

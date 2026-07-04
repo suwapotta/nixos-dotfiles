@@ -1,25 +1,44 @@
 {
-  flake.nixosModules."testbox" =
-    { pkgs, ... }:
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-    {
-      containers."testbox" = {
-        autoStart = false;
-        privateNetwork = false;
+{
+  options = {
+    modules.containers.testbox.enable = lib.mkEnableOption "basic container";
+  };
 
-        config = {
-          environment = {
-            systemPackages = with pkgs; [ neovim ];
+  config = lib.mkIf config.modules.containers.testbox.enable {
 
-            sessionVariables = {
-              TERM = "xterm-256color";
-            };
+    containers."testbox" = {
+      autoStart = false;
+      privateNetwork = false;
+
+      config = {
+        environment = {
+          systemPackages = with pkgs; [
+            fastfetch
+          ];
+
+          sessionVariables = {
+            TERM = "xterm-256color";
           };
-
-          programs.nano.enable = false;
-
-          system.stateVersion = "26.05";
         };
+
+        programs = {
+          nano.enable = false;
+
+          neovim = {
+            enable = true;
+            defaultEditor = true;
+          };
+        };
+
+        system.stateVersion = "26.05";
       };
     };
+
+  };
 }

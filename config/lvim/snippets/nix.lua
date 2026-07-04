@@ -21,19 +21,19 @@ return {
 
     {
       options = {
-        <>.enable = lib.mkEnableOption "enables <>";
+        modules.<>.enable = lib.mkEnableOption "<>";
       };
 
-      config = lib.mkIf config.<>.enable {
+      config = lib.mkIf config.modules.<>.enable {
         <>
       };
     }
     ]],
       {
-        i(1, "moduleName"),
+        i(1, "name"),
+        i(2, "desc"),
         rep(1),
-        rep(1),
-        i(2, "option1 = true;"),
+        i(3, "option1 = true;"),
       },
       { delimiters = "<>" }
     )
@@ -41,8 +41,8 @@ return {
 
   s(
     "useModule",
-    fmt("<>.enable = <>;", {
-      i(1, "moduleName"),
+    fmt("modules.<>.enable = <>;", {
+      i(1, "name"),
       c(2, {
         t("true"),
         t("false"),

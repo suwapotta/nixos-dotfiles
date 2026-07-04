@@ -1,21 +1,25 @@
 {
-  flake.nixosModules."portals" =
-    {
-      pkgs,
-      ...
-    }:
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-    # Gnome portals for niri
-    {
-      xdg.portal = {
-        enable = true;
-        extraPortals = with pkgs; [
-          xdg-desktop-portal-gnome
-          xdg-desktop-portal-gtk
-        ];
+{
+  options = {
+    modules.core.portals.enable = lib.mkEnableOption "[ niri ] gnome portal";
+  };
 
-        config.common.default = "*";
-      };
+  config = lib.mkIf config.modules.core.portals.enable {
+    xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gnome
+        xdg-desktop-portal-gtk
+      ];
 
+      config.common.default = "*";
     };
+
+  };
 }

@@ -1,4 +1,7 @@
-{ pkgs, config, ... }:
+{
+  inputs,
+  ...
+}:
 
 {
   # ╔────────────────────────────────────────────────────────────╗
@@ -7,22 +10,25 @@
   # │`-'-/`-'  `---'`---'  `-' `-' `-'`-'`-'`-'  -- --`----'`-'-'│
   # ╚────────────────────────────────────────────────────────────╝
 
-  # NOTE: Specific settings for MSI-laptop
-  environment.systemPackages = with pkgs; [ mcontrolcenter ];
-  boot = {
-    # Linux kernel
-    kernelModules = [
-      "msi-ec"
-      "ec_sys"
-    ];
-
-    extraModulePackages = [ config.boot.kernelPackages.msi-ec ];
-
-    # Keyboard
-    kernelParams = [ "hid_apple.fnmode=2" ];
-  };
-
-  # WARN: DO NOT change the state version below no matter what
-  # unless reinstalling OS
+  # WARN: DO NOT change the state version!
   system.stateVersion = "25.11";
+
+  imports = [
+    # ── Hardware ──────────────────────────────────────────────────────────────────
+    ./hardware-configuration.nix
+
+    # ── Disko ─────────────────────────────────────────────────────────────────────
+    # inputs.disko.nixosModules.disko
+    # ./disk-config.nix
+
+    # ── Home Manager ──────────────────────────────────────────────────────────────
+    inputs.home-manager.nixosModules.home-manager
+    ./home.nix
+
+    # ── Modules ───────────────────────────────────────────────────────────────────
+    ../../modules/core/core-default.nix
+    ../../modules/containers/containers-default.nix
+    ../../modules/flake-utils/flakeutils-default.nix
+    ../../modules/specialisation/specialisation-default.nix
+  ];
 }

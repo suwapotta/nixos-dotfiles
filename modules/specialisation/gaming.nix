@@ -11,8 +11,6 @@
         "Gaming".configuration = {
           system.nixos.tags = [ "Gaming" ];
 
-          # NOTE: List of all possible options:
-          # $ nix flake show github:xddxdd/nix-cachyos-kernel/release
           boot.kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
 
           # Proton-GE performance boost

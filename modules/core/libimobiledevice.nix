@@ -1,19 +1,24 @@
 {
-  flake.nixosModules."libimobiledevice" =
-    {
-      pkgs,
-      ...
-    }:
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-    {
-      services.usbmuxd.enable = true;
+{
+  options = {
+    modules.core.libimobiledevice.enable = lib.mkEnableOption "apple devices support";
+  };
 
-      # NOTE: Mounting iphone using `$ idevicepair pair`
-      environment.systemPackages = with pkgs; [
-        libimobiledevice
-        ifuse
+  config = lib.mkIf config.modules.core.libimobiledevice.enable {
+    services.usbmuxd.enable = true;
 
-        appimage-run # Sidestore AppImage
-      ];
-    };
+    # NOTE: Mounting iphone using `$ idevicepair pair`
+    environment.systemPackages = with pkgs; [
+      libimobiledevice
+      ifuse
+
+      appimage-run # Sidestore AppImage
+    ];
+  };
 }

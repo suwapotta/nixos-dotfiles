@@ -1,5 +1,15 @@
 {
-  flake.nixosModules."programs" = {
+  lib,
+  config,
+  ...
+}:
+
+{
+  options = {
+    modules.core.programs.enable = lib.mkEnableOption "global programs";
+  };
+
+  config = lib.mkIf config.modules.core.programs.enable {
     programs = {
       # Linking binaries for lazyvim
       nix-ld.enable = true;

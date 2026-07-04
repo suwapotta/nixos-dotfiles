@@ -4,7 +4,7 @@
 set quiet
 
 # Systems information
-FLAKE_HOST := "laptop"
+FLAKE_HOST := "desktop"
 
 # ANSI color codes
 C_RED := "\\033[1;31m"
@@ -132,27 +132,27 @@ push:
 # Virtualisation/Gaming
 specialisation spec_name="Virtualisation" host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}   SPECIAL {{ C_NONE }} NixOS#{{ host }}\n"
-    nh os test {{ justfile_directory() }}/hosts/{{ host }} --specialisation {{ spec_name }} -H {{ host }} {{ NOTIFY }}
+    nh os test {{ justfile_directory() }} --specialisation {{ spec_name }} -H {{ host }} {{ NOTIFY }}
 
 switch host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}  󰟁 SWITCH  {{ C_NONE }} NixOS#{{ host }}\n"
-    nh os switch {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} {{ COMMIT }}
+    nh os switch {{ justfile_directory() }} -H {{ host }} {{ COMMIT }}
 
 boot host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}  󰜉 BOOT    {{ C_NONE }} NixOS#{{ host }}\n"
-    nh os boot {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} {{ COMMIT }}
+    nh os boot {{ justfile_directory() }} -H {{ host }} {{ COMMIT }}
 
 test host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}  󰙨 TEST    {{ C_NONE }} NixOS#{{ host }}\n"
-    nh os test {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} {{ NOTIFY }}
+    nh os test {{ justfile_directory() }} -H {{ host }} {{ NOTIFY }}
 
 dry host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}   DRY     {{ C_NONE }} NixOS#{{ host }}\n"
-    nh os switch {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} --dry {{ NOTIFY }}
+    nh os switch {{ justfile_directory() }} -H {{ host }} --dry {{ NOTIFY }}
 
 legacy host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}  󰟁 SWITCH  {{ C_NONE }} (L) NixOS#{{ host }}\n"
-    sudo nixos-rebuild switch --flake {{ justfile_directory() }}/hosts/{{ host }} {{ COMMIT }}
+    sudo nixos-rebuild switch --flake {{ justfile_directory() }} {{ COMMIT }}
 
 update host=FLAKE_HOST: pkill git
     #!/usr/bin/env bash
@@ -164,7 +164,7 @@ update host=FLAKE_HOST: pkill git
     nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
 
     printf "{{ C_BLUE }}  󰟁 UPDATE  {{ C_NONE }} NixOS#{{ host }}\n"
-    if nh os switch {{ justfile_directory() }}/hosts/{{ host }} -H {{ host }} --update; then
+    if nh os switch {{ justfile_directory() }} -H {{ host }} --update; then
       just notify 0
     else
       just notify $?

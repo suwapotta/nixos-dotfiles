@@ -1,5 +1,15 @@
 {
-  flake.nixosModules."vm-variant" = {
+  lib,
+  config,
+  ...
+}:
+
+{
+  options = {
+    modules.core.vm-variant.enable = lib.mkEnableOption "basic vm";
+  };
+
+  config = lib.mkIf config.modules.core.vm-variant.enable {
     virtualisation.vmVariant = {
       users.extraUsers."vm-user" = {
         isNormalUser = true;

@@ -1,24 +1,33 @@
 {
-  flake.nixosModules."variables" =
-    let
-      lvim = "env NVIM_APPNAME=lvim nvim";
-    in
-    {
-      environment = {
-        # Override defaultEditor option
-        variables = {
-          EDITOR = lvim;
-          VISUAL = lvim;
-        };
+  lib,
+  config,
+  ...
+}:
 
-        sessionVariables = {
-          # fcitx5 variables
-          XMODIFIERS = "@im=fcitx";
-          MOZ_ENABLE_WAYLAND = "1";
-          GLFW_IM_MODULE = "ibus";
+let
+  lvim = "env NVIM_APPNAME=lvim nvim";
+in
+{
+  options = {
+    modules.core.variables.enable = lib.mkEnableOption "global variables (wayland)";
+  };
 
-          LIBVA_DRIVER_NAME = "iHD";
-        };
+  config = lib.mkIf config.modules.core.variables.enable {
+    environment = {
+      # defaultEditor -> lvim
+      variables = {
+        EDITOR = lvim;
+        VISUAL = lvim;
+      };
+
+      sessionVariables = {
+        # fcitx5
+        XMODIFIERS = "@im=fcitx";
+        GLFW_IM_MODULE = "ibus";
+
+        # wayland
+        MOZ_ENABLE_WAYLAND = "1";
       };
     };
+  };
 }

@@ -1,20 +1,29 @@
 {
-  flake.nixosModules."intel" =
-    {
-      pkgs,
-      ...
-    }:
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-    {
-      hardware.graphics = {
-        enable = true;
-        enable32Bit = true;
+{
+  options = {
+    modules.core.intel.enable = lib.mkEnableOption "intel cpu";
+  };
 
-        extraPackages = with pkgs; [
-          intel-media-driver
-          intel-compute-runtime
-          vpl-gpu-rt
-        ];
-      };
+  config = lib.mkIf config.modules.core.intel.enable {
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+
+      extraPackages = with pkgs; [
+        intel-media-driver
+        intel-compute-runtime
+        vpl-gpu-rt
+      ];
     };
+
+    environment.sessionVariables = {
+      LIBVA_DRIVER_NAME = "iHD";
+    };
+  };
 }

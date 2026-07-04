@@ -1,10 +1,24 @@
 {
-  flake.nixosModules."nh" = {
+  lib,
+  config,
+  ...
+}:
+
+{
+  options = {
+    modules.core.nh.enable = lib.mkEnableOption "nh - nix cli helper";
+  };
+
+  config = lib.mkIf config.modules.core.nh.enable {
     programs.nh = {
       enable = true;
 
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 7d --keep 3";
+      clean = {
+        enable = true;
+
+        dates = "weekly";
+        extraArgs = "--keep 3";
+      };
     };
   };
 }

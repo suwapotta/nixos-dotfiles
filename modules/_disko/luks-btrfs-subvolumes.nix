@@ -1,4 +1,5 @@
-# WARN: Check disk name before proceed
+# LUKS BTRFS Subvolumes
+
 {
   disko.devices = {
     disk = {

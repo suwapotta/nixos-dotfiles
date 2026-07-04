@@ -1,22 +1,25 @@
 {
-  flake.nixosModules."fonts" =
-    {
-      pkgs,
-      ...
-    }:
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-    {
-      fonts = {
-        enableDefaultPackages = true;
-        packages = with pkgs; [
-          nerd-fonts.jetbrains-mono
-          nerd-fonts.symbols-only
+{
+  options = {
+    modules.core.fonts.enable = lib.mkEnableOption "fonts list";
+  };
 
-          work-sans
+  config = lib.mkIf config.modules.core.fonts.enable {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.symbols-only
 
-          noto-fonts-cjk-sans
-          noto-fonts-color-emoji
-        ];
-      };
-    };
+      work-sans
+
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+    ];
+  };
 }
