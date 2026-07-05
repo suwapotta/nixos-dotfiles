@@ -1,5 +1,15 @@
 {
-  flake.homeModules."fzf" = {
+  lib,
+  config,
+  ...
+}:
+
+{
+  options = {
+    modules.user.cli.fzf.enable = lib.mkEnableOption "fzf - fuzzy finder";
+  };
+
+  config = lib.mkIf config.modules.user.cli.fzf.enable {
     programs.fzf = {
       enable = true;
       enableFishIntegration = true;

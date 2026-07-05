@@ -1,277 +1,283 @@
 {
-  flake.homeModules."noctalia-v5" =
-    {
-      inputs,
-      ...
-    }:
+  lib,
+  config,
+  inputs,
+  ...
+}:
 
-    {
-      imports = [
-        inputs.noctalia.homeModules.default
-      ];
+{
+  options = {
+    modules.user.desktop.noctalia-v5.enable =
+      lib.mkEnableOption "noctalia-shell rewritten in C++/OpenCL";
+  };
 
-      programs.noctalia = {
-        enable = true;
-        # settings = fromTOML (builtins.readFile ../../../config/noctalia/noctalia-config.toml);
+  config = lib.mkIf config.modules.user.desktop.noctalia-v5.enable {
+    imports = [
+      inputs.noctalia.homeModules.default
+    ];
 
-        settings = {
-          backdrop.enabled = true;
+    programs.noctalia = {
+      enable = true;
+      # settings = fromTOML (builtins.readFile ../../../config/noctalia/noctalia-config.toml);
 
-          bar = {
-            "default" = {
-              contact_shadow = true;
+      settings = {
+        backdrop.enabled = true;
 
-              center = [ "workspaces" ];
+        bar = {
+          "default" = {
+            contact_shadow = true;
 
-              end = [
-                "tray"
-                "network"
-                "bluetooth"
-                "input_volume"
-                "output_volume"
-                "battery"
-                "brightness"
-                "control-center"
-              ];
+            center = [ "workspaces" ];
 
-              start = [
-                "launcher"
-                "clock"
-                "sysmon"
-                "temp"
-                "ram"
-                "cpu"
-                "media"
-              ];
-            };
-          };
-
-          brightness = {
-            minimum_brightness = 0.01;
-          };
-
-          calendar = {
-            enabled = true;
-            refresh_minutes = 240;
-
-            account = {
-              "personal_google" = {
-                name = "sv_cal";
-                type = "google";
-              };
-            };
-          };
-
-          desktop_widgets.enabled = false;
-
-          dock = {
-            enabled = true;
-
-            active_monitor_only = true;
-            cross_axis_padding = 6;
-            icon_size = 35;
-            item_spacing = 5;
-            launcher_icon = "list-search";
-            launcher_position = "start";
-            main_axis_padding = 12;
-            margin_edge = 12;
-          };
-
-          keybinds = {
-            down = [
-              "Ctrl+j"
-              "Ctrl+n"
+            end = [
+              "tray"
+              "network"
+              "bluetooth"
+              "input_volume"
+              "output_volume"
+              "battery"
+              "brightness"
+              "control-center"
             ];
-            left = [ "Ctrl+h" ];
-            right = [ "Ctrl+l" ];
-            up = [
-              "Ctrl+k"
-              "Ctrl+p"
-            ];
-            validate = [
-              "Ctrl+y"
-              "Return"
+
+            start = [
+              "launcher"
+              "clock"
+              "sysmon"
+              "temp"
+              "ram"
+              "cpu"
+              "media"
             ];
           };
+        };
 
-          location.address = "Ho Chi Minh City";
+        brightness = {
+          minimum_brightness = 0.01;
+        };
 
-          lockscreen_widgets = {
-            schema_version = 2;
+        calendar = {
+          enabled = true;
+          refresh_minutes = 240;
 
-            grid = {
-              cell_size = 16;
-              major_interval = 4;
-              visible = true;
-            };
-
-            widget = {
-              "lockscreen-login-box@eDP-1" = {
-                type = "login_box";
-                box_height = 0;
-                box_width = 0;
-                cx = 960;
-                cy = 540;
-                output = "eDP-1";
-                rotation = 0;
-
-                settings = {
-                  background_color = "surface_variant";
-                  background_opacity = 0.88;
-                  background_radius = 12;
-                  input_opacity = 1;
-                  input_radius = 6;
-                  show_login_button = true;
-                };
-
-              };
-            };
-
-            widget_order = [ "lockscreen-login-box@eDP-1" ];
-          };
-
-          osd.kinds.media = false;
-
-          plugins = {
-            enabled = [ ];
-            source = [
-              {
-                kind = "git";
-                location = "https://github.com/noctalia-dev/community-plugins";
-                name = "community";
-              }
-              {
-                kind = "git";
-                location = "https://github.com/noctalia-dev/official-plugins";
-                name = "official";
-              }
-            ];
-          };
-
-          shell = {
-            animation = {
-              speed = 0.75;
-            };
-
-            avatar_path = ../../../images/pfp/youmu.png;
-            corner_radius_scale = 1.75;
-            font_family = "Work Sans SemiBold";
-
-            panel = {
-              transparency_mode = "soft";
-              open_near_click_control_center = true;
-              session_placement = "centered";
-            };
-
-            polkit_agent = true;
-
-            screen_corners.enabled = true;
-            screen_time_enabled = true;
-
-            session = {
-              actions = [
-                {
-                  action = "lock";
-                  enabled = true;
-                  shortcut = "1";
-                  variant = "primary";
-                }
-                {
-                  action = "lock_and_suspend";
-                  enabled = true;
-                  shortcut = "2";
-                  variant = "primary";
-                }
-                {
-                  action = "logout";
-                  enabled = true;
-                  shortcut = "3";
-                  variant = "secondary";
-                }
-                {
-                  action = "reboot";
-                  enabled = true;
-                  shortcut = "4";
-                  variant = "destructive";
-                }
-                {
-                  action = "shutdown";
-                  enabled = true;
-                  shortcut = "5";
-                  variant = "destructive";
-                }
-              ];
-            };
-
-            settings_show_advanced = true;
-          };
-
-          theme = {
-            builtin = "Catppuccin";
-            source = "builtin";
-            templates = {
-              builtin_ids = [
-                "gtk3"
-                "gtk4"
-                "niri"
-                "qt"
-              ];
-              community_ids = [ "zen-browser" ];
+          account = {
+            "personal_google" = {
+              name = "sv_cal";
+              type = "google";
             };
           };
+        };
 
-          wallpaper = {
-            directory = ../../../images/wallpapers;
-            default.path = ../../../images/wallpapers/firewatch.png;
-            last.path = ../../../images/wallpapers/sunsetLandscape.jpg;
+        desktop_widgets.enabled = false;
 
-            transition_on_startup = true;
+        dock = {
+          enabled = true;
+
+          active_monitor_only = true;
+          cross_axis_padding = 6;
+          icon_size = 35;
+          item_spacing = 5;
+          launcher_icon = "list-search";
+          launcher_position = "start";
+          main_axis_padding = 12;
+          margin_edge = 12;
+        };
+
+        keybinds = {
+          down = [
+            "Ctrl+j"
+            "Ctrl+n"
+          ];
+          left = [ "Ctrl+h" ];
+          right = [ "Ctrl+l" ];
+          up = [
+            "Ctrl+k"
+            "Ctrl+p"
+          ];
+          validate = [
+            "Ctrl+y"
+            "Return"
+          ];
+        };
+
+        location.address = "Ho Chi Minh City";
+
+        lockscreen_widgets = {
+          schema_version = 2;
+
+          grid = {
+            cell_size = 16;
+            major_interval = 4;
+            visible = true;
           };
 
           widget = {
-            control-center = {
-              custom_image = ../../../images/logos/nixos-flake.png;
-            };
-            cpu = {
-              show_label = false;
-            };
+            "lockscreen-login-box@eDP-1" = {
+              type = "login_box";
+              box_height = 0;
+              box_width = 0;
+              cx = 960;
+              cy = 540;
+              output = "eDP-1";
+              rotation = 0;
 
-            launcher = {
-              custom_image = ../../../images/icons/niri.svg;
-            };
+              settings = {
+                background_color = "surface_variant";
+                background_opacity = 0.88;
+                background_radius = 12;
+                input_opacity = 1;
+                input_radius = 6;
+                show_login_button = true;
+              };
 
-            media = {
-              min_length = 0;
-              title_scroll = "on_hover";
             };
+          };
 
-            network = {
-              show_label = false;
-            };
+          widget_order = [ "lockscreen-login-box@eDP-1" ];
+        };
 
-            ram = {
-              show_label = false;
-            };
+        osd.kinds.media = false;
 
-            sysmon = {
-              show_label = false;
-              stat = "disk_pct";
-            };
+        plugins = {
+          enabled = [ ];
+          source = [
+            {
+              kind = "git";
+              location = "https://github.com/noctalia-dev/community-plugins";
+              name = "community";
+            }
+            {
+              kind = "git";
+              location = "https://github.com/noctalia-dev/official-plugins";
+              name = "official";
+            }
+          ];
+        };
 
-            temp = {
-              show_label = false;
-            };
+        shell = {
+          animation = {
+            speed = 0.75;
+          };
 
-            tray = {
-              drawer = true;
-              detached_panel = false;
-            };
+          avatar_path = ../../../images/pfp/youmu.png;
+          corner_radius_scale = 1.75;
+          font_family = "Work Sans SemiBold";
 
-            workspaces = {
-              capsule_radius = 8;
-            };
+          panel = {
+            transparency_mode = "soft";
+            open_near_click_control_center = true;
+            session_placement = "centered";
+          };
+
+          polkit_agent = true;
+
+          screen_corners.enabled = true;
+          screen_time_enabled = true;
+
+          session = {
+            actions = [
+              {
+                action = "lock";
+                enabled = true;
+                shortcut = "1";
+                variant = "primary";
+              }
+              {
+                action = "lock_and_suspend";
+                enabled = true;
+                shortcut = "2";
+                variant = "primary";
+              }
+              {
+                action = "logout";
+                enabled = true;
+                shortcut = "3";
+                variant = "secondary";
+              }
+              {
+                action = "reboot";
+                enabled = true;
+                shortcut = "4";
+                variant = "destructive";
+              }
+              {
+                action = "shutdown";
+                enabled = true;
+                shortcut = "5";
+                variant = "destructive";
+              }
+            ];
+          };
+
+          settings_show_advanced = true;
+        };
+
+        theme = {
+          builtin = "Catppuccin";
+          source = "builtin";
+          templates = {
+            builtin_ids = [
+              "gtk3"
+              "gtk4"
+              "niri"
+              "qt"
+            ];
+            community_ids = [ "zen-browser" ];
+          };
+        };
+
+        wallpaper = {
+          directory = ../../../images/wallpapers;
+          default.path = ../../../images/wallpapers/firewatch.png;
+          last.path = ../../../images/wallpapers/sunsetLandscape.jpg;
+
+          transition_on_startup = true;
+        };
+
+        widget = {
+          control-center = {
+            custom_image = ../../../images/logos/nixos-flake.png;
+          };
+          cpu = {
+            show_label = false;
+          };
+
+          launcher = {
+            custom_image = ../../../images/icons/niri.svg;
+          };
+
+          media = {
+            min_length = 0;
+            title_scroll = "on_hover";
+          };
+
+          network = {
+            show_label = false;
+          };
+
+          ram = {
+            show_label = false;
+          };
+
+          sysmon = {
+            show_label = false;
+            stat = "disk_pct";
+          };
+
+          temp = {
+            show_label = false;
+          };
+
+          tray = {
+            drawer = true;
+            detached_panel = false;
+          };
+
+          workspaces = {
+            capsule_radius = 8;
           };
         };
       };
     };
+  };
 }

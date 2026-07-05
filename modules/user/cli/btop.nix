@@ -1,7 +1,39 @@
 {
-  flake.homeModules."btop" = {
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+
+let
+  cfg = config.modules.user.cli.btop;
+in
+{
+  options.modules.user.cli.btop = {
+    enable = lib.mkEnableOption "btop - resource monitor";
+
+    gpu = lib.mkOption {
+      type = lib.types.enum [
+        "none"
+        "amd"
+        "nvidia"
+      ];
+      default = "none";
+      description = "enables specific GPU monitoring support";
+    };
+  };
+
+  config = lib.mkIf cfg.enable {
     programs.btop = {
       enable = true;
+
+      package =
+        if cfg.gpu == "amd" then
+          pkgs.btop-rocm
+        else if cfg.gpu == "nvidia" then
+          pkgs.btop-cuda
+        else
+          pkgs.btop;
 
       settings = {
         theme_background = false;

@@ -1,55 +1,60 @@
 {
-  flake.homeModules."neovim" =
-    {
-      pkgs,
-      ...
-    }:
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-    {
-      home.packages = with pkgs; [
-        # Core
-        neovim
+{
+  options = {
+    modules.user.editors.neovim.enable = lib.mkEnableOption "neovim - better vim";
+  };
 
-        # Dependencies
-        (python314.withPackages (qs: with qs; [ pynvim ]))
-        # chafa
-        imagemagick
-        sqlite
-        trash-cli
-        tree-sitter
-        xdg-utils
+  config = lib.mkIf config.modules.user.editors.neovim.enable {
+    home.packages = with pkgs; [
+      # Core
+      neovim
 
-        # LSPs/Formatters/Linters
-        ## Lua
-        lua-language-server
-        stylua
+      # Dependencies
+      (python314.withPackages (qs: with qs; [ pynvim ]))
+      # chafa
+      imagemagick
+      sqlite
+      trash-cli
+      tree-sitter
+      xdg-utils
 
-        ## Nix
-        nixd
-        nixfmt
-        statix
+      # LSPs/Formatters/Linters
+      ## Lua
+      lua-language-server
+      stylua
 
-        ## Bash
-        bash-language-server
-        bashdb
-        shellcheck
-        shfmt
+      ## Nix
+      nixd
+      nixfmt
+      statix
 
-        ## Markdown
-        markdown-toc
-        markdownlint-cli2
-        marksman
-        mermaid-cli
-        prettier
+      ## Bash
+      bash-language-server
+      bashdb
+      shellcheck
+      shfmt
 
-        ## Just
-        just-lsp
+      ## Markdown
+      markdown-toc
+      markdownlint-cli2
+      marksman
+      mermaid-cli
+      prettier
 
-        ## Others (e.g., yaml, toml, etc.)
-        codespell
-        taplo
-        yaml-language-server
-        vscode-langservers-extracted
-      ];
-    };
+      ## Just
+      just-lsp
+
+      ## Others (e.g., yaml, toml, etc.)
+      codespell
+      taplo
+      yaml-language-server
+      vscode-langservers-extracted
+    ];
+  };
 }

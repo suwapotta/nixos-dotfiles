@@ -1,44 +1,49 @@
 {
-  flake.homeModules."gtk" =
-    {
-      pkgs,
-      ...
-    }:
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-    {
-      gtk = {
-        enable = true;
+{
+  options = {
+    modules.user.desktop.gtk.enable = lib.mkEnableOption "gtk framework";
+  };
 
-        theme = {
-          name = "adw-gtk3-dark";
-          package = pkgs.adw-gtk3;
-        };
+  config = lib.mkIf config.modules.user.desktop.gtk.enable {
+    gtk = {
+      enable = true;
 
-        iconTheme = {
-          name = "Adwaita";
-          package = pkgs.adwaita-icon-theme;
-        };
+      theme = {
+        name = "adw-gtk3-dark";
+        package = pkgs.adw-gtk3;
+      };
 
-        font = {
-          name = "Adwaita Sans";
-          size = 10;
-        };
+      iconTheme = {
+        name = "Adwaita";
+        package = pkgs.adwaita-icon-theme;
+      };
 
-        cursorTheme = {
-          name = "Bibata-Modern-Classic";
-          size = 24;
-        };
+      font = {
+        name = "Adwaita Sans";
+        size = 10;
+      };
 
-        gtk3.extraConfig = {
+      cursorTheme = {
+        name = "Bibata-Modern-Classic";
+        size = 24;
+      };
+
+      gtk3.extraConfig = {
+        gtk-application-prefer-dark-theme = 1;
+      };
+
+      gtk4 = {
+        theme = null;
+        extraConfig = {
           gtk-application-prefer-dark-theme = 1;
-        };
-
-        gtk4 = {
-          theme = null;
-          extraConfig = {
-            gtk-application-prefer-dark-theme = 1;
-          };
         };
       };
     };
+  };
 }

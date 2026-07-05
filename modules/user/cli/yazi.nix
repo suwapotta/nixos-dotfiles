@@ -1,5 +1,15 @@
 {
-  flake.homeModules."yazi" = {
+  lib,
+  config,
+  ...
+}:
+
+{
+  options = {
+    modules.user.cli.yazi.enable = lib.mkEnableOption "yazi - tui file manager";
+  };
+
+  config = lib.mkIf config.modules.user.cli.yazi.enable {
     programs.yazi = {
       enable = true;
 

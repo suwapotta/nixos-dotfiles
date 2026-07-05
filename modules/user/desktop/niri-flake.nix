@@ -1,34 +1,59 @@
 {
-  flake.homeModules."niri-flake" =
-    {
-      inputs,
-      pkgs,
-      ...
-    }:
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
-    {
-      imports = [ inputs.niri-flake.homeModules."niri" ];
+let
+  cfg = config.modules.user.desktop.niri-flake;
+in
+{
+  options.modules.user.desktop.niri-flake = {
+    enable = lib.mkEnableOption "niri window manager";
 
-      home = {
-        sessionVariables = {
-          NIXOS_OZONE_WL = 1;
-          # _JAVA_AWT_WM_NONREPARENTING = 1;
-        };
-
-        packages = with pkgs; [
-          nautilus
-          xwayland-satellite
-          wl-clipboard
-          libsecret
-        ];
-      };
-
-      programs.niri = {
-        enable = true;
-
-        # package = pkgs.niri;
-        # package = pkgs.niri-stable;
-        package = inputs.niri-flake.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
-      };
+    release = lib.mkOption {
+      type = lib.types.enum [
+        "nixpkgs"
+        "stable"
+        "unstable"
+      ];
+      default = "unstable";
+      description = "version/channel of Niri to install";
     };
+  };
+
+  config = lib.mkIf cfg.enable {
+    imports = [
+      inputs.niri-flake.homeModules."niri"
+    ];
+
+    home = {
+      sessionVariables = {
+        NIXOS_OZONE_WL = 1;
+        # _JAVA_AWT_WM_NONREPARENTING = 1;
+      };
+
+      packages = with pkgs; [
+        nautilus
+        xwayland-satellite
+        wl-clipboard
+        libsecret
+      ];
+    };
+
+    programs.niri = {
+      enable = true;
+
+      package =
+        {
+          "nixpkgs" = pkgs.niri;
+          "stable" = inputs.niri-flake.packages.${pkgs.stdenv.hostPlatform.system}.niri-stable;
+          "unstable" = inputs.niri-flake.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+        }
+        .${cfg.release};
+
+    };
+  };
 }

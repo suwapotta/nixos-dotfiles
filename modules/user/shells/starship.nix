@@ -1,5 +1,15 @@
 {
-  flake.homeModules."starship" = {
+  lib,
+  config,
+  ...
+}:
+
+{
+  options = {
+    modules.user.shells.starship.enable = lib.mkEnableOption "starship - customizable shell prompt";
+  };
+
+  config = lib.mkIf config.modules.user.shells.starship.enable {
     programs.starship = {
       enable = true;
       enableTransience = true;

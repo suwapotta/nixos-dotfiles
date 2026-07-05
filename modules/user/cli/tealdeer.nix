@@ -1,5 +1,15 @@
 {
-  flake.homeModules."tealdeer" = {
+  lib,
+  config,
+  ...
+}:
+
+{
+  options = {
+    modules.user.cli.tealdeer.enable = lib.mkEnableOption "tealdeer - local tldr pages";
+  };
+
+  config = lib.mkIf config.modules.user.cli.tealdeer.enable {
     programs.tealdeer = {
       enable = true;
 

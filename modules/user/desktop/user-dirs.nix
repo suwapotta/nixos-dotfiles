@@ -1,38 +1,42 @@
 {
-  flake.homeModules."user-dirs" =
-    {
-      config,
-      ...
-    }:
+  lib,
+  config,
+  ...
+}:
 
-    with config.home;
-    let
-      folders = {
-        desktop = "Desktop";
-        documents = "Documents";
-        download = "Downloads";
-        music = "Music";
-        pictures = "Pictures";
-        projects = "Projects";
-        publicShare = "Public";
-        templates = "Templates";
-        videos = "Videos";
+with config.home;
+let
+  folders = {
+    desktop = "Desktop";
+    documents = "Documents";
+    download = "Downloads";
+    music = "Music";
+    pictures = "Pictures";
+    projects = "Projects";
+    publicShare = "Public";
+    templates = "Templates";
+    videos = "Videos";
+  };
+
+  mkDir = name: "${homeDirectory}/${name}";
+in
+{
+  options = {
+    modules.user.desktop.user-dires.enable =
+      lib.mkEnableOption "auto-create default dirs in /home/$USER";
+  };
+
+  config = lib.mkIf config.modules.user.desktop.user-dires.enable {
+    xdg.userDirs = {
+      enable = true;
+      createDirectories = true;
+      setSessionVariables = false;
+
+      extraConfig = {
+        PRIVATE = mkDir "Private";
+        VIRTUALISATION = mkDir "Virtualisation";
       };
-
-      mkDir = name: "${homeDirectory}/${name}";
-    in
-    {
-      xdg.userDirs = {
-        enable = true;
-        createDirectories = true;
-        setSessionVariables = false;
-
-        extraConfig = {
-          PRIVATE = mkDir "Private";
-          VIRTUALISATION = mkDir "Virtualisation";
-          # WORKSPACE = mkDir "Workspace";
-        };
-      }
-      // builtins.mapAttrs (name: folder: "${homeDirectory}/${folder}") folders;
-    };
+    }
+    // builtins.mapAttrs (name: folder: "${homeDirectory}/${folder}") folders;
+  };
 }
