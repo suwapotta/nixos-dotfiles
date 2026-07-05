@@ -1,64 +1,89 @@
 {
-  flake.nixosModules."gaming" =
-    {
-      lib,
-      pkgs,
-      ...
-    }:
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-    {
-      specialisation = {
-        "Gaming".configuration = {
-          system.nixos.tags = [ "Gaming" ];
+let
+  cfg = config.modules.specialisation.gaming;
+in
+{
+  options.modules.specialisation.gaming = {
+    enable = lib.mkEnableOption "gaming boot specialisation";
 
-          boot.kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+    platform = lib.mkOption {
+      type = lib.types.enum [
+        "desktop"
+        "laptop"
+      ];
+      description = "host platform target tweaks";
+    };
+  };
 
-          # Proton-GE performance boost
-          boot.kernelModules = [ "ntsync" ];
-          services.udev.extraRules = ''
-            KERNEL=="ntsync", MODE="0666"
-          '';
+  config = lib.mkIf cfg.enable {
+    specialisation."Gaming".configuration = lib.mkMerge [
+      # ── Global settings ───────────────────────────────────────────────────────────
+      {
+        system.nixos.tags = [ "Gaming" ];
 
-          hardware.nvidia = {
-            prime = {
-              sync.enable = lib.mkForce true;
+        # Proton-GE performance boost
+        boot.kernelModules = [ "ntsync" ];
+        services.udev.extraRules = ''
+          KERNEL=="ntsync", MODE="0666"
+        '';
 
-              offload = {
-                enable = lib.mkForce false;
-                enableOffloadCmd = lib.mkForce false;
-              };
-            };
+        # environment.systemPackages = with pkgs; [ mangohud ];
 
-            powerManagement.finegrained = lib.mkForce false;
+        # Steam + ProtonGE
+        nixpkgs.config.allowUnfreePredicate =
+          pkg:
+          builtins.elem (lib.getName pkg) [
+            "steam"
+            "steam-unwrapped"
+          ];
+        programs = {
+          steam = {
+            enable = true;
+
+            gamescopeSession.enable = true;
+            extraCompatPackages = with pkgs; [ proton-ge-bin ];
           };
 
-          environment = {
-            sessionVariables = {
-              LIBVA_DRIVER_NAME = lib.mkForce "nvidia";
-              GBM_BACKEND = "nvidia-drm";
-              __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-            };
+          gamemode.enable = true;
+        };
+      }
 
-            # systemPackages = with pkgs; [ mangohud ];
+      # ── Desktop host (Full AMD) ───────────────────────────────────────────────────
+      (lib.mkIf (cfg.platform == "desktop") {
+        boot.kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4;
+      })
+
+      # ── Laptop host (iGPU + Nvidia) ───────────────────────────────────────────────
+      (lib.mkIf (cfg.platform == "laptop") {
+        boot.kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+
+        hardware.nvidia = {
+          prime = {
+            sync.enable = lib.mkForce true;
+
+            offload = {
+              enable = lib.mkForce false;
+              enableOffloadCmd = lib.mkForce false;
+            };
           };
 
-          nixpkgs.config.allowUnfreePredicate =
-            pkg:
-            builtins.elem (lib.getName pkg) [
-              "steam"
-              "steam-unwrapped"
-            ];
-          programs = {
-            steam = {
-              enable = true;
+          powerManagement.finegrained = lib.mkForce false;
+        };
 
-              gamescopeSession.enable = true;
-              extraCompatPackages = with pkgs; [ proton-ge-bin ];
-            };
-
-            gamemode.enable = true;
+        environment = {
+          sessionVariables = {
+            LIBVA_DRIVER_NAME = lib.mkForce "nvidia";
+            GBM_BACKEND = "nvidia-drm";
+            __GLX_VENDOR_LIBRARY_NAME = "nvidia";
           };
         };
-      };
-    };
+      })
+    ];
+  };
 }

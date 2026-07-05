@@ -4,6 +4,11 @@
 }:
 
 {
+  imports = [
+    # ── Modules ───────────────────────────────────────────────────────────────────
+    ../../modules/user/user-default.nix
+  ];
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
@@ -14,11 +19,6 @@
       stateVersion = "25.11";
       username = "suwapotta";
       homeDirectory = "/home/suwapotta";
-
-      imports = [
-        # ── Modules ───────────────────────────────────────────────────────────────────
-        ../../modules/user/user-default.nix
-      ];
     };
   };
 }
