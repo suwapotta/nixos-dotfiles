@@ -1,71 +1,76 @@
 {
-  flake.homeModules."anki" =
-    {
-      pkgs,
-      ...
-    }:
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-    {
-      programs.anki = {
-        enable = true;
-        addons = with pkgs.ankiAddons; [
-          anki-connect
-          review-heatmap
-          ajt-card-management
+{
+  options = {
+    modules.users.apps.anki.enable = lib.mkEnableOption "anki - spaced repetition flashcard program";
+  };
 
-          # NOTE: When add-on is not available in nixpkgs
-          # (pkgs.anki-utils.buildAnkiAddon (finalAttrs: {
-          #   pname = "recolor";
-          #   version = "3.1";
-          #   src = pkgs.fetchFromGitHub {
-          #     owner = "AnKing-VIP";
-          #     repo = "AnkiRecolor";
-          #     rev = finalAttrs.version;
-          #     sparseCheckout = [ "src/addon" ];
-          #     hash = "sha256-28DJq2l9DP8O6OsbNQCZ0pm4S6CQ3Yz0Vfvlj+iQw8Y=";
-          #   };
-          #   sourceRoot = "${finalAttrs.src.name}/src/addon";
-          # }))
-        ];
+  config = lib.mkIf config.modules.users.apps.anki.enable {
+    programs.anki = {
+      enable = true;
+      addons = with pkgs.ankiAddons; [
+        anki-connect
+        review-heatmap
+        ajt-card-management
 
-        hideTopBar = true;
-        # hideBottomBar = true;
-        answerKeys = [
-          {
-            ease = 1;
-            key = "h";
-          }
-          {
-            ease = 2;
-            key = "j";
-          }
-          {
-            ease = 3;
-            key = "k";
-          }
-          {
-            ease = 4;
-            key = "l";
-          }
-        ];
+        # NOTE: When add-on is not available in nixpkgs
+        # (pkgs.anki-utils.buildAnkiAddon (finalAttrs: {
+        #   pname = "recolor";
+        #   version = "3.1";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "AnKing-VIP";
+        #     repo = "AnkiRecolor";
+        #     rev = finalAttrs.version;
+        #     sparseCheckout = [ "src/addon" ];
+        #     hash = "sha256-28DJq2l9DP8O6OsbNQCZ0pm4S6CQ3Yz0Vfvlj+iQw8Y=";
+        #   };
+        #   sourceRoot = "${finalAttrs.src.name}/src/addon";
+        # }))
+      ];
 
-        profiles."user-1" = {
-          default = true;
+      hideTopBar = true;
+      # hideBottomBar = true;
+      answerKeys = [
+        {
+          ease = 1;
+          key = "h";
+        }
+        {
+          ease = 2;
+          key = "j";
+        }
+        {
+          ease = 3;
+          key = "k";
+        }
+        {
+          ease = 4;
+          key = "l";
+        }
+      ];
 
-          sync = {
-            username = "nguyenducthientan09@gmail.com";
-            # HACK: -> path to key file
-            # - Navigate to the sync settings page. (Tools > Preferences > Syncing)
-            # - Log in to your AnkiWeb account.
-            # - Select "Yes" to the prompt about saving preferences and syncing.
-            # - A Home Manager warning prompt will show. Select "Show details...".
-            # - Get your sync key from the message: "syncKey changed from \`None\` to \`<YOUR SYNC KEY WILL BE HERE>\`"
-            keyFile = "/home/suwapotta/Private/.anki_key";
+      profiles."user-1" = {
+        default = true;
 
-            autoSync = true;
-            syncMedia = true;
-          };
+        sync = {
+          username = "nguyenducthientan09@gmail.com";
+          # HACK: -> path to key file
+          # - Navigate to the sync settings page. (Tools > Preferences > Syncing)
+          # - Log in to your AnkiWeb account.
+          # - Select "Yes" to the prompt about saving preferences and syncing.
+          # - A Home Manager warning prompt will show. Select "Show details...".
+          # - Get your sync key from the message: "syncKey changed from \`None\` to \`<YOUR SYNC KEY WILL BE HERE>\`"
+          keyFile = "/home/suwapotta/Private/.anki_key";
+
+          autoSync = true;
+          syncMedia = true;
         };
       };
     };
+  };
 }

@@ -1,18 +1,22 @@
 {
-  flake.homeModules."libre-office" =
-    {
-      pkgs,
-      ...
-    }:
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-    {
-      home.packages = with pkgs; [
-        # Base Libre-office
-        libreoffice
+{
+  options = {
+    modules.users.apps.libre-office.enable = lib.mkEnableOption "libre office - productivity suite";
+  };
 
-        # NOTE: Optional spellcheck
-        # hunspell
-        # hunspellDicts.uk_UA
-      ];
-    };
+  config = lib.mkIf config.modules.users.apps.libre-office.enable {
+    home.packages = with pkgs; [
+      libreoffice
+
+      # NOTE: Optional spellcheck
+      # hunspell
+      # hunspellDicts.en-us
+    ];
+  };
 }

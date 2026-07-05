@@ -47,12 +47,12 @@ in
 
       # ── GUI ───────────────────────────────────────────────────────────────────────
       (lib.mkIf cfg.features.gui {
-        programs.virt-manager = true;
+        programs.virt-manager.enable = true;
       })
 
       # ── Windows ───────────────────────────────────────────────────────────────────
       (lib.mkIf cfg.features.windowsSupport {
-        virtualisation.libvirtd.qemu.swtpm = true;
+        virtualisation.libvirtd.qemu.swtpm.enable = true;
       })
 
       # ── USB ───────────────────────────────────────────────────────────────────────
