@@ -14,7 +14,6 @@ C_NONE := "\\033[0m"
 
 # Commands macro
 NOTIFY := "&& just notify 0 || just notify $?"
-COMMIT := "&& just notify 0 && just commit || just notify $?"
 
 default:
     just --list
@@ -110,7 +109,7 @@ notify exit_code="0" context="system":
     fi
     exit 0
 
-commit host=FLAKE_HOST: git
+commit host=FLAKE_HOST:
     #!/usr/bin/env bash
     set -euo pipefail
     GEN=$(readlink /nix/var/nix/profiles/system | cut -d "-" -f 2)
@@ -136,11 +135,13 @@ specialisation spec_name="Virtualisation" host=FLAKE_HOST: pkill git
 
 switch host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}  󰟁 SWITCH  {{ C_NONE }} NixOS#{{ host }}\n"
-    nh os switch {{ justfile_directory() }} -H {{ host }} {{ COMMIT }}
+    nh os switch {{ justfile_directory() }} -H {{ host }} \
+      && just notify 0 && just commit {{ host }} || just notify $?
 
 boot host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}  󰜉 BOOT    {{ C_NONE }} NixOS#{{ host }}\n"
-    nh os boot {{ justfile_directory() }} -H {{ host }} {{ COMMIT }}
+    nh os boot {{ justfile_directory() }} -H {{ host }} \
+      && just notify 0 && just commit {{ host }} || just notify $?
 
 test host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}  󰙨 TEST    {{ C_NONE }} NixOS#{{ host }}\n"
@@ -152,7 +153,8 @@ dry host=FLAKE_HOST: pkill git
 
 legacy host=FLAKE_HOST: pkill git
     printf "{{ C_BLUE }}  󰟁 SWITCH  {{ C_NONE }} (L) NixOS#{{ host }}\n"
-    sudo nixos-rebuild switch --flake {{ justfile_directory() }} {{ COMMIT }}
+    sudo nixos-rebuild switch --flake {{ justfile_directory() }} \
+      && just notify 0 && just commit {{ host }} || just notify $?
 
 update host=FLAKE_HOST: pkill git
     #!/usr/bin/env bash
@@ -172,7 +174,7 @@ update host=FLAKE_HOST: pkill git
     fi
 
     just restart noctalia
-    just commit
+    just commit {{ host }}
 
 rollback gen="":
     #!/usr/bin/env bash
@@ -195,13 +197,13 @@ nuke:
     nh clean all --ask {{ NOTIFY }}
 
 # WARN: Recipes for installing NixOS on a new machine
-__format_and_mount path="/tmp/nixos-dotfiles":
-    echo "  DISKO   {{ path }}"
-    nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount {{ path }}
+__format_and_mount host:
+    echo "  DISKO   ."
+    nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ./hosts/{{ host }}/disk-config.nix
 
 __hardware_grab from to:
-    echo "  NIXGEN  {{ from }}"
-    nixos-generate-config --no-filesystems --root {{ from }}
+    echo "  NIXGEN  /mnt"
+    nixos-generate-config --no-filesystems --root /mnt
     echo "  HDWARE  {{ from }} -> {{ to }}"
     cp {{ from }}/hardware-configuration.nix {{ to }}
 

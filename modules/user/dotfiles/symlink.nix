@@ -10,7 +10,7 @@ let
   configs = [
     "lvim"
     "niri"
-    "nvim"
+    # "nvim"
   ];
 in
 {
