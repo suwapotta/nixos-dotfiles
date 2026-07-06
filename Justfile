@@ -201,19 +201,32 @@ __format_and_mount host:
     echo "  DISKO   ."
     nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount ./hosts/{{ host }}/disk-config.nix
 
-__hardware_grab from to:
+__hardware_grab from="/mnt/etc/nixos" to="./hosts/desktop/":
     echo "  NIXGEN  /mnt"
     nixos-generate-config --no-filesystems --root /mnt
     echo "  HDWARE  {{ from }} -> {{ to }}"
     cp {{ from }}/hardware-configuration.nix {{ to }}
 
-__install host:
+__install host user="suwapotta":
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo -n "Enter Anki key: "
+    read -r KEY_ANS # -s (no-echo)
+    echo
+    clear
+
+    mkdir -p /mnt/home/{{ user }}/Private
+    echo "  KEY     Anki"
+    echo "$KEY_ANS" > /mnt/home/{{ user }}/Private/.anki_key
     echo "  GIT     *"
     git add -A
     echo "  INSTALL NixOS#{{ host }}"
     nixos-install --flake .#{{ host }}
+    echo "  SUCCESS NixOS#{{ host }}"
+    echo "          --> Generation 1"
+    git commit -m "[ {{ host }} ] NixOS Generation 1" -m "Initial installation" &>/dev/null || true
 
-__password path="/mnt" user="suwapotta":
+__setup path="/mnt" user="suwapotta":
     echo "  PWRD    {{ user }}"
     nixos-enter --root {{ path }} -c "passwd {{ user }}"
 
@@ -223,3 +236,4 @@ __cp_dotfiles user="suwapotta":
     cp -a {{ justfile_directory() }} /mnt/home/{{ user }}/nixos-dotfiles
     echo "  CHOWN   root -> {{ user }}"
     nixos-enter --root /mnt -c "chown -R {{ user }}:users /home/{{ user }}/nixos-dotfiles"
+    nixos-enter --root /mnt -c "chown -R {{ user }}:users /home/{{ user }}/Private/.anki_key"
