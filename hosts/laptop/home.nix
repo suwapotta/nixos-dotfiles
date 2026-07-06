@@ -48,7 +48,6 @@
           fcitx5.enable = true;
           gtk.enable = true;
           niri-flake.enable = true;
-          noctalia-v4.enable = false;
           noctalia-v5.enable = true;
           qt.enable = true;
           user-dirs.enable = true;
