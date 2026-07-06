@@ -10,7 +10,7 @@
     modules.user.apps.anki.enable = lib.mkEnableOption "anki - spaced repetition flashcard program";
   };
 
-  config = lib.mkIf config.modules.users.apps.anki.enable {
+  config = lib.mkIf config.modules.user.apps.anki.enable {
     programs.anki = {
       enable = true;
       addons = with pkgs.ankiAddons; [

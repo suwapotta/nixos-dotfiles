@@ -110,11 +110,11 @@ notify exit_code="0" context="system":
     fi
     exit 0
 
-commit: git
+commit host=FLAKE_HOST: git
     #!/usr/bin/env bash
     set -euo pipefail
     GEN=$(readlink /nix/var/nix/profiles/system | cut -d "-" -f 2)
-    MESS="[ {{ FLAKE_HOST }} ] NixOS Generation $GEN"
+    MESS="[ {{ host }} ] NixOS Generation $GEN"
     DESC="Saved latest generation $GEN at $(date -u +%Y-%m-%d\ %H:%M:%S)."
 
     if git diff --quiet --cached; then
@@ -193,3 +193,31 @@ clean keep_num="3":
 nuke:
     printf "{{ C_RED }}   CLEAN   {{ C_NONE }} All\n"
     nh clean all --ask {{ NOTIFY }}
+
+# WARN: Recipes for installing NixOS on a new machine
+__format_and_mount path="/tmp/nixos-dotfiles":
+    echo "  DISKO   {{ path }}"
+    nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode destroy,format,mount {{ path }}
+
+__hardware_grab from to:
+    echo "  NIXGEN  {{ from }}"
+    nixos-generate-config --no-filesystems --root {{ from }}
+    echo "  HDWARE  {{ from }} -> {{ to }}"
+    cp {{ from }}/hardware-configuration.nix {{ to }}
+
+__install host:
+    echo "  GIT     *"
+    git add -A
+    echo "  INSTALL NixOS#{{ host }}"
+    nixos-install --flake .#{{ host }}
+
+__password path="/mnt" user="suwapotta":
+    echo "  PWRD    {{ user }}"
+    nixos-enter --root {{ path }} -c "passwd {{ user }}"
+
+__cp_dotfiles user="suwapotta":
+    echo "  COPY    . -> /mnt/home/{{ user }}/nixos-dotfiles"
+    mkdir -p /mnt/home/{{ user }}
+    cp -a {{ justfile_directory() }} /mnt/home/{{ user }}/nixos-dotfiles
+    echo "  CHOWN   root -> {{ user }}"
+    nixos-enter --root /mnt -c "chown -R {{ user }}:users /home/{{ user }}/nixos-dotfiles"

@@ -10,7 +10,7 @@
     modules.user.apps.libre-office.enable = lib.mkEnableOption "libre office - productivity suite";
   };
 
-  config = lib.mkIf config.modules.users.apps.libre-office.enable {
+  config = lib.mkIf config.modules.user.apps.libre-office.enable {
     home.packages = with pkgs; [
       libreoffice
 

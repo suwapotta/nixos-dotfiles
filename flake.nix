@@ -74,6 +74,6 @@
         }
       ) hosts;
 
-      templates = ./modules/flake-utils/templates.nix;
+      templates = import ./modules/flake-utils/templates.nix;
     };
 }

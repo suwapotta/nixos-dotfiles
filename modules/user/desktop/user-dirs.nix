@@ -26,7 +26,7 @@ in
       lib.mkEnableOption "auto-create default dirs in /home/$USER";
   };
 
-  config = lib.mkIf config.modules.user.desktop.user-dires.enable {
+  config = lib.mkIf config.modules.user.desktop.user-dirs.enable {
     xdg.userDirs = {
       enable = true;
       createDirectories = true;

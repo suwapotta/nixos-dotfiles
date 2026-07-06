@@ -15,7 +15,7 @@
 
       # Optional
       # zluda.enable = true;
-      # opencl.enable = true;
+      opencl.enable = true;
     };
 
     # Linux MSI Afterburner
