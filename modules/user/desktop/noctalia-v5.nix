@@ -229,8 +229,8 @@
 
         wallpaper = {
           directory = ../../../images/wallpapers;
-          default.path = ../../../images/wallpapers/firewatch.png;
-          last.path = ../../../images/wallpapers/sunsetLandscape.jpg;
+          default.path = ../../../images/wallpapers/sunsetLandscape.jpg;
+          last.path = ../../../images/wallpapers/firewatch.png;
 
           transition_on_startup = true;
         };
