@@ -16,8 +16,8 @@
       buildMachines = [
         {
           hostName = "192.168.1.201";
-          sshUser = "nix-builder";
-          sshKey = "/root/.ssh/id_ed25519";
+          sshUser = "remotebuilder";
+          sshKey = "/root/.ssh/remote_builder";
 
           systems = [ "x86_64-linux" ];
           protocol = "ssh-ng";

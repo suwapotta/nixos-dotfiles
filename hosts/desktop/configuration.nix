@@ -68,6 +68,7 @@
       polkit.enable = false;
       portals.enable = true;
       programs.enable = true;
+      remote-builder.enable = true;
       ryzen.enable = true;
       services.enable = true;
       systemd-boot.enable = true;
