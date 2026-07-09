@@ -41,6 +41,11 @@
           fastfetch.enable = true;
           fzf.enable = true;
           lazygit.enable = true;
+          ssh-agent = {
+            enable = true;
+            useTPM = false;
+            identityLifetimeSeconds = 8 * 60;
+          };
           ssh.enable = true;
           tealdeer.enable = true;
           tmux.enable = false;

@@ -10,8 +10,6 @@
   };
 
   config = lib.mkIf config.modules.core.openssh.enable {
-    programs.ssh.startAgent = true;
-
     services.openssh = {
       enable = true;
       openFirewall = true;

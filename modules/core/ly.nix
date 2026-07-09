@@ -26,6 +26,7 @@
           vi_mode = true;
           vi_default_mode = "normal";
 
+          session_log = null;
           show_tty = true;
 
           shell = false;
