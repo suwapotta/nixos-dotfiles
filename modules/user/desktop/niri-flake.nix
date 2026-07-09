@@ -53,7 +53,6 @@ in
           "unstable" = inputs.niri-flake.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
         }
         .${cfg.release};
-
     };
   };
 }

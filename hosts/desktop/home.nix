@@ -41,6 +41,7 @@
           fastfetch.enable = true;
           fzf.enable = true;
           lazygit.enable = true;
+          ssh.enable = true;
           tealdeer.enable = true;
           tmux.enable = false;
           yazi.enable = true;

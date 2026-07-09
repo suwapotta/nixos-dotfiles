@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 
@@ -10,21 +11,25 @@
   };
 
   config = lib.mkIf config.modules.core.ly.enable {
-    services.displayManager.ly = {
-      enable = true;
+    services.displayManager = {
+      ly = {
+        enable = true;
 
-      # NOTE: Docs: https://github.com/fairyglade/ly/blob/master/res/config.ini
-      settings = {
-        animation = "colormix";
+        # NOTE: Docs: https://github.com/fairyglade/ly/blob/master/res/config.ini
+        settings = {
+          animation = "colormix";
 
-        asterisk = "null";
-        clear_password = true;
+          asterisk = "*";
+          clear_password = true;
 
-        vi_mode = true;
-        vi_default_mode = "normal";
+          vi_mode = true;
+          vi_default_mode = "normal";
 
-        show_tty = true;
+          show_tty = true;
+        };
       };
+
+      sessionPackages = [ pkgs.niri ];
     };
   };
 }

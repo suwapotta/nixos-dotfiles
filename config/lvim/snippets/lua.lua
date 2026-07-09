@@ -1,31 +1,60 @@
 local ls = require("luasnip")
+local lse = require("luasnip.extras.fmt")
 local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
+local c = ls.choice_node
+local fmt = lse.fmt
 
 return {
-  s("luasnip", {
-    t({
-      'local ls = require("luasnip")',
-      "local s = ls.snippet",
-      "local t = ls.text_node",
-      "local i = ls.insert_node",
-      "",
-      "return {",
-      "  ",
-    }),
-    i(1, "snippet"),
-    t({
-      "",
-      "}",
-    }),
-  }),
+  s(
+    "luasnipcontext",
+    fmt(
+      [[
+    local ls = require("luasnip")
+    local lse = require("luasnip.extras.fmt")
+    local s = ls.snippet
+    local t = ls.text_node
+    local i = ls.insert_node
+    local fmt = lse.fmt
 
-  s("addsnippet", {
-    t('s("'),
-    i(1, "node_name"),
-    t({ '",', "\t" }),
-    i(2, "node_content"),
-    t({ "", ")" }),
-  }),
+    return {
+      <>
+    }
+    ]],
+      {
+        i(1),
+      },
+      { delimiters = "<>" }
+    )
+  ),
+
+  s(
+    "addsnippet",
+    fmt(
+      [=[
+      s(
+        "<>",
+        fmt(
+          [[
+          <>
+          ]],
+          {
+            <>
+          }<>
+        )
+      ),
+      ]=],
+      {
+        i(1, "trigger"),
+        i(2, "body"),
+        i(3, "nodes"),
+        c(4, {
+          t(""),
+          t(', { delimiters = "<>" }'),
+        }),
+      },
+      { delimiters = "<>" }
+    )
+  ),
 }

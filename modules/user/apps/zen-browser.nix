@@ -28,17 +28,22 @@ let
     };
 
   mkBookmark = name: url: { inherit name url; };
+
+  cfg = config.modules.user.apps.zen-browser;
 in
 {
   options = {
-    modules.user.apps.zen-browser.enable = lib.mkEnableOption "zen-browser with declarative options";
+    modules.user.apps.zen-browser = {
+      enable = lib.mkEnableOption "zen-browser with declarative options";
+      # features = lib.mk
+    };
   };
 
   imports = [
     inputs.zen-browser.homeModules.beta
   ];
 
-  config = lib.mkIf config.modules.user.apps.zen-browser.enable {
+  config = lib.mkIf cfg.enable {
     # Fix ``nixos-help`` command
     home.sessionVariables.BROWSER = "zen-beta";
 

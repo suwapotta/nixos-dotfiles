@@ -49,4 +49,16 @@ return {
       }),
     }, { delimiters = "<>" })
   ),
+
+  s(
+    "mkCfg",
+    fmt(
+      [[
+      cfg = config.modules.{};
+      ]],
+      {
+        i(1, "modulesName"),
+      }
+    )
+  ),
 }

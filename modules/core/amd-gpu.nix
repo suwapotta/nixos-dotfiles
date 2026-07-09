@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 
@@ -14,9 +15,13 @@
       initrd.enable = true;
 
       # Optional
-      # zluda.enable = true;
       opencl.enable = true;
+      # zluda.enable = true;
     };
+
+    environment.systemPackages = with pkgs.rocmPackages; [
+      amdsmi
+    ];
 
     # Linux MSI Afterburner
     services.lact.enable = true;

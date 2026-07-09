@@ -43,6 +43,7 @@
       bluetooth.enable = true;
       btrfs.enable = true;
       disabled.enable = true;
+      distributed-build.enable = true;
       experimental-features.enable = true;
       fonts.enable = true;
       git.enable = true;
@@ -60,6 +61,7 @@
       nh.enable = true;
       niri-cachix.enable = true;
       nvidia-hybrid.enable = true;
+      openssh.enable = false;
       polkit.enable = false;
       portals.enable = true;
       programs.enable = true;
@@ -68,7 +70,10 @@
       systemd-boot.enable = true;
       timezone.enable = true;
       touchpad.enable = true;
-      users.enable = true;
+      users = {
+        enable = true;
+        remoteBuilder = false;
+      };
       variables.enable = true;
       vm-variant.enable = true;
       zram.enable = true;

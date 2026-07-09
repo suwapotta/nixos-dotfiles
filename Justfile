@@ -6,12 +6,6 @@ set quiet
 # Systems information
 FLAKE_HOST := "desktop"
 
-# ANSI color codes
-C_RED := "\\033[1;31m"
-C_GREEN := "\\033[1;32m"
-C_BLUE := "\\033[1;34m"
-C_NONE := "\\033[0m"
-
 # Commands macro
 NOTIFY := "&& just notify 0 || just notify $?"
 
@@ -22,14 +16,14 @@ pkill app_name="zen-beta":
     #!/usr/bin/env bash
     set -euo pipefail
     if pgrep "{{ app_name }}" >/dev/null 2>&1; then
-      printf "{{ C_RED }}   PKILL?  {{ C_NONE }} {{ app_name }} [y/N]: "
+      printf "{{ RED }}   PKILL?  {{ NORMAL }} {{ app_name }} [y/N]: "
       read -r answer
 
       if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
         pkill {{ app_name }}
-        printf "{{ C_RED }}  󱒼 KILLED  {{ C_NONE }} {{ app_name }}\n"
+        printf "{{ RED }}  󱒼 KILLED  {{ NORMAL }} {{ app_name }}\n"
       else
-        printf "{{ C_BLUE }}  󰜺 SKIPPED {{ C_NONE }} {{ app_name }}\n"
+        printf "{{ BLUE }}  󰜺 SKIPPED {{ NORMAL }} {{ app_name }}\n"
       fi
     fi
 
@@ -37,16 +31,16 @@ restart app_name="noctalia":
     #!/usr/bin/env bash
     set -euo pipefail
     if pgrep "{{ app_name }}" >/dev/null 2>&1; then
-      printf "{{ C_RED }}   RESTART?{{ C_NONE }} {{ app_name }} [Y/n]: "
+      printf "{{ RED }}   RESTART?{{ NORMAL }} {{ app_name }} [Y/n]: "
       read -r answer
 
       if [[ "$answer" == "n" || "$answer" == "N" ]]; then
-        printf "{{ C_BLUE }}  󰜺 SKIPPED {{ C_NONE }} {{ app_name }}\n"
+        printf "{{ BLUE }}  󰜺 SKIPPED {{ NORMAL }} {{ app_name }}\n"
       else
-        printf "{{ C_RED }}  󱒼 KILLED  {{ C_NONE }} {{ app_name }}\n";
+        printf "{{ RED }}  󱒼 KILLED  {{ NORMAL }} {{ app_name }}\n";
         pkill "{{ app_name }}"
 
-        printf "{{ C_BLUE }}   RESTART {{ C_NONE }} {{ app_name }}\n"
+        printf "{{ BLUE }}   RESTART {{ NORMAL }} {{ app_name }}\n"
         {{ app_name }} >/dev/null 2>&1 & disown
 
         sleep 3
@@ -54,7 +48,7 @@ restart app_name="noctalia":
     fi
 
 git:
-    printf "{{ C_GREEN }}   GIT     {{ C_NONE }} *\n"
+    printf "{{ GREEN }}   GIT     {{ NORMAL }} *\n"
     git add -A
 
 notify exit_code="0" context="system":
@@ -84,7 +78,7 @@ notify exit_code="0" context="system":
 
     # Warning notification
     if [[ "{{ exit_code }}" -ne 0 ]]; then
-      printf "{{ C_RED }}   FAILED  {{ C_NONE }} Task\n" 
+      printf "{{ RED }}   FAILED  {{ NORMAL }} Task\n" 
       if IS_GUI_RUNNING; then
         nix run nixpkgs#libnotify -- \
           --transient \
@@ -98,7 +92,7 @@ notify exit_code="0" context="system":
     fi
 
     # Success notification
-    printf "{{ C_GREEN }}   SUCCESS {{ C_NONE }} Task\n"
+    printf "{{ GREEN }}   SUCCESS {{ NORMAL }} Task\n"
     if IS_GUI_RUNNING; then
       nix run nixpkgs#libnotify -- \
         --transient \
@@ -117,55 +111,55 @@ commit host=FLAKE_HOST:
     DESC="Saved latest generation $GEN at $(date -u +%Y-%m-%d\ %H:%M:%S)."
 
     if git diff --quiet --cached; then
-      printf "{{ C_BLUE }}   SKIPPED  {{ C_NONE }} Auto-commit\n"
+      printf "{{ BLUE }}   SKIPPED  {{ NORMAL }} Auto-commit\n"
       exit 0
     fi
 
     git commit -m "$MESS" -m "$DESC" &>/dev/null
-    printf "{{ C_GREEN }}   COMMIT  {{ C_NONE }} Latest Generation\n"
+    printf "{{ GREEN }}   COMMIT  {{ NORMAL }} Latest Generation\n"
 
 push:
-    printf "{{ C_BLUE }}   PUSH    {{ C_NONE }} Github\n"
+    printf "{{ BLUE }}   PUSH    {{ NORMAL }} Github\n"
     git push -v && just notify 0 push || just notify $? push
 
 # Virtualisation/Gaming
 specialisation spec_name="Virtualisation" host=FLAKE_HOST: pkill git
-    printf "{{ C_BLUE }}   SPECIAL {{ C_NONE }} NixOS#{{ host }}\n"
+    printf "{{ BLUE }}   SPECIAL {{ NORMAL }} NixOS#{{ host }}\n"
     nh os test {{ justfile_directory() }} --specialisation {{ spec_name }} -H {{ host }} {{ NOTIFY }}
 
 switch host=FLAKE_HOST: pkill git
-    printf "{{ C_BLUE }}  󰟁 SWITCH  {{ C_NONE }} NixOS#{{ host }}\n"
+    printf "{{ BLUE }}  󰟁 SWITCH  {{ NORMAL }} NixOS#{{ host }}\n"
     nh os switch {{ justfile_directory() }} -H {{ host }} \
       && just notify 0 && just commit {{ host }} || just notify $?
 
 boot host=FLAKE_HOST: pkill git
-    printf "{{ C_BLUE }}  󰜉 BOOT    {{ C_NONE }} NixOS#{{ host }}\n"
+    printf "{{ BLUE }}  󰜉 BOOT    {{ NORMAL }} NixOS#{{ host }}\n"
     nh os boot {{ justfile_directory() }} -H {{ host }} \
       && just notify 0 && just commit {{ host }} || just notify $?
 
 test host=FLAKE_HOST: pkill git
-    printf "{{ C_BLUE }}  󰙨 TEST    {{ C_NONE }} NixOS#{{ host }}\n"
+    printf "{{ BLUE }}  󰙨 TEST    {{ NORMAL }} NixOS#{{ host }}\n"
     nh os test {{ justfile_directory() }} -H {{ host }} {{ NOTIFY }}
 
 dry host=FLAKE_HOST: pkill git
-    printf "{{ C_BLUE }}   DRY     {{ C_NONE }} NixOS#{{ host }}\n"
+    printf "{{ BLUE }}   DRY     {{ NORMAL }} NixOS#{{ host }}\n"
     nh os switch {{ justfile_directory() }} -H {{ host }} --dry {{ NOTIFY }}
 
 legacy host=FLAKE_HOST: pkill git
-    printf "{{ C_BLUE }}  󰟁 SWITCH  {{ C_NONE }} (L) NixOS#{{ host }}\n"
+    printf "{{ BLUE }}  󰟁 SWITCH  {{ NORMAL }} (L) NixOS#{{ host }}\n"
     sudo nixos-rebuild switch --flake {{ justfile_directory() }} \
       && just notify 0 && just commit {{ host }} || just notify $?
 
 update host=FLAKE_HOST: pkill git
     #!/usr/bin/env bash
     set -euo pipefail
-    printf "{{ C_BLUE }}   UPDATE  {{ C_NONE }} lazy.nvim\n"
+    printf "{{ BLUE }}   UPDATE  {{ NORMAL }} lazy.nvim\n"
     NVIM_APPNAME=lvim nvim --headless "+Lazy! sync" +qa &>/dev/null
 
-    printf "{{ C_BLUE }}   UPDATE  {{ C_NONE }} vim.pack\n"
+    printf "{{ BLUE }}   UPDATE  {{ NORMAL }} vim.pack\n"
     nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
 
-    printf "{{ C_BLUE }}  󰟁 UPDATE  {{ C_NONE }} NixOS#{{ host }}\n"
+    printf "{{ BLUE }}  󰟁 UPDATE  {{ NORMAL }} NixOS#{{ host }}\n"
     if nh os switch {{ justfile_directory() }} -H {{ host }} --update; then
       just notify 0
     else
@@ -181,19 +175,19 @@ rollback gen="":
     set -euo pipefail
     if [[ -z "{{ gen }}" ]]; then
       CURRENT_GEN=$(readlink /nix/var/nix/profiles/system | cut -d "-" -f 2)
-      printf "{{ C_BLUE }}   ROLLBACK{{ C_NONE }} Generation $((CURRENT_GEN - 1))\n"
+      printf "{{ BLUE }}   ROLLBACK{{ NORMAL }} Generation $((CURRENT_GEN - 1))\n"
       nh os rollback {{ NOTIFY }}
     else
-      printf "{{ C_BLUE }}   ROLLBACK{{ C_NONE }} Generation {{ gen }}\n"
+      printf "{{ BLUE }}   ROLLBACK{{ NORMAL }} Generation {{ gen }}\n"
       nh os rollback -t {{ gen }} {{ NOTIFY }}
     fi
 
 clean keep_num="3":
-    printf "{{ C_RED }}   CLEAN   {{ C_NONE }} Partial (Keeping: {{ keep_num }})\n"
+    printf "{{ RED }}   CLEAN   {{ NORMAL }} Partial (Keeping: {{ keep_num }})\n"
     nh clean all --keep {{ keep_num }} {{ NOTIFY }}
 
 nuke:
-    printf "{{ C_RED }}   CLEAN   {{ C_NONE }} All\n"
+    printf "{{ RED }}   CLEAN   {{ NORMAL }} All\n"
     nh clean all --ask {{ NOTIFY }}
 
 # WARN: Recipes for installing NixOS on a new machine
