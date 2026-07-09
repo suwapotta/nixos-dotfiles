@@ -10,6 +10,8 @@
   };
 
   config = lib.mkIf config.modules.core.openssh.enable {
+    programs.ssh.startAgent = true;
+
     services.openssh = {
       enable = true;
       openFirewall = true;
@@ -21,7 +23,6 @@
         PermitRootLogin = "no";
         AllowUsers = [
           "suwapotta"
-          "nix-builder"
         ];
         MaxAuthTries = 3;
         PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";

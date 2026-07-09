@@ -14,6 +14,7 @@
     services.displayManager = {
       ly = {
         enable = true;
+        x11Support = false;
 
         # NOTE: Docs: https://github.com/fairyglade/ly/blob/master/res/config.ini
         settings = {
@@ -26,6 +27,13 @@
           vi_default_mode = "normal";
 
           show_tty = true;
+
+          shell = false;
+          xinitrc = null;
+
+          brightness_up_key = null;
+          brightness_down_key = null;
+          show_password_key = "F5";
         };
       };
 
