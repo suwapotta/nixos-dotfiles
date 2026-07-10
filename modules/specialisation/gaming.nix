@@ -81,7 +81,7 @@ in
           };
 
           hardware = {
-            nvidia-hybrid.enable = lib.mkForce false;
+            nvidia-offload.enable = lib.mkForce false;
             nvidia-sync.enable = lib.mkForce true;
           };
         };
