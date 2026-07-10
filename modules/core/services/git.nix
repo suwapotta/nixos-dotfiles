@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.git.enable = lib.mkEnableOption "git options";
+    modules.core.services.git.enable = lib.mkEnableOption "git options";
   };
 
-  config = lib.mkIf config.modules.core.git.enable {
+  config = lib.mkIf config.modules.core.services.git.enable {
     programs.git = {
       enable = true;
 

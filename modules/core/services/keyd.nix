@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.keyd.enable = lib.mkEnableOption "keyd configuration";
+    modules.core.services.keyd.enable = lib.mkEnableOption "keyd configuration";
   };
 
-  config = lib.mkIf config.modules.core.keyd.enable {
+  config = lib.mkIf config.modules.core.services.keyd.enable {
     services.keyd = {
       enable = true;
 

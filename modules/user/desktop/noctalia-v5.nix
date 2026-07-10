@@ -19,7 +19,7 @@
 
     programs.noctalia = {
       enable = true;
-      # settings = fromTOML (builtins.readFile ../../../config/noctalia/noctalia-config.toml);
+      # settings = fromTOML (builtins.readFile ../dotfiles/config/noctalia/noctalia-config.toml);
 
       settings = {
         backdrop.enabled = true;

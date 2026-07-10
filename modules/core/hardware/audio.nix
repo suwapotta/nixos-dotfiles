@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.audio.enable = lib.mkEnableOption "pipewire + rtkit";
+    modules.core.hardware.audio.enable = lib.mkEnableOption "pipewire + rtkit";
   };
 
-  config = lib.mkIf config.modules.core.audio.enable {
+  config = lib.mkIf config.modules.core.hardware.audio.enable {
     # Enable sound (pipewire)
     services.pipewire = {
       enable = true;

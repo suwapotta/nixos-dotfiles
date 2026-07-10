@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.remote-builder.enable = lib.mkEnableOption "nixos remote builder";
+    modules.core.nix.remote-builder.enable = lib.mkEnableOption "nixos remote builder";
   };
 
-  config = lib.mkIf config.modules.core.remote-builder.enable {
+  config = lib.mkIf config.modules.core.nix.remote-builder.enable {
     users = {
       users."remotebuilder" = {
         isSystemUser = true;

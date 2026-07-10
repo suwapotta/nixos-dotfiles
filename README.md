@@ -29,13 +29,12 @@
 - Initialize a **language template** with `devshell` environment, e.g.:
 
 ```fish
-# With laptop host:
 # .../<c-project-directory>
 ## Shell abbreviation: `nfitr` (local ~/nixos-dotfiles)
-nix flake init -t ~/nixos-dotfiles/hosts/laptop#c
+nix flake init -t ~/nixos-dotfiles#c
 
 ## Shell abbreviation: `nfitl` (current repository)
-nix flake init -t github:suwapotta/nixos-dotfiles/hosts/laptop#c
+nix flake init -t github:suwapotta/nixos-dotfiles#c
 ```
 
 - **Configuration**: `./modules/flake-utils/templates.nix` and `./devshells/*`

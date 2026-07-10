@@ -7,10 +7,10 @@
 
 {
   options = {
-    modules.core.fonts.enable = lib.mkEnableOption "fonts list";
+    modules.core.display.fonts.enable = lib.mkEnableOption "fonts list";
   };
 
-  config = lib.mkIf config.modules.core.fonts.enable {
+  config = lib.mkIf config.modules.core.display.fonts.enable {
     fonts = {
       enableDefaultPackages = true;
       packages = with pkgs; [

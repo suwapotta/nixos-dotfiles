@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.programs.enable = lib.mkEnableOption "global programs";
+    modules.core.services.global-programs.enable = lib.mkEnableOption "must-have programs";
   };
 
-  config = lib.mkIf config.modules.core.programs.enable {
+  config = lib.mkIf config.modules.core.services.global-programs.enable {
     programs = {
       # Linking binaries for lazyvim
       nix-ld.enable = true;

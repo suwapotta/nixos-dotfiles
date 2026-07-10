@@ -6,7 +6,7 @@
 
 let
   mkFunction = functionName: {
-    body = builtins.readFile (../../../config/fish + "/${functionName}.fish");
+    body = builtins.readFile (../dotfiles/config/fish + "/${functionName}.fish");
   };
 in
 {

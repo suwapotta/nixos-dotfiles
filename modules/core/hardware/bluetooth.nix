@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.bluetooth.enable = lib.mkEnableOption "bluetooth service";
+    modules.core.hardware.bluetooth.enable = lib.mkEnableOption "bluetooth service";
   };
 
-  config = lib.mkIf config.modules.core.bluetooth.enable {
+  config = lib.mkIf config.modules.core.hardware.bluetooth.enable {
     hardware.bluetooth = {
       enable = true;
       powerOnBoot = true;

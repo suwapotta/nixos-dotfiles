@@ -7,10 +7,10 @@
 
 {
   options = {
-    modules.core.mcontrolcenter.enable = lib.mkEnableOption "Linux MSI Control Center";
+    modules.core.services.mcontrolcenter.enable = lib.mkEnableOption "Linux MSI Control Center";
   };
 
-  config = lib.mkIf config.modules.core.mcontrolcenter.enable {
+  config = lib.mkIf config.modules.core.services.mcontrolcenter.enable {
     environment.systemPackages = with pkgs; [
       mcontrolcenter
     ];

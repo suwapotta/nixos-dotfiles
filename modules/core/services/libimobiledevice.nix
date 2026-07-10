@@ -7,10 +7,10 @@
 
 {
   options = {
-    modules.core.libimobiledevice.enable = lib.mkEnableOption "apple devices support";
+    modules.core.services.libimobiledevice.enable = lib.mkEnableOption "apple devices support";
   };
 
-  config = lib.mkIf config.modules.core.libimobiledevice.enable {
+  config = lib.mkIf config.modules.core.services.libimobiledevice.enable {
     services.usbmuxd.enable = true;
 
     # NOTE: Mounting iphone using `$ idevicepair pair`

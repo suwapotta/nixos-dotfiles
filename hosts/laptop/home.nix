@@ -66,7 +66,14 @@
         };
 
         dotfiles = {
-          symlink.enable = true;
+          symlink = {
+            enable = true;
+            targets = [
+              "niri"
+              "lvim"
+              "nvim"
+            ];
+          };
         };
 
         editors = {

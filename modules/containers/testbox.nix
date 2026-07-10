@@ -19,7 +19,7 @@
       config = {
         environment = {
           systemPackages = with pkgs; [
-            fastfetch
+            fetch
           ];
 
           sessionVariables = {

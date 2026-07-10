@@ -2,17 +2,41 @@
   lib,
   config,
   inputs,
+  pkgs,
   ...
 }:
 
+let
+  cfg = config.modules.core.system.kernel-cachyos;
+in
 {
   options = {
-    modules.core.kernel-cachyos.enable = lib.mkEnableOption "cachyos kenel setup";
+    modules.core.system.kernel-cachyos = {
+      enable = lib.mkEnableOption "cachyos kernel enable switch";
+      optimisationLevel = lib.mkOption {
+        default = "latest";
+        type = lib.types.enum [
+          "latest"
+          "v3"
+          "v4"
+          "zen4"
+        ];
+      };
+    };
   };
 
-  # NOTE: List of all possible kernel options:
-  # $ nix flake show github:xddxdd/nix-cachyos-kernel/release
-  config = lib.mkIf config.modules.core.kernel-cachyos.enable {
+  config = lib.mkIf cfg.enable {
+    boot.kernelPackages =
+      {
+        "latest" = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
+        "v3" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
+        "v4" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v4;
+        "zen4" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-zen4;
+      }
+      .${cfg.optimisationLevel};
+
+    # NOTE: List of all possible kernel options:
+    # $ nix flake show github:xddxdd/nix-cachyos-kernel/release
     # WARN: Only use one of the two overlays
     nixpkgs.overlays = [
       # Use nixpkgs from your environment, nixpkgs.config will apply.

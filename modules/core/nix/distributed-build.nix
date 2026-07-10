@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.distributed-build.enable = lib.mkEnableOption "remote building nixos generation";
+    modules.core.nix.distributed-build.enable = lib.mkEnableOption "remote building nixos generation";
   };
 
-  config = lib.mkIf config.modules.core.distributed-build.enable {
+  config = lib.mkIf config.modules.core.nix.distributed-build.enable {
     nix = {
       distributedBuilds = true;
 

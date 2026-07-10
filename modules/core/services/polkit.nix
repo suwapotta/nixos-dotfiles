@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.polkit.enable = lib.mkEnableOption "soteria polkit";
+    modules.core.services.polkit.enable = lib.mkEnableOption "soteria polkit";
   };
 
-  config = lib.mkIf config.modules.core.polkit.enable {
+  config = lib.mkIf config.modules.core.services.polkit.enable {
     security.soteria.enable = true;
   };
 }

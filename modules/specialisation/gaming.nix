@@ -56,12 +56,28 @@ in
 
       # ── Desktop host (Full AMD) ───────────────────────────────────────────────────
       (lib.mkIf (cfg.platform == "desktop") {
-        boot.kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v4;
+        modules.core.system = {
+          kernel-cachyos = {
+            enable = lib.mkForce true;
+            optimisationLevel = lib.mkForce "zen4";
+          };
+
+          kernel-zen.enable = lib.mkForce false;
+          kernel-latest.enable = lib.mkForce false;
+        };
       })
 
       # ── Laptop host (iGPU + Nvidia) ───────────────────────────────────────────────
       (lib.mkIf (cfg.platform == "laptop") {
-        boot.kernelPackages = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-latest-x86_64-v3;
+        modules.core.system = {
+          kernel-cachyos = {
+            enable = lib.mkForce true;
+            optimisationLevel = lib.mkForce "v4";
+          };
+
+          kernel-zen.enable = lib.mkForce false;
+          kernel-latest.enable = lib.mkForce false;
+        };
 
         hardware.nvidia = {
           prime = {

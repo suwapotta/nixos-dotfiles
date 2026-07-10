@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.openssh.enable = lib.mkEnableOption "ssh daemon";
+    modules.core.services.openssh.enable = lib.mkEnableOption "ssh daemon";
   };
 
-  config = lib.mkIf config.modules.core.openssh.enable {
+  config = lib.mkIf config.modules.core.services.openssh.enable {
     services.openssh = {
       enable = true;
       openFirewall = true;

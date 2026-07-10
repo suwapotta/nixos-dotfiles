@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.nh.enable = lib.mkEnableOption "nh - nix cli helper";
+    modules.core.nix.nh.enable = lib.mkEnableOption "nh - nix cli helper";
   };
 
-  config = lib.mkIf config.modules.core.nh.enable {
+  config = lib.mkIf config.modules.core.nix.nh.enable {
     programs.nh = {
       enable = true;
 

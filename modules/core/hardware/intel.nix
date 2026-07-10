@@ -7,10 +7,10 @@
 
 {
   options = {
-    modules.core.intel.enable = lib.mkEnableOption "intel cpu";
+    modules.core.hardware.intel.enable = lib.mkEnableOption "intel cpu";
   };
 
-  config = lib.mkIf config.modules.core.intel.enable {
+  config = lib.mkIf config.modules.core.hardware.intel.enable {
     hardware.graphics = {
       enable = true;
       enable32Bit = true;

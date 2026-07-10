@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.timezone.enable = lib.mkEnableOption "hcm timezone";
+    modules.core.system.timezone.enable = lib.mkEnableOption "hcm timezone";
   };
 
-  config = lib.mkIf config.modules.core.timezone.enable {
+  config = lib.mkIf config.modules.core.system.timezone.enable {
     time.timeZone = "Asia/Ho_Chi_Minh";
   };
 }

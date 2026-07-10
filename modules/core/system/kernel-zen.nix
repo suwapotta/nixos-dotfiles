@@ -7,10 +7,10 @@
 
 {
   options = {
-    modules.core.kernel-zen.enable = lib.mkEnableOption "zen kernel";
+    modules.core.system.kernel-zen.enable = lib.mkEnableOption "zen kernel";
   };
 
-  config = lib.mkIf config.modules.core.kernel-zen.enable {
+  config = lib.mkIf config.modules.core.system.kernel-zen.enable {
     boot.kernelPackages = pkgs.linuxPackages_zen;
   };
 }

@@ -7,10 +7,10 @@
 
 {
   options = {
-    modules.core.portals.enable = lib.mkEnableOption "niri gnome portal";
+    modules.core.display.portals.enable = lib.mkEnableOption "niri gnome portal";
   };
 
-  config = lib.mkIf config.modules.core.portals.enable {
+  config = lib.mkIf config.modules.core.display.portals.enable {
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [

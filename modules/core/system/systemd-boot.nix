@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.systemd-boot.enable = lib.mkEnableOption "systemd boot loader";
+    modules.core.system.systemd-boot.enable = lib.mkEnableOption "systemd boot loader";
   };
 
-  config = lib.mkIf config.modules.core.systemd-boot.enable {
+  config = lib.mkIf config.modules.core.system.systemd-boot.enable {
     boot.loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;

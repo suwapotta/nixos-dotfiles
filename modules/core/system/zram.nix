@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.zram.enable = lib.mkEnableOption "enables zram";
+    modules.core.system.zram.enable = lib.mkEnableOption "enables zram";
   };
 
-  config = lib.mkIf config.modules.core.zram.enable {
+  config = lib.mkIf config.modules.core.system.zram.enable {
     zramSwap = {
       enable = true;
 

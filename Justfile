@@ -159,7 +159,7 @@ test host=FLAKE_HOST: pkill git
 
 build host=FLAKE_HOST: git
     printf "{{ BLUE }}  󰲽 BUILD   {{ NORMAL }} NixOS#{{ host }}\n"
-    nh os build {{ justfile_directory() }} -H {{ host }}
+    nh os build {{ justfile_directory() }} -H {{ host }} {{ NOTIFY }}
 
 remote action="switch" host="laptop": pkill git
     printf "{{ BLUE }}  󰢹 REMOTE  {{ NORMAL }} NixOS#{{ host }} (Forced offload)\n"

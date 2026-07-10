@@ -37,44 +37,62 @@
     };
 
     core = {
-      amd-gpu.enable = false;
-      audio.enable = true;
-      auto-login.enable = true;
-      bluetooth.enable = true;
-      btrfs.enable = true;
-      disabled.enable = true;
-      distributed-build.enable = true;
-      experimental-features.enable = true;
-      fonts.enable = true;
-      git.enable = true;
-      global-pkgs.enable = true;
-      intel.enable = true;
-      kernel-cachyos.enable = true;
-      kernel-latest.enable = false;
-      kernel-zen.enable = true;
-      keyboard.enable = true;
-      keyd.enable = true;
-      libimobiledevice.enable = false;
-      ly.enable = false;
-      mcontrolcenter.enable = true;
-      network.enable = true;
-      nh.enable = true;
-      niri-cachix.enable = true;
-      nvidia-hybrid.enable = true;
-      openssh.enable = false;
-      polkit.enable = false;
-      portals.enable = true;
-      programs.enable = true;
-      remote-builder.enable = false;
-      ryzen.enable = false;
-      services.enable = true;
-      systemd-boot.enable = true;
-      timezone.enable = true;
-      touchpad.enable = true;
-      users.enable = true;
-      variables.enable = true;
-      vm-variant.enable = true;
-      zram.enable = true;
+      display = {
+        auto-login.enable = true;
+        fonts.enable = true;
+        ly.enable = false;
+        portals.enable = true;
+      };
+
+      hardware = {
+        amd-gpu.enable = false;
+        audio.enable = true;
+        bluetooth.enable = true;
+        btrfs.enable = true;
+        intel.enable = true;
+        keyboard.enable = true;
+        nvidia-hybrid.enable = true;
+        ryzen.enable = false;
+        touchpad.enable = true;
+      };
+
+      nix = {
+        disabled.enable = true;
+        distributed-build.enable = true;
+        experimental-features.enable = true;
+        nh.enable = true;
+        niri-cachix.enable = true;
+        remote-builder.enable = false;
+        vm-variant.enable = true;
+      };
+
+      services = {
+        git.enable = true;
+        global-programs.enable = true;
+        gvfs.enable = true;
+        keyd.enable = true;
+        libimobiledevice.enable = false;
+        mcontrolcenter.enable = true;
+        network.enable = true;
+        openssh.enable = false;
+        polkit.enable = false;
+        power.enable = true;
+      };
+
+      system = {
+        global-pkgs.enable = true;
+        kernel-cachyos = {
+          enable = false;
+          optimisationLevel = "v4";
+        };
+        kernel-latest.enable = false;
+        kernel-zen.enable = true;
+        systemd-boot.enable = true;
+        timezone.enable = true;
+        users.enable = true;
+        variables.enable = true;
+        zram.enable = true;
+      };
     };
 
     specialisation = {

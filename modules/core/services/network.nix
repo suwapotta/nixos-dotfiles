@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.network.enable = lib.mkEnableOption "hostname + networkmanager";
+    modules.core.services.network.enable = lib.mkEnableOption "hostname + networkmanager";
   };
 
-  config = lib.mkIf config.modules.core.network.enable {
+  config = lib.mkIf config.modules.core.services.network.enable {
     networking = {
       hostName = "NixOS";
 

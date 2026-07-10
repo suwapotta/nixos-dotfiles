@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.vm-variant.enable = lib.mkEnableOption "basic vm";
+    modules.core.nix.vm-variant.enable = lib.mkEnableOption "basic vm";
   };
 
-  config = lib.mkIf config.modules.core.vm-variant.enable {
+  config = lib.mkIf config.modules.core.nix.vm-variant.enable {
     virtualisation.vmVariant = {
       users.extraUsers."vm-user" = {
         isNormalUser = true;

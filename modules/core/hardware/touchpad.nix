@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.touchpad.enable = lib.mkEnableOption "touchpad support";
+    modules.core.hardware.touchpad.enable = lib.mkEnableOption "touchpad support";
   };
 
-  config = lib.mkIf config.modules.core.touchpad.enable {
+  config = lib.mkIf config.modules.core.hardware.touchpad.enable {
     services.libinput.enable = true;
   };
 }

@@ -7,10 +7,10 @@
 
 {
   options = {
-    modules.core.ly.enable = lib.mkEnableOption "ly - tui login manager";
+    modules.core.display.ly.enable = lib.mkEnableOption "ly - tui login manager";
   };
 
-  config = lib.mkIf config.modules.core.ly.enable {
+  config = lib.mkIf config.modules.core.display.ly.enable {
     services.displayManager = {
       ly = {
         enable = true;

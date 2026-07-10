@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.experimental-features.enable = lib.mkEnableOption "enable flakes and nix nix-command";
+    modules.core.nix.experimental-features.enable = lib.mkEnableOption "enable flakes and nix nix-command";
   };
 
-  config = lib.mkIf config.modules.core.experimental-features.enable {
+  config = lib.mkIf config.modules.core.nix.experimental-features.enable {
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"

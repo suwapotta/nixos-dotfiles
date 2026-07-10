@@ -7,10 +7,10 @@
 
 {
   options = {
-    modules.core.amd-gpu.enable = lib.mkEnableOption "AMD GPU Extra drivers/utils";
+    modules.core.hardware.amd-gpu.enable = lib.mkEnableOption "AMD GPU Extra drivers/utils";
   };
 
-  config = lib.mkIf config.modules.core.amd-gpu.enable {
+  config = lib.mkIf config.modules.core.hardware.amd-gpu.enable {
     hardware.amdgpu = {
       initrd.enable = true;
 

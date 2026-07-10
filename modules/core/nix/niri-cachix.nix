@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.niri-cachix.enable = lib.mkEnableOption "niri binary from cachix";
+    modules.core.nix.niri-cachix.enable = lib.mkEnableOption "niri binary from cachix";
   };
 
-  config = lib.mkIf config.modules.core.niri-cachix.enable {
+  config = lib.mkIf config.modules.core.nix.niri-cachix.enable {
     nix.settings = {
       substituters = [
         "https://niri.cachix.org"

@@ -9,10 +9,10 @@ let
 in
 {
   options = {
-    modules.core.variables.enable = lib.mkEnableOption "global variables (wayland)";
+    modules.core.system.variables.enable = lib.mkEnableOption "global variables (wayland)";
   };
 
-  config = lib.mkIf config.modules.core.variables.enable {
+  config = lib.mkIf config.modules.core.system.variables.enable {
     environment = {
       # defaultEditor -> lvim
       variables = {

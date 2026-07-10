@@ -17,10 +17,10 @@ let
 in
 {
   options = {
-    modules.core.auto-login.enable = lib.mkEnableOption "niri autologin";
+    modules.core.display.auto-login.enable = lib.mkEnableOption "niri autologin";
   };
 
-  config = lib.mkIf config.modules.core.auto-login.enable {
+  config = lib.mkIf config.modules.core.display.auto-login.enable {
     # https://git.sr.ht/~kennylevinsen/autologin
     environment.systemPackages = [ autologin_on_7 ];
 

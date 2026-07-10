@@ -6,10 +6,10 @@
 
 {
   options = {
-    modules.core.disabled.enable = lib.mkEnableOption "disable nano editor";
+    modules.core.nix.disabled.enable = lib.mkEnableOption "disable nano editor";
   };
 
-  config = lib.mkIf config.modules.core.disabled.enable {
+  config = lib.mkIf config.modules.core.nix.disabled.enable {
     programs.nano.enable = false;
   };
 }
