@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 
@@ -11,7 +12,7 @@ in
   options = {
     modules.core.services.power = {
       enable = lib.mkEnableOption "collection of power daemons";
-      type = lib.mkOption {
+      mode = lib.mkOption {
         type = lib.types.nullOr (
           lib.types.enum [
             "power-saver"
@@ -31,6 +32,20 @@ in
       upower.enable = true;
     };
 
-    # systemd.
+    systemd.services."force-power-profiles" = lib.mkIf (cfg.mode != null) {
+      enable = true;
+      description = "Force power-profiles-daemon to use ${cfg.mode} profile";
+      after = [ "power-profiles-daemon.service" ];
+      wantedBy = [ "multi-user.target" ];
+      path = [ pkgs.power-profiles-daemon ];
+      script = ''
+        powerprofilesctl set ${cfg.mode}
+      '';
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+      };
+    };
   };
 }

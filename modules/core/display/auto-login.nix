@@ -24,7 +24,7 @@ in
     # https://git.sr.ht/~kennylevinsen/autologin
     environment.systemPackages = [ autologin_on_7 ];
 
-    systemd.services.autologin = {
+    systemd.services."autologin" = {
       enable = true;
       restartIfChanged = lib.mkForce false;
       description = "Autologin";
@@ -49,7 +49,7 @@ in
       wantedBy = [ "multi-user.target" ];
     };
 
-    security.pam.services.autologin = {
+    security.pam.services."autologin" = {
       enable = true;
       name = "autologin";
       startSession = true;

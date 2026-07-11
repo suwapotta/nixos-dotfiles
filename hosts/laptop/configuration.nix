@@ -88,7 +88,10 @@
         network.enable = true;
         openssh.enable = false;
         polkit.enable = false;
-        power.enable = true;
+        power = {
+          enable = true;
+          mode = null;
+        };
         qemu = {
           enable = false;
           features = {
@@ -121,6 +124,8 @@
         enable = true;
         platform = "laptop";
       };
+
+      travel.enable = true;
 
       virtualisation = {
         enable = true;

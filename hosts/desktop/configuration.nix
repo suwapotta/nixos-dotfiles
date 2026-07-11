@@ -91,7 +91,10 @@
         network.enable = true;
         openssh.enable = true;
         polkit.enable = false;
-        power.enable = true;
+        power = {
+          enable = true;
+          mode = null;
+        };
         qemu = {
           enable = false;
           features = {
@@ -124,6 +127,8 @@
         enable = true;
         platform = "desktop";
       };
+
+      travel.enable = false;
 
       virtualisation = {
         enable = true;
