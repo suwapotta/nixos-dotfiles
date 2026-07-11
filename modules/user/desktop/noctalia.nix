@@ -7,15 +7,14 @@
 
 {
   options = {
-    modules.user.desktop.noctalia-v5.enable =
-      lib.mkEnableOption "noctalia-shell rewritten in C++/OpenCL";
+    modules.user.desktop.noctalia.enable = lib.mkEnableOption "noctalia-shell rewritten in C++/OpenCL";
   };
 
   imports = [
     inputs.noctalia.homeModules.default
   ];
 
-  config = lib.mkIf config.modules.user.desktop.noctalia-v5.enable {
+  config = lib.mkIf config.modules.user.desktop.noctalia.enable {
 
     programs.noctalia = {
       enable = true;

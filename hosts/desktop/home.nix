@@ -60,7 +60,7 @@
             enable = true;
             release = "unstable";
           };
-          noctalia-v5.enable = true;
+          noctalia.enable = true;
           qt.enable = true;
           user-dirs.enable = true;
         };

@@ -28,6 +28,10 @@
         };
 
         programs = {
+          bash.shellInit = ''
+            set -o vi
+          '';
+
           nano.enable = false;
 
           neovim = {
