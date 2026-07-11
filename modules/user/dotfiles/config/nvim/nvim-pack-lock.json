@@ -26,7 +26,7 @@
       "src": "https://github.com/echasnovski/mini.icons"
     },
     "nvim-lspconfig": {
-      "rev": "292f44408498103c47996ff5c18fd366293840d8",
+      "rev": "d6ac7a0d46555d44bf21f4f9c65f5201f818b475",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "oil.nvim": {

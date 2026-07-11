@@ -81,6 +81,7 @@
         gvfs.enable = true;
         keyd.enable = true;
         libimobiledevice.enable = false;
+        logind.enable = true;
         mcontrolcenter.enable = true;
         network.enable = true;
         openssh.enable = false;

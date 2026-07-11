@@ -25,13 +25,10 @@ in
     lib.mkMerge [
       # ── Base Steam ────────────────────────────────────────────────────────────────
       {
-        nixpkgs.config.allowUnfreePredicate =
-          pkg:
-          builtins.elem (lib.getName pkg) [
-            "steam"
-            "steam-unwrapped"
-          ];
-
+        modules.core.system._unfree-pkgs.list = [
+          "steam"
+          "steam-unwrapped"
+        ];
         programs.steam = {
           enable = true;
           gamescopeSession.enable = true;

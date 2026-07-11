@@ -18,8 +18,8 @@
       ];
 
       openssh.authorizedKeys.keyFiles = [
-        ../../_ssh-keys/desktop.pub
-        ../../_ssh-keys/laptop.pub
+        ../../.ssh-keys/desktop.pub
+        ../../.ssh-keys/laptop.pub
       ];
     };
   };
