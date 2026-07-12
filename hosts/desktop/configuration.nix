@@ -34,6 +34,7 @@
     ../../modules/specialisation/specialisation-default.nix
   ];
 
+  system.nixos.tags = [ "Desktop" ];
   modules = {
     containers = {
       testbox.enable = true;

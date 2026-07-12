@@ -12,7 +12,6 @@
   config = lib.mkIf config.modules.core.services.network.enable {
     networking = {
       hostName = "NixOS";
-
       networkmanager.enable = true;
     };
   };

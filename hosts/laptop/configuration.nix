@@ -31,6 +31,7 @@
     ../../modules/specialisation/specialisation-default.nix
   ];
 
+  system.nixos.tags = [ "Laptop" ];
   modules = {
     containers = {
       testbox.enable = true;
