@@ -55,17 +55,17 @@ in
         {
           eco = [
             "w /sys/devices/platform/msi-ec/webcam_block - - - - on"
-            "w /sys/class/leds/msiacpi::kbd_backlight - - - - 0"
+            "w /sys/devices/platform/msi-ec/leds/msiacpi::kbd_backlight/brightness - - - - 3"
             "w /sys/devices/platform/msi-ec/cooler_boost - - - - off"
           ];
           comfort = [
             "w /sys/devices/platform/msi-ec/webcam_block - - - - off"
-            "w /sys/class/leds/msiacpi::kbd_backlight - - - - 3"
+            "w /sys/devices/platform/msi-ec/leds/msiacpi::kbd_backlight/brightness - - - - 3"
             "w /sys/devices/platform/msi-ec/cooler_boost - - - - on"
           ];
           turbo = [
             "w /sys/devices/platform/msi-ec/webcam_block - - - - off"
-            "w /sys/class/leds/msiacpi::kbd_backlight - - - - 3"
+            "w /sys/devices/platform/msi-ec/leds/msiacpi::kbd_backlight/brightness - - - - 3"
             "w /sys/devices/platform/msi-ec/cooler_boost - - - - on"
           ];
         }
