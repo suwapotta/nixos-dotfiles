@@ -63,6 +63,16 @@ in
           };
 
           hardware = {
+            msi = {
+              enable = lib.mkForce true;
+              ec = {
+                preset = lib.mkForce "turbo";
+                coolerBoost = lib.mkForce true;
+                webcamBlock = lib.mkForce false;
+                kbdBacklight = lib.mkForce 3;
+              };
+            };
+
             nvidia-offload.enable = lib.mkForce false;
             nvidia-sync.enable = lib.mkForce true;
           };

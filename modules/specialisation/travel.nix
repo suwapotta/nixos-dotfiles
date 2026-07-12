@@ -15,8 +15,9 @@
 
       modules.core = {
         hardware = {
+          bluetooth.enable = lib.mkForce false;
           msi = {
-            enable = true;
+            enable = lib.mkForce true;
             ec = {
               preset = lib.mkForce "eco";
               coolerBoost = lib.mkForce false;

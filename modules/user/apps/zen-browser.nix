@@ -35,7 +35,7 @@ in
   options = {
     modules.user.apps.zen-browser = {
       enable = lib.mkEnableOption "zen-browser with declarative options";
-      # features = lib.mk
+      # features = lib.mkOption {}
     };
   };
 
@@ -45,7 +45,11 @@ in
 
   config = lib.mkIf cfg.enable {
     # Fix ``nixos-help`` command
-    home.sessionVariables.BROWSER = "zen-beta";
+    home.sessionVariables = {
+      BROWSER = "zen-beta";
+      MOZ_ENABLE_WAYLAND = "1";
+      MOZ_DISABLE_RDD_SANDBOX = "1";
+    };
 
     programs.zen-browser = {
       enable = true;
@@ -238,6 +242,10 @@ in
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             "zen.urlbar.behavior" = "float";
             "zen.welcome-screen.seen" = true;
+            "media.hardware-video-decoding.force-enabled" = true;
+            "media.ffmpeg.vaapi.enabled" = true;
+            "media.ffvpx.enabled" = false;
+            "media.rdd-vpx.enabled" = false;
           };
 
           bookmarks = {

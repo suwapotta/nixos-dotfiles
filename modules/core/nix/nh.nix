@@ -12,6 +12,7 @@
   config = lib.mkIf config.modules.core.nix.nh.enable {
     programs.nh = {
       enable = true;
+      flake = toString ../../../../nixos-dotfiles;
 
       clean = {
         enable = true;

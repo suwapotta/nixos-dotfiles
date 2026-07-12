@@ -5,7 +5,6 @@
 }:
 
 let
-  boolToStr = b: if b then "true" else "false";
   cfg = config.modules.core.hardware.msi;
 in
 {
@@ -71,10 +70,10 @@ in
       "w /sys/devices/platform/msi-ec/shift_mode - - - - ${cfg.ec.preset}"
     ]
     ++ lib.optionals (cfg.ec.coolerBoost != null) [
-      "w /sys/devices/platform/msi-ec/cooler_boost - - - - ${boolToStr cfg.ec.coolerBoost}"
+      "w /sys/devices/platform/msi-ec/cooler_boost - - - - ${lib.boolToString cfg.ec.coolerBoost}"
     ]
     ++ lib.optionals (cfg.ec.webcamBlock != null) [
-      "w /sys/devices/platform/msi-ec/webcam_block - - - - ${boolToStr cfg.ec.webcamBlock}"
+      "w /sys/devices/platform/msi-ec/webcam_block - - - - ${lib.boolToString cfg.ec.webcamBlock}"
     ]
     ++ lib.optionals (cfg.ec.kbdBacklight != null) [
       "w /sys/devices/platform/msi-ec/leds/msiacpi::kbd_backlight/brightness - - - - ${toString cfg.ec.kbdBacklight}"
