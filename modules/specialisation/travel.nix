@@ -16,8 +16,13 @@
       modules.core = {
         hardware = {
           msi = {
-            enable = lib.mkForce true;
-            ec.preset = lib.mkForce "eco";
+            enable = true;
+            ec = {
+              preset = lib.mkForce "eco";
+              coolerBoost = lib.mkForce false;
+              webcamBlock = lib.mkForce true;
+              kbdBacklight = lib.mkForce 0;
+            };
           };
           nvidia-disable.enable = lib.mkForce true;
           nvidia-offload.enable = lib.mkForce false;

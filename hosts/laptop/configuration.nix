@@ -61,7 +61,12 @@
         keyboard.enable = true;
         msi = {
           enable = true;
-          ec.preset = "turbo";
+          ec = {
+            preset = "turbo";
+            coolerBoost = false;
+            webcamBlock = false;
+            kbdBacklight = 3;
+          };
         };
         nvidia-disable.enable = false;
         nvidia-offload.enable = true;

@@ -5,6 +5,7 @@
 }:
 
 let
+  boolToStr = b: if b then "true" else "false";
   cfg = config.modules.core.hardware.msi;
 in
 {
@@ -12,16 +13,36 @@ in
     modules.core.hardware.msi = {
       enable = lib.mkEnableOption "msi laptop specific settings";
 
-      ec.preset = lib.mkOption {
-        type = lib.types.nullOr (
-          lib.types.enum [
-            "eco"
-            "comfort"
-            "turbo"
-          ]
-        );
-        default = null;
-        description = "hardware shift mode for msi-ec module";
+      ec = {
+        preset = lib.mkOption {
+          type = lib.types.nullOr (
+            lib.types.enum [
+              "eco"
+              "comfort"
+              "turbo"
+            ]
+          );
+          default = null;
+          description = "hardware shift mode for msi-ec module";
+        };
+
+        coolerBoost = lib.mkOption {
+          type = lib.types.nullOr lib.types.bool;
+          default = null;
+          description = "force the fans to maximum speed";
+        };
+
+        webcamBlock = lib.mkOption {
+          type = lib.types.nullOr lib.types.bool;
+          default = null;
+          description = "cut power to the integrated webcam";
+        };
+
+        kbdBacklight = lib.mkOption {
+          type = lib.types.nullOr (lib.types.ints.between 0 3);
+          default = null;
+          description = "keyboard backlight brightness level (0 = off, 3 = max)";
+        };
       };
     };
   };
@@ -46,31 +67,17 @@ in
       "w /sys/class/power_supply/BAT1/charge_control_start_threshold - - - - 70"
       "w /sys/class/power_supply/BAT1/charge_control_end_threshold - - - - 80"
     ]
-    ++ lib.optionals (cfg.ec.preset != null) (
-      builtins.concatLists [
-        [
-          "w /sys/devices/platform/msi-ec/shift_mode - - - - ${cfg.ec.preset}"
-        ]
-
-        {
-          eco = [
-            "w /sys/devices/platform/msi-ec/webcam_block - - - - on"
-            "w /sys/devices/platform/msi-ec/leds/msiacpi::kbd_backlight/brightness - - - - 3"
-            "w /sys/devices/platform/msi-ec/cooler_boost - - - - off"
-          ];
-          comfort = [
-            "w /sys/devices/platform/msi-ec/webcam_block - - - - off"
-            "w /sys/devices/platform/msi-ec/leds/msiacpi::kbd_backlight/brightness - - - - 3"
-            "w /sys/devices/platform/msi-ec/cooler_boost - - - - on"
-          ];
-          turbo = [
-            "w /sys/devices/platform/msi-ec/webcam_block - - - - off"
-            "w /sys/devices/platform/msi-ec/leds/msiacpi::kbd_backlight/brightness - - - - 3"
-            "w /sys/devices/platform/msi-ec/cooler_boost - - - - on"
-          ];
-        }
-        .${cfg.ec.preset}
-      ]
-    );
+    ++ lib.optionals (cfg.ec.preset != null) [
+      "w /sys/devices/platform/msi-ec/shift_mode - - - - ${cfg.ec.preset}"
+    ]
+    ++ lib.optionals (cfg.ec.coolerBoost != null) [
+      "w /sys/devices/platform/msi-ec/cooler_boost - - - - ${boolToStr cfg.ec.coolerBoost}"
+    ]
+    ++ lib.optionals (cfg.ec.webcamBlock != null) [
+      "w /sys/devices/platform/msi-ec/webcam_block - - - - ${boolToStr cfg.ec.webcamBlock}"
+    ]
+    ++ lib.optionals (cfg.ec.kbdBacklight != null) [
+      "w /sys/devices/platform/msi-ec/leds/msiacpi::kbd_backlight/brightness - - - - ${toString cfg.ec.kbdBacklight}"
+    ];
   };
 }
