@@ -36,7 +36,7 @@ in
       enable = true;
       description = "Force power-profiles-daemon to use ${cfg.mode} profile";
       after = [ "power-profiles-daemon.service" ];
-      wantedBy = [ "multi-user.target" ];
+      wantedBy = [ "power-profiles-daemon.service" ];
       requires = [ "power-profiles-daemon.service" ];
 
       path = [ pkgs.power-profiles-daemon ];

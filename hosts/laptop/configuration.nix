@@ -61,7 +61,7 @@
         keyboard.enable = true;
         msi = {
           enable = true;
-          ec.preset = null;
+          ec.preset = "turbo";
         };
         nvidia-disable.enable = false;
         nvidia-offload.enable = true;
@@ -93,7 +93,7 @@
         polkit.enable = false;
         power = {
           enable = true;
-          mode = null;
+          mode = "performance";
         };
         qemu = {
           enable = false;
