@@ -24,7 +24,7 @@
 
       secrets = {
         # ── passwordHashes.yaml ───────────────────────────────────────────────────────
-        "suwapotta" = {
+        "normal-user" = {
           # owner = "root";
           neededForUsers = true;
           sopsFile = ../../../secrets/passwordHashes.yaml;
