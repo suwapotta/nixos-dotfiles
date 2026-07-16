@@ -63,9 +63,8 @@
     let
       hosts = {
         "desktop" = "x86_64-linux";
+        "homeserver" = "x86_64-linux";
         "laptop" = "x86_64-linux";
-        "rig" = "x86_64-linux";
-        # "homeserver" = "aarch64-linux";
       };
     in
     {

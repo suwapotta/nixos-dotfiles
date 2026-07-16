@@ -15,8 +15,8 @@ in
         type = lib.types.nullOr (
           lib.types.enum [
             "desktop"
+            "homeserver"
             "laptop"
-            "rig"
           ]
         );
         default = null;
@@ -54,12 +54,12 @@ in
 
     sops.secrets = lib.mkIf (cfg.keyGen != null) {
       "id_${cfg.keyGen}" = {
-        sopsFile = ../../../secrets/sshKeys.yaml;
+        sopsFile = ../../../secrets/user-level/ssh-keys.yaml;
         path = "${config.home.homeDirectory}/.ssh/id_ed25519";
       };
 
       "github_${cfg.keyGen}" = {
-        sopsFile = ../../../secrets/sshKeys.yaml;
+        sopsFile = ../../../secrets/user-level/ssh-keys.yaml;
         path = "${config.home.homeDirectory}/.ssh/github_ed25519";
       };
     };

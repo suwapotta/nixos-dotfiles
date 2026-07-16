@@ -34,7 +34,7 @@ in
 
       extraConfig = {
         PRIVATE = mkDir "Private";
-        VIRTUALISATION = mkDir "Virtualisation";
+        # VIRTUALISATION = mkDir "Virtualisation";
       };
     }
     // builtins.mapAttrs (name: folder: "${homeDirectory}/${folder}") folders;

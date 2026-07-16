@@ -1,9 +1,15 @@
 # .sops.yaml
 keys:
-  - &laptop age1xu59gfjz38q8a3vkxe3f8yrglgleq7f4tkfcwd2uprxxu2mmaa8qj4dgex
+  - &laptop_system age10n9vvh8ckzmunzgqn9pf67psnknukyqr7mn6l92yxduf6ewve4ksqrd2um
+  - &laptop_user age1xu59gfjz38q8a3vkxe3f8yrglgleq7f4tkfcwd2uprxxu2mmaa8qj4dgex
 
 creation_rules:
-  - path_regex: secrets/[^/]+\.yaml$
+  - path_regex: secrets/system-level/[^/]+\.yaml$
     key_groups:
       - age:
-          - *laptop
+          - *laptop_system
+
+  - path_regex: secrets/user-level/[^/]+\.yaml$
+    key_groups:
+      - age:
+          - *laptop_user

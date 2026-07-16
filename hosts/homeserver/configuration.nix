@@ -36,7 +36,8 @@
         auto-login.enable = false;
         elyprismlauncher.enable = true;
         fonts.enable = false;
-        gnome.enable = true;
+        gnome.enable = false;
+        kde-plasma.enable = true;
         ly.enable = false;
         portals.enable = false;
         steam = {
@@ -112,11 +113,11 @@
       system = {
         global-pkgs.enable = true;
         kernel-cachyos = {
-          enable = false;
+          enable = true;
           optimisationLevel = "v2";
         };
         kernel-latest.enable = false;
-        kernel-zen.enable = true;
+        kernel-zen.enable = false;
         systemd-boot.enable = true;
         timezone.enable = true;
         users.enable = true;

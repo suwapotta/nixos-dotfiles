@@ -31,10 +31,6 @@ in
         lvim = "NVIM_APPNAME=lvim nvim";
         nix-just = "just -f ${config.home.homeDirectory}/nixos-dotfiles/Justfile";
         clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
-        ll = "eza --icons -lh";
-        ls = "eza --icons";
-        la = "eza --icons -a";
-        lla = "eza --icons -lha";
       };
 
       shellAbbrs = {
@@ -76,6 +72,8 @@ in
         j = "just";
         nj = "nix-just";
         lh = "lefthook";
+        v = "virsh";
+        vla = "virsh list --all";
       };
 
       # shellInit = ''

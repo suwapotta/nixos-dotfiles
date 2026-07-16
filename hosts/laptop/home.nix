@@ -26,7 +26,7 @@
       };
 
       sops = {
-        defaultSopsFile = ../../../secrets/sshKeys.yaml;
+        defaultSopsFile = ../../secrets/user-level/ssh-keys.yaml;
         defaultSopsFormat = "yaml";
         age.keyFile = "/home/lunaz/.config/sops/age/keys.txt";
       };

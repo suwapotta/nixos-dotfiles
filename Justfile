@@ -217,27 +217,71 @@ nuke:
     printf "{{ RED }}   CLEAN   {{ NORMAL }} All\n"
     nh clean all --ask {{ NOTIFY }}
 
-# WARN: Recipes for installing NixOS on a new machine
+# WARN: Recipes for installing NixOS on a new machine (Pure disko + nixos-anywhere recipes)
 __disko host:
     echo "  DISKO   ."
     nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- \
       --mode destroy,format,mount ./hosts/{{ host }}/disk-config.nix
 
-__nixos-anywhere host ip_addr:
-    # Assume sops-keys is already in /tmp/sops-keys/root/.config/sops/age/keys.txt
+__sops_bootstrap host username:
+    echo "  AGE     Generating new keys"
+    nix shell nixpkgs#age -c age-keygen -o ./{{ host }}-system-key.txt
+    nix shell nixpkgs#age -c age-keygen -o ./{{ host }}-{{ username }}.txt
+    echo "  TODO    Update new public keys in ./.sops.yaml"
+    nix shell nixpkgs#age -c age-keygen -y ./{{ host }}-system-key.txt
+    nix shell nixpkgs#age -c age-keygen -y ./{{ host }}-{{ username }}.txt
+
+__sops_update:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    shopt -s nullglob
+    for secret in ./secrets/*/*.yaml; do
+      echo "  SOPS    Re-encrypt in ${secret}"
+      nix run nixpkgs#sops -- updatekeys ${secret}
+    done
+
+__nixos-anywhere host ip_addr username:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    trap "rm -rf /tmp/nix-payload" EXIT
+
+    [[ -f ./{{ host }}-system-key.txt ]] || {
+      echo "Missing {{ host }}-system-key.txt. Have you forgotten to run __sops_bootstrap and __sops_update?"
+      exit 1
+    }
+    [[ -f ./{{ host }}-{{ username }}.txt ]] || {
+      echo "Missing {{ host }}-{{ username }}.txt. Have you forgotten to run __sops_bootstrap and __sops_update?"
+      exit 1
+    }
+
+    if [[ -e /tmp/nix-payload ]]; then
+      echo "  RM      /tmp/nix-payload"
+      rm -rf /tmp/nix-payload
+    fi
+    echo "  MKDIR   /tmp/nix-payload/..."
+    mkdir -p /tmp/nix-payload/root/.config/sops/age
+    mkdir -p /tmp/nix-payload/home/{{ username }}/.config/sops/age
+
+
+    echo "  INSTALL Sops Keys"
+    install -Dm600 \
+      ./{{ host }}-system-key.txt \
+      /tmp/nix-payload/root/.config/sops/age/keys.txt
+    install -Dm600 \
+      ./{{ host }}-{{ username }}.txt \
+      /tmp/nix-payload/home/{{ username }}/.config/sops/age/keys.txt
+
+    echo "  CP      ~/nixos-dotfiles/"
+    cp -r {{ home_dir() }}/nixos-dotfiles /tmp/nix-payload/home/{{ username }}/
+
     echo "  NIX-ANY {{ host }}"
     nix run github:nix-community/nixos-anywhere -- \
       --generate-hardware-config nixos-generate-config ./hosts/{{ host }}/hardware-configuration.nix \
       --flake .#{{ host }} \
-      --extra-files /tmp/sops-keys \
+      --extra-files /tmp/nix-payload \
       --target-host root@{{ ip_addr }}
 
-__update-sops-keys:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    # First update new sops public key of current host in ./.sops.yaml 
-    echo "  SOPS    Add Trusted host"
-    for secret in ./secrets/*.yaml; do
-      nix run nixpkgs#sops -- \
-        --run "sops updatekeys --yes ${secret}"
-    done
+    echo "  RM      ./{{ host }}-system-key.txt"
+    rm -f ./{{ host }}-system-key.txt
+    echo "  RM      ./{{ host }}-{{ username }}.txt"
+    rm -f ./{{ host }}-{{ username }}.txt

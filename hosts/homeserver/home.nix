@@ -26,7 +26,7 @@
       };
 
       sops = {
-        defaultSopsFile = ../../../secrets/sshKeys.yaml;
+        defaultSopsFile = ../../secrets/user-level/ssh-keys.yaml;
         defaultSopsFormat = "yaml";
         age.keyFile = "/home/lunaz/.config/sops/age/keys.txt";
       };
@@ -58,7 +58,7 @@
           };
           ssh-client = {
             enable = true;
-            keyGen = "rig";
+            keyGen = "homeserver";
           };
           tealdeer.enable = false;
           tmux.enable = false;

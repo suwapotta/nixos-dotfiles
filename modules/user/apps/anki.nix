@@ -12,7 +12,7 @@
 
   config = lib.mkIf config.modules.user.apps.anki.enable {
     sops.secrets."user-1" = {
-      sopsFile = ../../../secrets/ankiKeys.yaml;
+      sopsFile = ../../../secrets/user-level/anki-keys.yaml;
     };
 
     programs.anki = {

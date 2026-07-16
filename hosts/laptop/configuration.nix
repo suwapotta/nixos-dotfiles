@@ -31,6 +31,27 @@
     ../../modules/specialisation/specialisation-default.nix
   ];
 
+  # qemu -> false
+  services.minecraft-server = {
+    enable = true;
+    eula = true;
+    openFirewall = true;
+    declarative = true;
+
+    serverProperties = {
+      server-port = 45000;
+      difficulty = 3;
+      max-players = 5;
+      motd = "NixOS Minecraft server!";
+      allow-cheats = true;
+      online-mode = false;
+    };
+    jvmOpts = "-Xms2048M -Xmx2048M";
+  };
+  modules.core.system._unfree-pkgs.list = [
+    "minecraft-server"
+  ];
+
   system.nixos.tags = [ "Laptop" ];
   modules = {
     containers = {
@@ -43,6 +64,7 @@
         elyprismlauncher.enable = false;
         fonts.enable = true;
         gnome.enable = false;
+        kde-plasma.enable = false;
         ly.enable = false;
         portals.enable = true;
         steam = {
@@ -105,7 +127,7 @@
           mode = "performance";
         };
         qemu = {
-          enable = false;
+          enable = true;
           features = {
             gui = true;
             windowsSupport = false;

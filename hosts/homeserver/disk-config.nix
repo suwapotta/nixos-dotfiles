@@ -3,16 +3,15 @@
 {
   disko.devices = {
     disk = {
-      # SSD (128GiB)
-      disk0 = {
-        device = "/dev/sda";
+      main = {
+        device = "/dev/vda";
         type = "disk";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
+              size = "512M";
               type = "EF00";
-              size = "1G";
               content = {
                 type = "filesystem";
                 format = "vfat";
@@ -22,11 +21,11 @@
             };
 
             swap = {
-              size = "8G";
+              size = "4G";
               content = {
                 type = "swap";
                 discardPolicy = "both";
-                resumeDevice = true;
+                resumeDevice = true; # resume from hiberation from this device
               };
             };
 
@@ -36,26 +35,6 @@
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
-              };
-            };
-          };
-        };
-      };
-
-      # HDD (1 TiB)
-      disk1 = {
-        device = "/dev/sdb";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-
-            home = {
-              size = "100%";
-              content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/home";
               };
             };
           };

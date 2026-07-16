@@ -18,30 +18,29 @@
 
   config = lib.mkIf config.modules.core.nix.sops.enable {
     sops = {
-      defaultSopsFile = ../../../secrets/sshKeys.yaml;
+      defaultSopsFile = ../../../secrets/system-level/password-hashes.yaml;
       defaultSopsFormat = "yaml";
-      age.keyFile = "/home/lunaz/.config/sops/age/keys.txt";
+      age.keyFile = "/root/.config/sops/age/keys.txt";
 
       secrets = {
-        # ── passwordHashes.yaml ───────────────────────────────────────────────────────
+        # ── password-hashes.yaml ───────────────────────────────────────────────────────
         "normal-user" = {
           # owner = "root";
           neededForUsers = true;
-          sopsFile = ../../../secrets/passwordHashes.yaml;
+          sopsFile = ../../../secrets/system-level/password-hashes.yaml;
         };
 
         "vm-user" = {
           # owner = "root";
           neededForUsers = true;
-          sopsFile = ../../../secrets/passwordHashes.yaml;
+          sopsFile = ../../../secrets/system-level/password-hashes.yaml;
         };
 
-        # ── sshKeys.yaml ──────────────────────────────────────────────────────────────
+        # # ── ssh-keys.yaml ──────────────────────────────────────────────────────────────
         "remote-builder-laptop-x86_64" = {
           # owner = "root";
-          sopsFile = ../../../secrets/sshKeys.yaml;
+          sopsFile = ../../../secrets/system-level/ssh-keys.yaml;
         };
-
       };
     };
   };

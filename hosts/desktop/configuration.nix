@@ -46,6 +46,7 @@
         elyprismlauncher.enable = false;
         fonts.enable = true;
         gnome.enable = false;
+        kde-plasma.enable = false;
         ly.enable = true;
         portals.enable = true;
         steam = {

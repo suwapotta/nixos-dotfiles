@@ -46,6 +46,10 @@ in
       # ── GUI ───────────────────────────────────────────────────────────────────────
       (lib.mkIf cfg.features.gui {
         programs.virt-manager.enable = true;
+
+        # environment.systemPackages = with pkgs; [
+        #   virt-viewer
+        # ];
       })
 
       # ── Windows ───────────────────────────────────────────────────────────────────
