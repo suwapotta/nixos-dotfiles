@@ -1,11 +1,10 @@
-# ext4 + swap (SSD + HDD)
+# ext4 + swap
 
 {
   disko.devices = {
     disk = {
-      # SSD (256 GiB)
       disk0 = {
-        device = "/dev/sda";
+        device = "/dev/vda";
         type = "disk";
         content = {
           type = "gpt";
@@ -22,11 +21,11 @@
             };
 
             swap = {
-              size = "8G";
+              size = "4G";
               content = {
                 type = "swap";
                 discardPolicy = "both";
-                resumeDevice = true;
+                resumeDevice = true; # resume from hibernation
               };
             };
 
@@ -36,26 +35,6 @@
                 type = "filesystem";
                 format = "ext4";
                 mountpoint = "/";
-              };
-            };
-          };
-        };
-      };
-
-      # HDD (1 TiB)
-      disk1 = {
-        device = "/dev/sdb";
-        type = "disk";
-        content = {
-          type = "gpt";
-          partitions = {
-
-            home = {
-              size = "100%";
-              content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/home";
               };
             };
           };

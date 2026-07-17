@@ -25,7 +25,11 @@
     ../../modules/specialisation/specialisation-default.nix
   ];
 
-  system.nixos.tags = [ "Rig" ];
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
   modules = {
     containers = {
       testbox.enable = false;
@@ -33,19 +37,18 @@
 
     core = {
       display = {
-        auto-login.enable = false;
         elyprismlauncher.enable = true;
         fonts.enable = false;
         gnome.enable = false;
-        kde-plasma.enable = true;
+        kde-plasma.enable = false;
         ly.enable = false;
         portals.enable = false;
         steam = {
           enable = false;
           features = {
-            protonGE = true;
-            gamemode = true;
-            mangoHud = true;
+            protonGE = false;
+            gamemode = false;
+            mangoHud = false;
           };
         };
       };
@@ -60,10 +63,10 @@
         msi = {
           enable = false;
           ec = {
-            preset = "turbo";
+            preset = null;
             coolerBoost = false;
             webcamBlock = false;
-            kbdBacklight = 3;
+            kbdBacklight = 0;
           };
         };
         nvidia-disable.enable = false;
@@ -85,6 +88,7 @@
       };
 
       services = {
+        auto-login.enable = false;
         git.enable = true;
         global-programs.enable = true;
         gvfs.enable = true;
@@ -92,20 +96,27 @@
         libimobiledevice.enable = false;
         logind.enable = false;
         mcontrolcenter.enable = false;
-        network.enable = true;
-        openssh.enable = false;
-        polkit.enable = false;
-        power = {
+        minecraft-server.enable = false;
+        network = {
           enable = true;
+          isRouterDnsBroken = true;
+        };
+        openssh.enable = true;
+        polkit = {
+          enable = true; # Dependency for sway.nix
+          useSoteriaFrontend = false;
+        };
+        power = {
+          enable = false;
           mode = null;
         };
         qemu = {
           enable = false;
           features = {
-            gui = true;
+            gui = false;
             windowsSupport = false;
             usbSharing = false;
-            clipboardSharing = true;
+            clipboardSharing = false;
           };
         };
       };
@@ -121,7 +132,7 @@
         systemd-boot.enable = true;
         timezone.enable = true;
         users.enable = true;
-        variables.enable = true;
+        variables.enable = false;
         zram.enable = true;
       };
     };
@@ -137,10 +148,10 @@
       virtualisation = {
         enable = false;
         features = {
-          gui = true;
+          gui = false;
           windowsSupport = false;
           usbSharing = false;
-          clipboardSharing = true;
+          clipboardSharing = false;
         };
       };
     };

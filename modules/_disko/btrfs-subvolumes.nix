@@ -39,8 +39,6 @@
                     mountpoint = "/home";
                   };
 
-                  # "/home/lunaz" = { };
-
                   "/nix" = {
                     mountOptions = [
                       "compress=zstd"

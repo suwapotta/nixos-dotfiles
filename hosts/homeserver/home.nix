@@ -1,5 +1,9 @@
 {
   inputs,
+  hostList,
+  hostName,
+  userEmail,
+  userName,
   ...
 }:
 
@@ -7,13 +11,21 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit
+        inputs
+        hostList
+        hostName
+        userEmail
+        userName
+        ;
+    };
     backupFileExtension = "bak";
     sharedModules = [
       inputs.sops-nix.homeManagerModules.sops
     ];
 
-    users."lunaz" = {
+    users."${userName}" = {
       imports = [
         # ── Modules ───────────────────────────────────────────────────────────────────
         ../../modules/user/user-default.nix
@@ -21,14 +33,14 @@
 
       home = {
         stateVersion = "26.05";
-        username = "lunaz";
-        homeDirectory = "/home/lunaz";
+        username = "${userName}";
+        homeDirectory = "/home/${userName}";
       };
 
       sops = {
         defaultSopsFile = ../../secrets/user-level/ssh-keys.yaml;
         defaultSopsFormat = "yaml";
-        age.keyFile = "/home/lunaz/.config/sops/age/keys.txt";
+        age.keyFile = "/home/${userName}/.config/sops/age/keys.txt";
       };
 
       modules.user = {
@@ -48,9 +60,9 @@
             gpu = "none";
           };
           cava.enable = false;
-          fastfetch.enable = true;
+          fastfetch.enable = false;
           fzf.enable = false;
-          lazygit.enable = true;
+          lazygit.enable = false;
           ssh-agent = {
             enable = false;
             useTPM = false;
@@ -66,8 +78,8 @@
         };
 
         desktop = {
-          cursor.enable = true;
-          fcitx5.enable = true;
+          cursor.enable = false;
+          fcitx5.enable = false;
           gtk.enable = false;
           niri-flake = {
             enable = false;
@@ -75,20 +87,22 @@
           };
           noctalia.enable = false;
           qt.enable = false;
+          sway.enable = true;
           user-dirs.enable = true;
         };
 
         dotfiles = {
           symlink = {
-            enable = true;
-            targets = [
-              "nvim"
-            ];
+            enable = false;
+            targets = [ ];
           };
         };
 
         editors = {
-          neovim.enable = true;
+          neovim = {
+            enable = true;
+            useMinimalConfig = true;
+          };
         };
 
         shells = {
@@ -103,6 +117,7 @@
         };
 
         terminals = {
+          alacritty.enable = true;
           kitty.enable = false;
         };
 

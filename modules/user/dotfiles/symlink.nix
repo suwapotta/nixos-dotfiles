@@ -6,6 +6,10 @@
 
 let
   dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/modules/user/dotfiles/config";
+  dirContents = builtins.readDir ./config;
+  dotfilesList = builtins.filter (name: dirContents.${name} == "directory") (
+    builtins.attrNames dirContents
+  );
   cfg = config.modules.user.dotfiles.symlink;
 in
 {
@@ -13,7 +17,7 @@ in
     modules.user.dotfiles.symlink = {
       enable = lib.mkEnableOption "enables Out-Of-Store-Symlink";
       targets = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
+        type = lib.types.listOf (lib.types.enum dotfilesList);
         default = [ ];
       };
     };

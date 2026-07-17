@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  userName,
   ...
 }:
 
@@ -17,10 +18,10 @@ let
 in
 {
   options = {
-    modules.core.display.auto-login.enable = lib.mkEnableOption "niri autologin";
+    modules.core.services.auto-login.enable = lib.mkEnableOption "niri autologin";
   };
 
-  config = lib.mkIf config.modules.core.display.auto-login.enable {
+  config = lib.mkIf config.modules.core.services.auto-login.enable {
     # https://git.sr.ht/~kennylevinsen/autologin
     environment.systemPackages = [ autologin_on_7 ];
 
@@ -34,7 +35,7 @@ in
       ];
 
       serviceConfig = {
-        ExecStart = "${autologin_on_7}/bin/autologin lunaz ${pkgs.niri}/bin/niri-session";
+        ExecStart = "${autologin_on_7}/bin/autologin ${userName} ${pkgs.niri}/bin/niri-session";
         Type = "simple";
         IgnoreSIGPIPE = "no";
         SendSIGHUP = "yes";

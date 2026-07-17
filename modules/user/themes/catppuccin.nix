@@ -52,6 +52,7 @@
 
       # ── terminals ─────────────────────────────────────────────────────────────────
       kitty.enable = true;
+      alacritty.enable = false;
     };
   };
 }

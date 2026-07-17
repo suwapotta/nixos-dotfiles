@@ -34,7 +34,6 @@
     ../../modules/specialisation/specialisation-default.nix
   ];
 
-  system.nixos.tags = [ "Desktop" ];
   modules = {
     containers = {
       testbox.enable = true;
@@ -42,7 +41,6 @@
 
     core = {
       display = {
-        auto-login.enable = false;
         elyprismlauncher.enable = false;
         fonts.enable = true;
         gnome.enable = false;
@@ -94,6 +92,7 @@
       };
 
       services = {
+        auto-login.enable = false;
         git.enable = true;
         global-programs.enable = true;
         gvfs.enable = true;
@@ -101,9 +100,16 @@
         libimobiledevice.enable = false;
         logind.enable = false;
         mcontrolcenter.enable = false;
-        network.enable = true;
+        minecraft-server.enable = false;
+        network = {
+          enable = true;
+          isRouterDnsBroken = false;
+        };
         openssh.enable = true;
-        polkit.enable = false;
+        polkit = {
+          enable = false;
+          useSoteriaFrontend = false;
+        };
         power = {
           enable = true;
           mode = null;

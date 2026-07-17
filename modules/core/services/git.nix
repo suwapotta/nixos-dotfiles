@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  userName,
+  userEmail,
   ...
 }:
 
@@ -15,8 +17,8 @@
 
       config = {
         user = {
-          name = "lunaz";
-          email = "nguyenducthientan09@gmail.com";
+          name = userName;
+          email = userEmail;
         };
 
         init.defaultBranch = "master";

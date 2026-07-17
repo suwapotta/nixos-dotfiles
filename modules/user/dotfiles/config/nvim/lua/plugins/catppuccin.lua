@@ -1,46 +1,27 @@
-vim.pack.add({
-	{
-		src = "https://github.com/catppuccin/nvim",
-		name = "catppuccin",
-	},
-})
+return {
+  "catppuccin/nvim",
 
----@module "catppuccin"
-require("catppuccin").setup({
-	transparent_background = true, -- disables setting the background color
+  opts = {
+    transparent_background = true,
 
-	float = {
-		transparent = true, -- enable transparent floating windows
-		solid = "rounded", -- use solid styling for floating windows, see |winborder|
-	},
+    float = {
+      transparent = true,
+      solid = true,
+    },
 
-	-- Custom colors override
-	custom_highlights = function(colors)
-		return {
-			NormalFloat = { bg = colors.none },
-			FloatBorder = { bg = colors.none },
-			FloatTitle = { bg = colors.red, fg = colors.base },
+    -- Force completion menu background to be transparent
+    custom_highlights = function(colors)
+      return {
+        FloatTitle = { bg = colors.mauve, fg = colors.base },
 
-			BlinkCmpMenu = { bg = colors.none },
-			BlinkCmpMenuBorder = { bg = colors.none },
+        Pmenu = { bg = colors.none },
+        PmenuSel = { bg = colors.surface0, fg = colors.none },
 
-			Pmenu = { bg = colors.none },
-			PmenuSel = { bg = colors.surface0, fg = colors.none },
-		}
-	end,
+        FzfLuaFzfHeader = { fg = colors.subtext1 },
 
-	auto_integrations = false,
-
-	-- NOTE: https://github.com/catppuccin/nvim#integrations
-	integrations = {
-		blink_cmp = true,
-		gitsigns = true,
-		mini = {
-			enabled = true,
-			indentscope_color = "",
-		},
-	},
-})
-
--- Setup must be called before loading
-vim.cmd.colorscheme("catppuccin-nvim")
+        BlinkCmpMenu = { bg = colors.none },
+        BlinkCmpMenuBorder = { bg = colors.none },
+      }
+    end,
+  },
+}

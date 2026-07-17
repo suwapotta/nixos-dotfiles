@@ -61,20 +61,35 @@
     }@inputs:
 
     let
+      # Flake hosts and architectures declaration
       hosts = {
-        "desktop" = "x86_64-linux";
-        "homeserver" = "x86_64-linux";
-        "laptop" = "x86_64-linux";
+        desktop = "x86_64-linux";
+        homeserver = "x86_64-linux";
+        laptop = "x86_64-linux";
       };
+
+      # Global variables
+      hostList = builtins.attrNames hosts;
+      userName = "lunaz";
+      userEmail = "nguyenducthientan09@gmail.com";
     in
     {
       nixosConfigurations = nixpkgs.lib.mapAttrs (
-        hostname: system:
+        host: system:
         nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };
+          specialArgs = {
+            inherit
+              inputs
+              hostList
+              userName
+              userEmail
+              ;
+            hostName = host;
+          };
+
           modules = [
-            ./hosts/${hostname}/configuration.nix
+            ./hosts/${host}/configuration.nix
           ];
         }
       ) hosts;

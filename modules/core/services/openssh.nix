@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  userName,
   ...
 }:
 
@@ -23,7 +24,7 @@
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
         AllowUsers = [
-          "lunaz"
+          "${userName}"
           "remotebuilder"
         ];
         MaxAuthTries = 3;

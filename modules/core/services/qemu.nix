@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  userName,
   ...
 }:
 
@@ -26,7 +27,7 @@ in
     lib.mkMerge [
       # ── Core ──────────────────────────────────────────────────────────────────────
       {
-        users.users."lunaz".extraGroups = [
+        users.users."${userName}".extraGroups = [
           "libvirtd"
           "kvm"
         ];

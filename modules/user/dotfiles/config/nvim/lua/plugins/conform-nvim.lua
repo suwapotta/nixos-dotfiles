@@ -1,26 +1,28 @@
-vim.pack.add({
-	{
-		src = "https://github.com/stevearc/conform.nvim",
-		name = "conform.nvim",
-	},
-})
+return {
+  "stevearc/conform.nvim",
 
-require("conform").setup({
-	formatters_by_ft = {
-		lua = { "stylua" },
-	},
+  opts = function(_, opts)
+    opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft or {}, {
+      asm = { "asmfmt" },
+      bib = { "bibtex-tidy" },
+      c = { "clang-format" },
+      cpp = { "clang-format" },
+      just = { "just" },
+      -- kdl = { "kdlfmt" },
+      meson = { "meson" },
+      python = { "ruff_format" },
+      -- rust = { "rustfmt" },
+      systemverilog = { "verible" },
+      tex = { "latexindent" },
+      typescript = { "biome" },
+      typescriptreact = { "biome" },
+      verilog = { "verible" },
+      yaml = { "prettier" },
 
-	format_on_save = {
-		-- These options will be passed to conform.format()
-		timeout_ms = 500,
-		lsp_format = "fallback",
-	},
-})
+      ["*"] = { "codespell" },
+      ["_"] = { "trim_whitespace" },
+    })
 
--- Manual keymap
-vim.keymap.set("n", "<leader>cf", function()
-	require("conform").format({
-		lsp_format = "fallback",
-		async = true,
-	})
-end, { desc = "Code Formatting" })
+    return opts
+  end,
+}

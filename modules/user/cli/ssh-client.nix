@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  hostList,
+  userName,
   ...
 }:
 
@@ -12,13 +14,7 @@ in
     modules.user.cli.ssh-client = {
       enable = lib.mkEnableOption "user-level ssh client settings";
       keyGen = lib.mkOption {
-        type = lib.types.nullOr (
-          lib.types.enum [
-            "desktop"
-            "homeserver"
-            "laptop"
-          ]
-        );
+        type = lib.types.nullOr (lib.types.enum hostList);
         default = null;
         description = "which machine to generate ssh key from sops";
       };
@@ -40,13 +36,13 @@ in
 
         "desktop" = {
           HostName = "192.168.1.201";
-          User = "lunaz";
+          User = userName;
           Port = "24";
         };
 
         "laptop" = {
           HostName = "192.168.1.27";
-          User = "lunaz";
+          User = userName;
           Port = "24";
         };
       };

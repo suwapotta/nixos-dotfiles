@@ -31,28 +31,6 @@
     ../../modules/specialisation/specialisation-default.nix
   ];
 
-  # qemu -> false
-  services.minecraft-server = {
-    enable = true;
-    eula = true;
-    openFirewall = true;
-    declarative = true;
-
-    serverProperties = {
-      server-port = 45000;
-      difficulty = 3;
-      max-players = 5;
-      motd = "NixOS Minecraft server!";
-      allow-cheats = true;
-      online-mode = false;
-    };
-    jvmOpts = "-Xms2048M -Xmx2048M";
-  };
-  modules.core.system._unfree-pkgs.list = [
-    "minecraft-server"
-  ];
-
-  system.nixos.tags = [ "Laptop" ];
   modules = {
     containers = {
       testbox.enable = true;
@@ -60,7 +38,6 @@
 
     core = {
       display = {
-        auto-login.enable = true;
         elyprismlauncher.enable = false;
         fonts.enable = true;
         gnome.enable = false;
@@ -112,6 +89,7 @@
       };
 
       services = {
+        auto-login.enable = true;
         git.enable = true;
         global-programs.enable = true;
         gvfs.enable = true;
@@ -119,9 +97,16 @@
         libimobiledevice.enable = false;
         logind.enable = true;
         mcontrolcenter.enable = true;
-        network.enable = true;
+        minecraft-server.enable = true;
+        network = {
+          enable = true;
+          isRouterDnsBroken = true;
+        };
         openssh.enable = false;
-        polkit.enable = false;
+        polkit = {
+          enable = false;
+          useSoteriaFrontend = false;
+        };
         power = {
           enable = true;
           mode = "performance";

@@ -1,24 +1,32 @@
 {
   lib,
   config,
+  hostName,
   ...
 }:
 
+let
+  cfg = config.modules.core.services.network;
+in
 {
   options = {
-    modules.core.services.network.enable = lib.mkEnableOption "hostname + networkmanager";
+    modules.core.services.network = {
+      enable = lib.mkEnableOption "declare hostname with networkmanager";
+      isRouterDnsBroken = lib.mkEnableOption "insert cloudflare + google dns at /etc/resolv.conf";
+    };
   };
 
-  config = lib.mkIf config.modules.core.services.network.enable {
+  config = lib.mkIf cfg.enable {
     networking = {
-      hostName = "NixOS";
-      networkmanager.enable = true;
-    };
+      inherit hostName;
 
-    # TODO: Add toggleable option for broken DNS wifi
-    networking.networkmanager.appendNameservers = [
-      "1.1.1.1"
-      "8.8.8.8"
-    ];
+      networkmanager = {
+        enable = true;
+        insertNameservers = lib.mkIf cfg.isRouterDnsBroken [
+          "1.1.1.1"
+          "8.8.8.8"
+        ];
+      };
+    };
   };
 }

@@ -140,9 +140,8 @@ inspect:
     printf "{{ BLUE }}   INSPECT {{ NORMAL }} NixOS Flake\n"
     nix run nixpkgs#nix-inspect -- -p {{ justfile_directory() }}
 
-# Virtualisation/Gaming
 specialisation spec_name="Virtualisation" host=FLAKE_HOST: pkill git
-    printf "{{ BLUE }}   SPECIAL {{ NORMAL }} NixOS#{{ host }}\n"
+    printf "{{ BLUE }}   SPECIAL {{ NORMAL }} NixOS#{{ host }}\n"
     nh os test {{ justfile_directory() }} --specialisation {{ spec_name }} -H {{ host }} {{ NOTIFY }}
 
 switch host=FLAKE_HOST: pkill git
@@ -225,19 +224,23 @@ __disko host:
 
 __sops_bootstrap host username:
     echo "  AGE     Generating new keys"
+    echo "./{{ host }}-system-key.txt:"
     nix shell nixpkgs#age -c age-keygen -o ./{{ host }}-system-key.txt
-    nix shell nixpkgs#age -c age-keygen -o ./{{ host }}-{{ username }}.txt
+    echo "./{{ host }}-{{ username }}.txt:"
+    nix shell nixpkgs#age -c age-keygen -o ./{{ host }}-{{ username }}-key.txt
     echo "  TODO    Update new public keys in ./.sops.yaml"
-    nix shell nixpkgs#age -c age-keygen -y ./{{ host }}-system-key.txt
-    nix shell nixpkgs#age -c age-keygen -y ./{{ host }}-{{ username }}.txt
 
 __sops_update:
     #!/usr/bin/env bash
     set -euo pipefail
     shopt -s nullglob
-    for secret in ./secrets/*/*.yaml; do
+    for secret in ./secrets/user-level/*.yaml; do
       echo "  SOPS    Re-encrypt in ${secret}"
       nix run nixpkgs#sops -- updatekeys ${secret}
+    done
+    for secret in ./secrets/system-level/*.yaml; do
+      echo "  SOPS    Re-encrypt in ${secret}"
+      nix shell nixpkgs#sops -c sudo sops updatekeys ${secret}
     done
 
 __nixos-anywhere host ip_addr username:
@@ -249,8 +252,8 @@ __nixos-anywhere host ip_addr username:
       echo "Missing {{ host }}-system-key.txt. Have you forgotten to run __sops_bootstrap and __sops_update?"
       exit 1
     }
-    [[ -f ./{{ host }}-{{ username }}.txt ]] || {
-      echo "Missing {{ host }}-{{ username }}.txt. Have you forgotten to run __sops_bootstrap and __sops_update?"
+    [[ -f ./{{ host }}-{{ username }}-key.txt ]] || {
+      echo "Missing {{ host }}-{{ username }}-key.txt. Have you forgotten to run __sops_bootstrap and __sops_update?"
       exit 1
     }
 
@@ -268,7 +271,7 @@ __nixos-anywhere host ip_addr username:
       ./{{ host }}-system-key.txt \
       /tmp/nix-payload/root/.config/sops/age/keys.txt
     install -Dm600 \
-      ./{{ host }}-{{ username }}.txt \
+      ./{{ host }}-{{ username }}-key.txt \
       /tmp/nix-payload/home/{{ username }}/.config/sops/age/keys.txt
 
     echo "  CP      ~/nixos-dotfiles/"
@@ -282,6 +285,20 @@ __nixos-anywhere host ip_addr username:
       --target-host root@{{ ip_addr }}
 
     echo "  RM      ./{{ host }}-system-key.txt"
+    # rm -f ./{{ host }}-system-key.txt
+    echo "  RM      ./{{ host }}-{{ username }}-key.txt"
+    # rm -f ./{{ host }}-{{ username }}-key.txt
+
+__post_install_fix host username:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo "  CHOWN   root -> {{ username }}"
+    sudo chown -R {{ username }}:users {{ home_dir() }}/{.config,nixos-dotfiles}
+    echo "  RM      ./result/"
+    sudo rm -rf ./result
+    echo "  RM      ./{{ host }}-system-key.txt"
     rm -f ./{{ host }}-system-key.txt
-    echo "  RM      ./{{ host }}-{{ username }}.txt"
-    rm -f ./{{ host }}-{{ username }}.txt
+    echo "  RM      ./{{ host }}-{{ username }}-key.txt"
+    rm -f ./{{ host }}-{{ username }}-key.txt
+    echo "  PASSWD  root"
+    sudo passwd

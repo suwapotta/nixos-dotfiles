@@ -17,6 +17,7 @@ in
         default = "latest";
         type = lib.types.enum [
           "latest"
+          "v2"
           "v3"
           "v4"
           "zen4"
@@ -31,6 +32,7 @@ in
     boot.kernelPackages =
       {
         "latest" = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto;
+        "v2" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v2;
         "v3" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v3;
         "v4" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v4;
         "zen4" = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-zen4;

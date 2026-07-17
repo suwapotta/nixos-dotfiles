@@ -5,56 +5,67 @@
   ...
 }:
 
+let
+  cfg = config.modules.user.editors.neovim;
+in
 {
   options = {
-    modules.user.editors.neovim.enable = lib.mkEnableOption "neovim - better vim";
+    modules.user.editors.neovim = {
+      enable = lib.mkEnableOption "neovim - better vim";
+      useMinimalConfig = lib.mkEnableOption "uses native neovim options only";
+    };
   };
 
-  config = lib.mkIf config.modules.user.editors.neovim.enable {
-    home.packages = with pkgs; [
-      # Core
-      neovim
+  config = lib.mkIf cfg.enable {
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
+      sideloadInitLua = true;
+      withRuby = false;
+      withPython3 = false;
 
-      # Dependencies
-      (python314.withPackages (qs: with qs; [ pynvim ]))
-      # chafa
-      imagemagick
-      sqlite
-      trash-cli
-      tree-sitter
-      xdg-utils
+      extraPackages =
+        with pkgs;
+        lib.optionals (!cfg.useMinimalConfig) [
+          # ── Dependencies ──────────────────────────────────────────────────────────────
+          chafa
+          imagemagick
+          sqlite
+          trash-cli
+          tree-sitter
+          xdg-utils
 
-      # LSPs/Formatters/Linters
-      ## Lua
-      lua-language-server
-      stylua
+          # ── Lua ───────────────────────────────────────────────────────────────────────
+          lua-language-server
+          stylua
 
-      ## Nix
-      nixd
-      nixfmt
-      statix
+          # ── Nix ───────────────────────────────────────────────────────────────────────
+          nixd
+          nixfmt
+          statix
 
-      ## Bash
-      bash-language-server
-      bashdb
-      shellcheck
-      shfmt
+          # ── Bash ──────────────────────────────────────────────────────────────────────
+          bash-language-server
+          bashdb
+          shellcheck
+          shfmt
 
-      ## Markdown
-      markdown-toc
-      markdownlint-cli2
-      marksman
-      mermaid-cli
-      prettier
+          # ── Markdown ──────────────────────────────────────────────────────────────────
+          markdown-toc
+          markdownlint-cli2
+          marksman
+          mermaid-cli
+          prettier
 
-      ## Just
-      just-lsp
+          # ── Just ──────────────────────────────────────────────────────────────────────
+          just-lsp
 
-      ## Others (e.g., yaml, toml, etc.)
-      codespell
-      taplo
-      yaml-language-server
-      vscode-langservers-extracted
-    ];
+          # ── Others (e.g., yaml, toml, etc.) ───────────────────────────────────────────
+          codespell
+          taplo
+          yaml-language-server
+          vscode-langservers-extracted
+        ];
+    };
   };
 }

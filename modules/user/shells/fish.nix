@@ -16,7 +16,7 @@ in
 
   config = lib.mkIf config.modules.user.shells.fish.enable {
     home.sessionVariables = {
-      MANPAGER = "env NVIM_APPNAME=lvim nvim +Man!";
+      MANPAGER = "nvim +Man!";
       EZA_COLORS = "*.txt=35:*.md=35:*.kdl=33:*.sv=33";
     };
 
@@ -28,7 +28,6 @@ in
       };
 
       shellAliases = {
-        lvim = "NVIM_APPNAME=lvim nvim";
         nix-just = "just -f ${config.home.homeDirectory}/nixos-dotfiles/Justfile";
         clear = "printf '\\033[2J\\033[3J\\033[1;1H'";
       };

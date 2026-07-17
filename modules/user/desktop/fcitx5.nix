@@ -115,5 +115,10 @@
         };
       };
     };
+
+    home.sessionVariables = {
+      XMODIFIERS = "@im=fcitx";
+      GLFW_IM_MODULE = "ibus";
+    };
   };
 }

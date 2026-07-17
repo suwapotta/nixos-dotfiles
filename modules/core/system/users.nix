@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  userName,
   ...
 }:
 
@@ -10,7 +11,7 @@
   };
 
   config = lib.mkIf config.modules.core.system.users.enable {
-    users.users."lunaz" = {
+    users.users."${userName}" = {
       isNormalUser = true;
       extraGroups = [
         "wheel"
