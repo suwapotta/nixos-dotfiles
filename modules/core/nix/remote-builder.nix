@@ -1,10 +1,13 @@
 {
   lib,
   config,
-  hostName,
+  hostList,
   ...
 }:
 
+let
+  fixedHostList = builtins.filter (host: host != "desktop") hostList;
+in
 {
   options = {
     modules.core.nix.remote-builder.enable = lib.mkEnableOption "nixos remote builder";
@@ -17,9 +20,9 @@
         group = "remotebuilder";
         useDefaultShell = true;
 
-        openssh.authorizedKeys.keyFiles = [
-          ../../../public/ssh-keys/remote_build_${hostName}.pub
-        ];
+        openssh.authorizedKeys.keyFiles = map (
+          host: ../../../public/ssh-keys/remote_build_${host}.pub
+        ) fixedHostList;
       };
 
       groups."remotebuilder" = { };
