@@ -83,7 +83,7 @@
         experimental-features.enable = true;
         nh.enable = true;
         niri-cachix.enable = true;
-        remote-builder.enable = false;
+        remote-builder.enable = true;
         sops.enable = true;
         vm-variant.enable = true;
       };
@@ -102,7 +102,7 @@
           enable = true;
           isRouterDnsBroken = true;
         };
-        openssh.enable = false;
+        openssh.enable = true;
         polkit = {
           enable = false;
           useSoteriaFrontend = false;
@@ -120,6 +120,7 @@
             clipboardSharing = true;
           };
         };
+        tailscale.enable = true;
       };
 
       system = {

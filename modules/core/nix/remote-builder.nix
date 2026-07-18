@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  hostName,
   ...
 }:
 
@@ -17,7 +18,7 @@
         useDefaultShell = true;
 
         openssh.authorizedKeys.keyFiles = [
-          ../../../public/ssh-keys/remote_build.pub
+          ../../../public/ssh-keys/remote_build_${hostName}.pub
         ];
       };
 

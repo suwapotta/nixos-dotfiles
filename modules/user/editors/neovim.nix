@@ -28,6 +28,7 @@ in
         with pkgs;
         lib.optionals (!cfg.useMinimalConfig) [
           # ── Dependencies ──────────────────────────────────────────────────────────────
+          # gcc
           chafa
           imagemagick
           sqlite

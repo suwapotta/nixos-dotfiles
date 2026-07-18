@@ -61,11 +61,31 @@
     }@inputs:
 
     let
-      # Flake hosts and architectures declaration
+      # Flake host infos declaration
       hosts = {
-        desktop = "x86_64-linux";
-        homeserver = "x86_64-linux";
-        laptop = "x86_64-linux";
+        desktop = {
+          arch = "x86_64-linux";
+          maxJobs = 32;
+          speedFactor = 300;
+          ip = "<tailscale-ip>";
+          isBuilder = true;
+        };
+
+        homeserver = {
+          arch = "x86_64-linux";
+          maxJobs = 4;
+          speedFactor = 100;
+          ip = "<tailscale-ip>";
+          isBuilder = false;
+        };
+
+        laptop = {
+          arch = "x86_64-linux";
+          maxJobs = 12;
+          speedFactor = 200;
+          ip = "100.103.120.77";
+          isBuilder = true;
+        };
       };
 
       # Global variables
@@ -75,12 +95,13 @@
     in
     {
       nixosConfigurations = nixpkgs.lib.mapAttrs (
-        host: system:
+        host: hostConfig:
         nixpkgs.lib.nixosSystem {
-          inherit system;
+          system = hostConfig.arch;
           specialArgs = {
             inherit
               inputs
+              hosts
               hostList
               userName
               userEmail

@@ -7,7 +7,7 @@
 
 {
   options = {
-    modules.user.shells.eza.enable = lib.mkEnableOption "eza - ls replacement";
+    modules.user.shells.eza.enable = lib.mkEnableOption "eza - modern ls replacement";
   };
 
   config = lib.mkIf config.modules.user.shells.eza.enable {

@@ -25,11 +25,6 @@
     ../../modules/specialisation/specialisation-default.nix
   ];
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
-
   modules = {
     containers = {
       testbox.enable = false;
@@ -78,7 +73,7 @@
 
       nix = {
         disabled.enable = true;
-        distributed-build.enable = false;
+        distributed-build.enable = true;
         experimental-features.enable = true;
         nh.enable = true;
         niri-cachix.enable = false;
@@ -119,6 +114,7 @@
             clipboardSharing = false;
           };
         };
+        tailscale.enable = true;
       };
 
       system = {

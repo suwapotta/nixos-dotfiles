@@ -2,6 +2,7 @@
   inputs,
   hostList,
   hostName,
+  hosts,
   userEmail,
   userName,
   ...
@@ -16,6 +17,7 @@
         inputs
         hostList
         hostName
+        hosts
         userEmail
         userName
         ;
@@ -68,10 +70,7 @@
             useTPM = false;
             identityLifetimeSeconds = 8 * 60;
           };
-          ssh-client = {
-            enable = true;
-            keyGen = "desktop";
-          };
+          ssh-client.enable = true;
           tealdeer.enable = true;
           tmux.enable = false;
           yazi.enable = true;

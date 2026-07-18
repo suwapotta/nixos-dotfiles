@@ -1,9 +1,15 @@
 {
   lib,
   config,
+  hostList,
+  hostName,
+  hosts,
   ...
 }:
 
+let
+  validBuilderList = builtins.filter (name: (name != hostName) && hosts.${name}.isBuilder) hostList;
+in
 {
   options = {
     modules.core.nix.distributed-build.enable = lib.mkEnableOption "remote building nixos generation";
@@ -13,16 +19,19 @@
     nix = {
       distributedBuilds = true;
 
-      buildMachines = [
+      buildMachines = map (
+        targetName:
+        let
+          targetConfig = hosts.${targetName};
+        in
         {
-          hostName = "192.168.1.201";
+          hostName = targetConfig.ip;
           sshUser = "remotebuilder";
-          sshKey = config.sops.secrets."remote-builder-laptop-x86_64".path;
+          sshKey = config.sops.secrets."remote-builder-${hostName}-x86_64".path;
 
-          systems = [ "x86_64-linux" ];
+          systems = [ targetConfig.arch ];
           protocol = "ssh-ng";
-          maxJobs = 32; # Ryzen 9 7950X
-          speedFactor = 5; # Relative speed
+          inherit (targetConfig) maxJobs speedFactor;
           supportedFeatures = [
             "nixos-test"
             "benchmark"
@@ -31,20 +40,26 @@
           ];
           mandatoryFeatures = [ ];
         }
-      ];
+      ) validBuilderList;
 
       extraOptions = ''
         builders-use-substitutes = true
       '';
     };
 
-    programs.ssh.extraConfig = ''
-      Host                  192.168.1.201
-      User                  remotebuilder
-      Port                  22
-      IdentityFile          ${config.sops.secrets."remote-builder-laptop-x86_64".path}
-      IdentitiesOnly        yes
-      StrictHostKeyChecking accept-new
-    '';
+    programs.ssh.extraConfig = lib.concatMapStringsSep "\n" (
+      targetName:
+      let
+        targetConfig = hosts.${targetName};
+      in
+      ''
+        Host                  ${targetConfig.ip}
+        User                  remotebuilder
+        Port                  22
+        IdentityFile          ${config.sops.secrets."remote-builder-${hostName}-x86_64".path}
+        IdentitiesOnly        yes
+        StrictHostKeyChecking accept-new
+      ''
+    ) validBuilderList;
   };
 }

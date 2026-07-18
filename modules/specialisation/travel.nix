@@ -42,6 +42,7 @@
               enable = lib.mkForce true;
               mode = lib.mkForce "power-saver";
             };
+            tailscale.enable = lib.mkForce false;
           };
         };
       };

@@ -65,7 +65,7 @@
         intel.enable = false;
         keyboard.enable = true;
         msi = {
-          enable = true;
+          enable = false;
           ec = {
             preset = "turbo";
             coolerBoost = false;
@@ -123,6 +123,7 @@
             clipboardSharing = true;
           };
         };
+        tailscale.enable = true;
       };
 
       system = {
