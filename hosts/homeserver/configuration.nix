@@ -129,6 +129,10 @@
         timezone.enable = true;
         users.enable = true;
         variables.enable = false;
+        wol = {
+          enable = true;
+          interface = "eno1";
+        };
         zram.enable = true;
       };
     };
