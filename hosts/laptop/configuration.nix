@@ -79,7 +79,7 @@
 
       nix = {
         disabled.enable = true;
-        distributed-build.enable = true;
+        distributed-build.enable = false;
         experimental-features.enable = true;
         nh.enable = true;
         niri-cachix.enable = true;

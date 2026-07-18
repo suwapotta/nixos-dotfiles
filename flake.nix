@@ -67,7 +67,7 @@
           arch = "x86_64-linux";
           maxJobs = 32;
           speedFactor = 300;
-          ip = "<tailscale-ip>";
+          ip = "100.0.0.1"; # Temp
           isBuilder = true;
         };
 
@@ -75,7 +75,7 @@
           arch = "x86_64-linux";
           maxJobs = 4;
           speedFactor = 100;
-          ip = "<tailscale-ip>";
+          ip = "100.0.0.1"; # Temp
           isBuilder = false;
         };
 

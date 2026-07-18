@@ -2,6 +2,7 @@
   lib,
   config,
   inputs,
+  hostName,
   ...
 }:
 
@@ -37,7 +38,7 @@
         };
 
         # # ── ssh-keys.yaml ──────────────────────────────────────────────────────────────
-        "remote-builder-laptop-x86_64" = {
+        "remote-builder-${hostName}-x86_64" = {
           # owner = "root";
           sopsFile = ../../../secrets/system-level/ssh-keys.yaml;
         };
