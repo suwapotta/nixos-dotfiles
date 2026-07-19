@@ -1,5 +1,8 @@
 # .sops.yaml
+
 keys:
+  - &desktop_system age182wny3nxfm563r30pzgtyf7y2td2lgkztyg5ljj0297psd99v4as4kpx4c
+  - &desktop_user age1kv6l0qypkp5p8le2rsu9mmat4qt0tfq9xrh4gx7k62w273npwgqqqx9yp5
   - &homeserver_system age199s23seyrp98k65kqajcq5tx6xr7yszf0m82lg8ffzn2ytazse2qxh324a
   - &homeserver_user age1956lszqlxrtnewtwn67rx7lz9q6h8mvjkvnku3rs5jful0ah9gqq7rafze
   - &laptop_system age10n9vvh8ckzmunzgqn9pf67psnknukyqr7mn6l92yxduf6ewve4ksqrd2um
@@ -9,11 +12,13 @@ creation_rules:
   - path_regex: secrets/system-level/[^/]+\.yaml$
     key_groups:
       - age:
+          - *desktop_system
           - *homeserver_system
           - *laptop_system
 
   - path_regex: secrets/user-level/[^/]+\.yaml$
     key_groups:
       - age:
+          - *desktop_user
           - *homeserver_user
           - *laptop_user

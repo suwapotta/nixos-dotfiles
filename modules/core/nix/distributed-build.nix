@@ -16,6 +16,14 @@ in
   };
 
   config = lib.mkIf config.modules.core.nix.distributed-build.enable {
+    sops.secrets = {
+      # ── ssh-keys.yaml ──────────────────────────────────────────────────────────────
+      "remote-builder-${hostName}-x86_64" = {
+        # owner = "root";
+        sopsFile = ../../../secrets/system-level/ssh-keys.yaml;
+      };
+    };
+
     nix = {
       distributedBuilds = true;
 

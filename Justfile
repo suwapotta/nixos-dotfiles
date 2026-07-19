@@ -285,9 +285,9 @@ __nixos-anywhere host ip_addr username:
       --target-host root@{{ ip_addr }}
 
     echo "  RM      ./{{ host }}-system-key.txt"
-    # rm -f ./{{ host }}-system-key.txt
+    rm -f ./{{ host }}-system-key.txt
     echo "  RM      ./{{ host }}-{{ username }}-key.txt"
-    # rm -f ./{{ host }}-{{ username }}-key.txt
+    rm -f ./{{ host }}-{{ username }}-key.txt
 
 __post_install_fix host username:
     #!/usr/bin/env bash

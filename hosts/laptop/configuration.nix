@@ -83,7 +83,7 @@
         experimental-features.enable = true;
         nh.enable = true;
         niri-cachix.enable = true;
-        remote-builder.enable = true;
+        remote-builder.enable = false;
         sops.enable = true;
         vm-variant.enable = true;
       };
@@ -97,10 +97,10 @@
         libimobiledevice.enable = false;
         logind.enable = true;
         mcontrolcenter.enable = true;
-        minecraft-server.enable = true;
+        minecraft-server.enable = false;
         network = {
           enable = true;
-          isRouterDnsBroken = true;
+          isRouterDnsBroken = false;
         };
         openssh.enable = true;
         polkit = {

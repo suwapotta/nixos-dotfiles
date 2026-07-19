@@ -67,7 +67,7 @@
           arch = "x86_64-linux";
           maxJobs = 32;
           speedFactor = 300;
-          ip = "100.0.0.1"; # Temp
+          ip = "192.168.1.201";
           isBuilder = true;
         };
 

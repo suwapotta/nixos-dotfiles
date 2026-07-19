@@ -38,6 +38,7 @@
 
           services = {
             mcontrolcenter.enable = lib.mkForce false;
+            openssh.enable = lib.mkForce false;
             power = {
               enable = lib.mkForce true;
               mode = lib.mkForce "power-saver";
