@@ -95,7 +95,7 @@
             enable = true;
             targets = [
               "niri"
-              # "lvim"
+              "nvim"
             ];
           };
         };

@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  hostList,
   userName,
   ...
 }:
@@ -19,11 +20,7 @@
       ];
       hashedPasswordFile = config.sops.secrets."normal-user".path;
 
-      openssh.authorizedKeys.keyFiles = [
-        ../../../public/ssh-keys/id_desktop.pub
-        ../../../public/ssh-keys/id_laptop.pub
-        ../../../public/ssh-keys/id_homeserver.pub
-      ];
+      openssh.authorizedKeys.keyFiles = map (host: ../../../public/ssh-keys/id_${host}.pub) hostList;
     };
   };
 }

@@ -120,7 +120,7 @@
             clipboardSharing = true;
           };
         };
-        tailscale.enable = true;
+        tailscale.enable = false;
       };
 
       system = {
