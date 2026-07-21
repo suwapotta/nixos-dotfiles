@@ -4,6 +4,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
   },
 
+  ft = "nix",
   config = function(_, opts)
     require("otter").setup(opts)
 

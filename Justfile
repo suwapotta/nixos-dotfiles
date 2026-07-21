@@ -179,11 +179,11 @@ legacy host=FLAKE_HOST: pkill git
 update host=FLAKE_HOST: pkill git
     #!/usr/bin/env bash
     set -euo pipefail
-    printf "{{ BLUE }}   UPDATE  {{ NORMAL }} lazy.nvim\n"
-    NVIM_APPNAME=lvim nvim --headless "+Lazy! sync" +qa &>/dev/null
+    printf "{{ BLUE }}   UPDATE  {{ NORMAL }} neovim\n"
+    nvim --headless "+Lazy! sync" +qa &>/dev/null
 
-    printf "{{ BLUE }}   UPDATE  {{ NORMAL }} vim.pack\n"
-    nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
+    # printf "{{ BLUE }}   UPDATE  {{ NORMAL }} vim.pack\n"
+    # nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
 
     printf "{{ BLUE }}  󰟁 UPDATE  {{ NORMAL }} NixOS#{{ host }}\n"
     if nh os switch {{ justfile_directory() }} -H {{ host }} --update; then
