@@ -52,7 +52,7 @@
         enable = true;
         targets = [
           "niri"
-          "nvim"
+          "lvim"
         ];
       };
     };
