@@ -35,7 +35,7 @@ return {
               home_manager = {
                 expr = "(builtins.getFlake (toString ./.)).nixosConfigurations."
                   .. vim.uv.os_gethostname()
-                  .. ".options.home-manager.users.type.getSubOptions",
+                  .. ".options.home-manager.users.type.getSubOptions [ ]",
               },
             },
           },

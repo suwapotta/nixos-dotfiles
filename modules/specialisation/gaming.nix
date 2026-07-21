@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  hostList,
   ...
 }:
 
@@ -12,10 +13,7 @@ in
     enable = lib.mkEnableOption "gaming boot specialisation";
 
     platform = lib.mkOption {
-      type = lib.types.enum [
-        "desktop"
-        "laptop"
-      ];
+      type = lib.types.enum hostList;
       description = "host platform target tweaks";
     };
   };

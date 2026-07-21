@@ -30,7 +30,7 @@
       ];
 
       # Custom binds and styling
-      extraConfig = ''
+      extraConfig = /* tmux */ ''
         # Vim-like pane navigation
         bind-key h select-pane -L
         bind-key j select-pane -D

@@ -1,5 +1,6 @@
 {
   inputs,
+  stateVersion,
   ...
 }:
 
@@ -17,7 +18,15 @@
   # - Case: Linktech Bahamut ATX
 
   # WARN: DO NOT change the state version!
-  system.stateVersion = "26.05";
+  system.stateVersion = stateVersion;
+
+  # TODO: Module for:
+  nix = {
+    nixPath = [
+      "nixpkgs=${inputs.nixpkgs}"
+    ];
+    channel.enable = false;
+  };
 
   imports = [
     # ── Hardware ──────────────────────────────────────────────────────────────────

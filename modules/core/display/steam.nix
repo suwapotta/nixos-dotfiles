@@ -38,7 +38,7 @@ in
       # ── Proton-GE + NTSync ────────────────────────────────────────────────────────
       (lib.mkIf cfg.features.protonGE {
         boot.kernelModules = [ "ntsync" ];
-        services.udev.extraRules = ''
+        services.udev.extraRules = /* udev */ ''
           KERNEL=="ntsync", MODE="0666"
         '';
         programs.steam.extraCompatPackages = with pkgs; [ proton-ge-bin ];

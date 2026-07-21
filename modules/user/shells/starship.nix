@@ -22,7 +22,7 @@
         # Cool stuff 󰜥    •
         add_newline = false;
 
-        format = ''
+        format = /* str */ ''
           $username$hostname  $cmd_duration  $nix_shell$directory $git_branch
           $character
         '';

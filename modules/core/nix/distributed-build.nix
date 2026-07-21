@@ -50,7 +50,7 @@ in
         }
       ) validBuilderList;
 
-      extraOptions = ''
+      extraOptions = /* str */ ''
         builders-use-substitutes = true
       '';
     };

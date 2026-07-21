@@ -12,7 +12,7 @@
 
   config = lib.mkIf config.modules.core.hardware.nvidia-disable.enable {
     boot = {
-      extraModprobeConfig = ''
+      extraModprobeConfig = /* sh */ ''
         blacklist nouveau
         options nouveau modeset=0
       '';
@@ -25,7 +25,7 @@
       ];
     };
 
-    services.udev.extraRules = ''
+    services.udev.extraRules = /* udev */ ''
       # Remove NVIDIA USB xHCI Host Controller devices, if present
       ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{power/control}="auto", ATTR{remove}="1"
 

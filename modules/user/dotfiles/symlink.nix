@@ -10,6 +10,10 @@ let
   dotfilesList = builtins.filter (name: dirContents.${name} == "directory") (
     builtins.attrNames dirContents
   );
+
+  isNeovim = name: lib.hasSuffix "vim" name && (name != "vim");
+  neovimDotfilesCount = lib.lists.count isNeovim cfg.targets;
+
   cfg = config.modules.user.dotfiles.symlink;
 in
 {
@@ -24,11 +28,32 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # NOTE: Target standard ~/.config/ directories
+    assertions = [
+      {
+        assertion = neovimDotfilesCount <= 1;
+        message = /* str */ ''
+          Conflicting neovim for Out-Of-Store-Symlinking (${toString neovimDotfilesCount})
+          Recheck targets passed into symlink.nix
+        '';
+      }
+    ];
+
+    # NOTE: Target standard ~/.config directories
     # Interates to make-out-of-store symlink from existing dotfiles
-    xdg.configFile = lib.genAttrs cfg.targets (name: {
-      source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${name}";
-      recursive = true;
-    });
+    xdg.configFile = builtins.listToAttrs (
+      map (
+        name:
+        let
+          targetDir = if isNeovim name then "nvim" else name;
+        in
+        {
+          name = targetDir;
+          value = {
+            source = config.lib.file.mkOutOfStoreSymlink "${dotfiles}/${name}";
+            recursive = true;
+          };
+        }
+      ) cfg.targets
+    );
   };
 }

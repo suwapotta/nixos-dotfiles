@@ -143,7 +143,7 @@
               commands = [
                 {
                   name = "kickstart";
-                  command = ''
+                  command = /* bash */ ''
                     #!/usr/bin/env bash
                     set -euo pipefail
                     rm -rfv *.make || true

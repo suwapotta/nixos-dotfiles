@@ -27,7 +27,7 @@
         "nmi_watchdog=0"
       ];
 
-      extraModprobeConfig = ''
+      extraModprobeConfig = /* sh */ ''
         # Force audio chip to go to sleep after 1s
         options snd_hda_intel power_save=1 power_save_controller=Y
       '';

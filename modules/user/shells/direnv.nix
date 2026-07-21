@@ -28,7 +28,7 @@ in
       enableFishIntegration = true;
     };
 
-    home.file.".ignore".text = ''
+    home.file.".ignore".text = /* gitignore */ ''
       .direnv/
     '';
   };

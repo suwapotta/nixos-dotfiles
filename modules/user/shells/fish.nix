@@ -75,10 +75,10 @@ in
         vla = "virsh list --all";
       };
 
-      # shellInit = ''
+      # shellInit = /* fish */ ''
       # '';
 
-      interactiveShellInit = ''
+      interactiveShellInit = /* fish */ ''
         # No greeting
         set -g fish_greeting
 

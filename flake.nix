@@ -70,6 +70,7 @@
           ip = "192.168.1.201";
           # ip = "100.114.211.115"; # Tailscale
           isBuilder = true;
+          stateVersion = "26.05";
         };
 
         homeserver = {
@@ -79,6 +80,7 @@
           # ip = "1.2.3.4";
           ip = "100.77.178.32"; # Tailscale
           isBuilder = false;
+          stateVersion = "26.05";
         };
 
         laptop = {
@@ -88,11 +90,12 @@
           ip = "192.168.1.27";
           # ip = "100.103.120.77"; # Tailscale
           isBuilder = true;
+          stateVersion = "25.11";
         };
       };
+      hostList = builtins.attrNames hosts;
 
       # Global variables
-      hostList = builtins.attrNames hosts;
       userName = "lunaz";
       userEmail = "nguyenducthientan09@gmail.com";
     in
@@ -109,6 +112,8 @@
               userName
               userEmail
               ;
+
+            inherit (hostConfig) stateVersion;
             hostName = host;
           };
 

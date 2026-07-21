@@ -28,7 +28,7 @@
         };
 
         programs = {
-          bash.shellInit = ''
+          bash.shellInit = /* bash */ ''
             set -o vi
           '';
 

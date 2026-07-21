@@ -12,7 +12,7 @@ in
   options = {
     modules.user.editors.neovim = {
       enable = lib.mkEnableOption "neovim - better vim";
-      useMinimalConfig = lib.mkEnableOption "uses native neovim options only";
+      bundleWithLsp = lib.mkEnableOption "uses native neovim options only";
     };
   };
 
@@ -26,7 +26,7 @@ in
 
       extraPackages =
         with pkgs;
-        lib.optionals (!cfg.useMinimalConfig) [
+        lib.optionals (!cfg.bundleWithLsp) [
           # ── Dependencies ──────────────────────────────────────────────────────────────
           gcc
           chafa

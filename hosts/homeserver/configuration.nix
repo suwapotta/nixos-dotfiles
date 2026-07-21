@@ -1,5 +1,6 @@
 {
   inputs,
+  stateVersion,
   ...
 }:
 
@@ -14,7 +15,7 @@
   # - Display: 19" 1440x900@75Hz
 
   # WARN: DO NOT change the state version!
-  system.stateVersion = "26.05";
+  system.stateVersion = stateVersion;
 
   imports = [
     # ── Hardware ──────────────────────────────────────────────────────────────────

@@ -1,5 +1,6 @@
 {
   inputs,
+  stateVersion,
   ...
 }:
 
@@ -19,7 +20,7 @@
   # - Cooling: 1 Fan
 
   # WARN: DO NOT change the state version!
-  system.stateVersion = "25.11";
+  system.stateVersion = stateVersion;
 
   imports = [
     # ── Hardware ──────────────────────────────────────────────────────────────────

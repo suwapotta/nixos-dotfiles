@@ -49,7 +49,7 @@
             pkg-config
 
             gcovr
-            (writeShellScriptBin "gcov" ''
+            (writeShellScriptBin "gcov" /* sh */ ''
               exec ${gcc.cc}/bin/gcov "$@"
             '')
 

@@ -40,7 +40,7 @@ in
       requires = [ "power-profiles-daemon.service" ];
 
       path = [ pkgs.power-profiles-daemon ];
-      script = ''
+      script = /* sh */ ''
         sleep 3
         powerprofilesctl set ${cfg.mode}
       '';
