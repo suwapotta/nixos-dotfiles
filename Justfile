@@ -145,7 +145,7 @@ specialisation spec_name="Virtualisation" host=FLAKE_HOST: pkill git
     nh os test {{ justfile_directory() }} --specialisation {{ spec_name }} -H {{ host }} {{ NOTIFY }}
 
 switch host=FLAKE_HOST: pkill git
-    printf "{{ BLUE }}  󰟁 SWITCH  {{ NORMAL }} NixOS#{{ host }}\n"
+    printf "{{ BLUE }}  󰔢 SWITCH  {{ NORMAL }} NixOS#{{ host }}\n"
     nh os switch {{ justfile_directory() }} -H {{ host }} \
       && just notify 0 && just commit {{ host }} || just notify $?
 
@@ -172,7 +172,7 @@ dry host=FLAKE_HOST: git
     nh os switch {{ justfile_directory() }} -H {{ host }} --dry {{ NOTIFY }}
 
 legacy host=FLAKE_HOST: pkill git
-    printf "{{ BLUE }}  󰟁 SWITCH  {{ NORMAL }} (L) NixOS#{{ host }}\n"
+    printf "{{ BLUE }}  󰔡 SWITCH  {{ NORMAL }} (L) NixOS#{{ host }}\n"
     sudo nixos-rebuild switch --flake {{ justfile_directory() }} \
       && just notify 0 && just commit {{ host }} || just notify $?
 
@@ -185,8 +185,8 @@ update host=FLAKE_HOST: pkill git
     # printf "{{ BLUE }}   UPDATE  {{ NORMAL }} vim.pack\n"
     # nvim --headless +"lua vim.pack.update()" +w +qa &>/dev/null
 
-    printf "{{ BLUE }}  󰟁 UPDATE  {{ NORMAL }} NixOS#{{ host }}\n"
-    if nh os switch {{ justfile_directory() }} -H {{ host }} --update; then
+    printf "{{ BLUE }}   UPDATE  {{ NORMAL }} NixOS#{{ host }}\n"
+    if nh os switch {{ justfile_directory() }} --update -H {{ host }}; then
       just notify 0
     else
       just notify $?

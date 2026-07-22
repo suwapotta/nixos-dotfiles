@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  stateVersion,
   ...
 }:
 
@@ -40,7 +41,7 @@
           };
         };
 
-        system.stateVersion = "26.05";
+        system.stateVersion = stateVersion;
       };
     };
 
